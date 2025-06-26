@@ -17,10 +17,10 @@ import (
 	"google.golang.org/api/option"
 )
 
+
 const (
-	minTime = "21/06/2025"
-	maxTime = "15/06/2040"
-	subject = "math"
+	minTime = "24/06/2025"
+	maxTime = "25/06/2025" //Nếu bằng ngày hôm nay tức là đã crawl
 )
 
 var grade = "g8"
@@ -37,8 +37,6 @@ func main() {
 	}
 	defer client.Close()
 	practiceRepo = repo.NewPracticeRepo(client, ctx)
-	practiceRepo.Update()
-	return
 	CrawlUp()
 	CrawlHsp()
 	CrawlGrade()
@@ -46,11 +44,23 @@ func main() {
 
 func CrawlUp() {
 	grade = "up"
-	var sources = []string{
-		"https://toanmath.com/de-thi-thu-thpt-mon-toan/page/",
-		"https://toanmath.com/de-thi-thpt-mon-toan-chinh-thuc/page/",
-		"https://toanmath.com/de-danh-gia-nang-luc-mon-toan/page/",
-		"https://toanmath.com/tai-lieu-on-thi-thpt-mon-toan/page/",
+	var sources = []models.Input{
+		{
+			Url:  "https://toanmath.com/de-thi-thu-thpt-mon-toan/page/",
+			Type: "mock",
+		},
+		{
+			Url:  "https://toanmath.com/de-thi-thpt-mon-toan-chinh-thuc/page/",
+			Type: "official",
+		},
+		{
+			Url:  "https://toanmath.com/de-danh-gia-nang-luc-mon-toan/page/",
+			Type: "aptitude",
+		},
+		{
+			Url:  "https://toanmath.com/tai-lieu-on-thi-thpt-mon-toan/page/",
+			Type: "materials",
+		},
 	}
 	for _, source := range sources {
 		AutoCrawl(source)
@@ -59,9 +69,15 @@ func CrawlUp() {
 
 func CrawlHsp() {
 	grade = "hsp"
-	var sources = []string{
-		"https://thcs.toanmath.com/de-thi-tuyen-sinh-lop-10-mon-toan/page/",
-		"https://thcs.toanmath.com/tai-lieu-toan-on-thi-vao-lop-10/page/",
+	var sources = []models.Input{
+		{
+			Url:  "https://thcs.toanmath.com/de-thi-tuyen-sinh-lop-10-mon-toan/page/",
+			Type: "exam",
+		},
+		{
+			Url:  "https://thcs.toanmath.com/tai-lieu-toan-on-thi-vao-lop-10/page/",
+			Type: "materials",
+		},
 	}
 	for _, source := range sources {
 		AutoCrawl(source)
@@ -72,28 +88,81 @@ func CrawlGrade() {
 	for i := 6; i <= 12; i++ {
 		grade = fmt.Sprintf("g%d", i)
 		g = i
-		var sources = []string{}
+		var sources = []models.Input{}
 		if i <= 9 {
-			var s1 = []string{
-				fmt.Sprintf("https://thcs.toanmath.com/tai-lieu-toan-%d/page/", g),
-				fmt.Sprintf("https://thcs.toanmath.com/de-cuong-on-tap-toan-%d/page/", g),
-				fmt.Sprintf("https://thcs.toanmath.com/de-thi-giua-hk1-toan-%d/page/", g),
-				fmt.Sprintf("https://thcs.toanmath.com/de-thi-hk1-toan-%d/page/", g),
-				fmt.Sprintf("https://thcs.toanmath.com/de-thi-giua-hk2-toan-%d/page/", g),
-				fmt.Sprintf("https://thcs.toanmath.com/de-thi-hk2-toan-%d/page/", g),
-				fmt.Sprintf("https://thcs.toanmath.com/khao-sat-chat-luong-toan-%d/page/", g),
-				fmt.Sprintf("https://thcs.toanmath.com/de-thi-hsg-toan-%d/page/", g),
+			var s1 = []models.Input{
+				{
+					Url:  fmt.Sprintf("https://thcs.toanmath.com/tai-lieu-toan-%d/page/", g),
+					Type: "materials",
+				},
+				{
+					Url:  fmt.Sprintf("https://thcs.toanmath.com/de-cuong-on-tap-toan-%d/page/", g),
+					Type: "outline",
+				},
+				{
+					Url:  fmt.Sprintf("https://thcs.toanmath.com/de-thi-giua-hk1-toan-%d/page/", g),
+					Type: "midterm1",
+				},
+				{
+					Url:  fmt.Sprintf("https://thcs.toanmath.com/de-thi-hk1-toan-%d/page/", g),
+					Type: "final1",
+				},
+				{
+					Url:  fmt.Sprintf("https://thcs.toanmath.com/de-thi-giua-hk2-toan-%d/page/", g),
+					Type: "midterm2",
+				},
+				{
+					Url:  fmt.Sprintf("https://thcs.toanmath.com/de-thi-hk2-toan-%d/page/", g),
+					Type: "final2",
+				},
+				{
+					Url:  fmt.Sprintf("https://thcs.toanmath.com/khao-sat-chat-luong-toan-%d/page/", g),
+					Type: "assessment",
+				},
+				{
+					Url:  fmt.Sprintf("https://thcs.toanmath.com/de-thi-hsg-toan-%d/page/", g),
+					Type: "gifted",
+				},
 			}
 			sources = append(sources, s1...)
 		} else {
-			var s2 = []string{
-				fmt.Sprintf("https://toanmath.com/de-cuong-on-tap-toan-%d/page/", g),
-				fmt.Sprintf("https://toanmath.com/de-thi-giua-hk1-toan-%d/page/", g),
-				fmt.Sprintf("https://toanmath.com/de-thi-hk1-toan-%d/page/", g),
-				fmt.Sprintf("https://toanmath.com/de-thi-giua-hk2-toan-%d/page/", g),
-				fmt.Sprintf("https://toanmath.com/de-thi-hk2-toan-%d/page/", g),
-				fmt.Sprintf("https://toanmath.com/khao-sat-chat-luong-toan-%d/page/", g),
-				fmt.Sprintf("https://toanmath.com/de-thi-hsg-toan-%d/page/", g),
+			var s2 = []models.Input{
+				{
+					Url:  fmt.Sprintf("https://toanmath.com/de-cuong-on-tap-toan-%d/page/", g),
+					Type: "outline",
+				},
+				{
+					Url:  fmt.Sprintf("https://toanmath.com/de-thi-giua-hk1-toan-%d/page/", g),
+					Type: "midterm1",
+				},
+				{
+					Url:  fmt.Sprintf("https://toanmath.com/de-thi-hk1-toan-%d/page/", g),
+					Type: "final1",
+				},
+				{
+					Url:  fmt.Sprintf("https://toanmath.com/de-thi-giua-hk2-toan-%d/page/", g),
+					Type: "midterm2",
+				},
+				{
+					Url:  fmt.Sprintf("https://toanmath.com/de-thi-hk2-toan-%d/page/", g),
+					Type: "final2",
+				},
+				{
+					Url:  fmt.Sprintf("https://toanmath.com/khao-sat-chat-luong-toan-%d/page/", g),
+					Type: "assessment",
+				},
+				{
+					Url:  fmt.Sprintf("https://toanmath.com/de-thi-hsg-toan-%d/page/", g),
+					Type: "gifted",
+				},
+				{
+					Url:  fmt.Sprintf("https://toanmath.com/giao-an-toan-%d/page/", g),
+					Type: "lessonPlan",
+				},
+				{
+					Url:  fmt.Sprintf("https://toanmath.com/tips-giai-toan-%d/page/", g),
+					Type: "tips",
+				},
 			}
 			sources = append(sources, s2...)
 		}
@@ -104,14 +173,14 @@ func CrawlGrade() {
 	}
 }
 
-func AutoCrawl(source string) {
+func AutoCrawl(source models.Input) {
 	var listPractice []models.Practice
 	pageCount := 1
 	for i := 1; i <= pageCount; i++ {
-		url := source + fmt.Sprint(i)
+		url := source.Url + fmt.Sprint(i)
 		fmt.Println("Đang crawl: " + url)
 		fmt.Printf("Đang lấy trang %d/%d\n", i, pageCount)
-		p, newPageCount, err := getListPractice(url)
+		p, newPageCount, err := getListPractice(url, source.Type)
 		if err != nil {
 			fmt.Println("err: " + err.Error())
 			break
@@ -124,7 +193,7 @@ func AutoCrawl(source string) {
 	for _, practice := range listPractice {
 		fmt.Println("Title: " + practice.Title)
 		fmt.Println("Grade: " + practice.Grade)
-		fmt.Println("Subject: " + practice.Subject)
+		fmt.Println("Type: " + practice.Type)
 		fmt.Println("Url: " + practice.Url)
 		fmt.Println("Last Modified: " + practice.LastModified.Format("02/01/2006"))
 		UpdatePracticeToFirestore(practice)
@@ -143,7 +212,7 @@ func UpdatePracticeToFirestore(practice models.Practice) error {
 	return nil
 }
 
-func getListPractice(url string) ([]models.Practice, int, error) {
+func getListPractice(url string, type1 string) ([]models.Practice, int, error) {
 	doc, err := getDocument(url)
 	if err != nil {
 		return nil, 1, err
@@ -204,7 +273,7 @@ func getListPractice(url string) ([]models.Practice, int, error) {
 		practice := models.Practice{
 			Title:        title,
 			Grade:        grade,
-			Subject:      subject,
+			Type:         type1,
 			Url:          pdfLink,
 			LastModified: time,
 			KeyWords:     keyWords,
