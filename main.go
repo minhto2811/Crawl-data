@@ -17,10 +17,9 @@ import (
 	"google.golang.org/api/option"
 )
 
-
 const (
-	minTime = "24/06/2025"
-	maxTime = "25/06/2025" //Nếu bằng ngày hôm nay tức là đã crawl
+	minTime = "26/07/2025"
+	maxTime = "27/07/2025" //Nếu bằng ngày hôm nay tức là đã crawl
 )
 
 var grade = "g8"
@@ -36,6 +35,7 @@ func main() {
 		log.Fatalf("Lỗi tạo Firestore client: %v", err)
 	}
 	defer client.Close()
+
 	practiceRepo = repo.NewPracticeRepo(client, ctx)
 	CrawlUp()
 	CrawlHsp()
