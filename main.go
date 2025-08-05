@@ -18,8 +18,8 @@ import (
 )
 
 const (
-	minTime = "31/07/2025"
-	maxTime = "1/08/2025" //Nếu bằng ngày hôm nay tức là đã crawl
+	minTime = "04/08/2025"
+	maxTime = "05/08/2025" //Nếu bằng ngày hôm nay tức là đã crawl
 )
 
 var grade = "g8"
@@ -241,9 +241,9 @@ func getListPractice(url string, type1 string) ([]models.Practice, int, error) {
 			fmt.Println("❌ Lỗi convert timestamp:", err)
 			return
 		}
-		if time.Unix() < min.Unix() || time.Unix() > max.Unix() {
+		if time.Unix() < min.Unix() || time.Unix() >= max.Unix() {
 			fmt.Println("⚠️ Bỏ qua practice:", title)
-			return // bỏ qua nếu thời gian nhỏ hơn minTime
+			return
 		}
 
 		fmt.Println("----------------------------")
