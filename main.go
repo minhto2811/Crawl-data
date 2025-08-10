@@ -18,7 +18,7 @@ import (
 )
 
 const (
-	minTime = "09/08/2025"
+	minTime = "09/08/2001"
 	maxTime = "10/08/2025" //Nếu bằng ngày hôm nay tức là đã crawl
 )
 
@@ -45,11 +45,11 @@ func main() {
 }
 
 func CrawlSGKTHCS(){
-	grade = "thcs"
+	grade = "sgk"
 	var sources = []models.Input{
 		{
 			Url:  "https://thcs.toanmath.com/sach-giao-khoa-toan-thcs/page/",
-			Type: "sgk",
+			Type: "thcs",
 		},
 	}
 	for _, source := range sources {
@@ -60,11 +60,11 @@ func CrawlSGKTHCS(){
 
 
 func CrawlSGKTHPT(){
-	grade = "thpt"
+	grade = "sgk"
 	var sources = []models.Input{
 		{
 			Url:  "https://toanmath.com/sach-giao-khoa-toan-thpt/page/",
-			Type: "sgk",
+			Type: "thpt",
 		},
 	}
 	for _, source := range sources {

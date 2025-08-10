@@ -13,6 +13,7 @@ import (
 type PracticeRepo interface {
 	SavePractice(practice *models.Practice) error
 	Update() error
+	Remove() error
 }
 
 type PracticeRepoImp struct {
@@ -55,4 +56,19 @@ func (r *PracticeRepoImp) Update() error {
 	return nil
 }
 
+
+func (r *PracticeRepoImp) Remove() error {
+	snapshot, err := r.client.Collection("practices").Where("type","==","sgk").Documents(r.ctx).GetAll()
+	if err != nil {
+		return err
+	}
+	for _, doc := range snapshot {
+		fmt.Printf("Removing document %s\n", doc.Ref.ID)
+		_, err := r.client.Collection("practices").Doc(doc.Ref.ID).Delete(r.ctx)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
 
