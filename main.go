@@ -37,11 +37,11 @@ func main() {
 	defer client.Close()
 
 	practiceRepo = repo.NewPracticeRepo(client, ctx)
-	CrawlSGKTHCS();
-	CrawlSGKTHPT();
 	CrawlUp()
 	CrawlHsp()
 	CrawlGrade()
+	CrawlSGKTHCS()
+	CrawlSGKTHPT()
 }
 
 func CrawlSGKTHCS(){
