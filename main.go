@@ -18,8 +18,8 @@ import (
 )
 
 const (
-	minTime = "04/08/2025"
-	maxTime = "05/08/2025" //Nếu bằng ngày hôm nay tức là đã crawl
+	minTime = "09/08/2025"
+	maxTime = "10/08/2025" //Nếu bằng ngày hôm nay tức là đã crawl
 )
 
 var grade = "g8"
@@ -37,9 +37,39 @@ func main() {
 	defer client.Close()
 
 	practiceRepo = repo.NewPracticeRepo(client, ctx)
+	CrawlSGKTHCS();
+	CrawlSGKTHPT();
 	CrawlUp()
 	CrawlHsp()
 	CrawlGrade()
+}
+
+func CrawlSGKTHCS(){
+	grade = "thcs"
+	var sources = []models.Input{
+		{
+			Url:  "https://thcs.toanmath.com/sach-giao-khoa-toan-thcs/page/",
+			Type: "sgk",
+		},
+	}
+	for _, source := range sources {
+		AutoCrawl(source)
+	}
+}
+
+
+
+func CrawlSGKTHPT(){
+	grade = "thpt"
+	var sources = []models.Input{
+		{
+			Url:  "https://toanmath.com/sach-giao-khoa-toan-thpt/page/",
+			Type: "sgk",
+		},
+	}
+	for _, source := range sources {
+		AutoCrawl(source)
+	}
 }
 
 func CrawlUp() {
