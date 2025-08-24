@@ -24,6 +24,8 @@ func main() {
 	defer client.Close()
 
 	practiceRepo = repo.NewPracticeRepo(client, ctx)
-	crawl.CrawlMath(practiceRepo)
+	crawl.SetRepo(practiceRepo)
+	//crawl.CrawlLiterature()
+	crawl.CrawlMath()
 }
 

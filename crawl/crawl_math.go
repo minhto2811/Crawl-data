@@ -2,11 +2,8 @@ package crawl
 
 import (
 	"fmt"
-	"log"
 	"mxgk/crawl/models"
-	"mxgk/crawl/repo"
 	"mxgk/crawl/utils"
-	"net/http"
 	"strconv"
 	"strings"
 	"time"
@@ -14,28 +11,15 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-
-const (
-	minTime = "20/08/2025"
-	maxTime = "23/08/2025" //Nếu bằng ngày hôm nay tức là đã crawl
-)
-
-var grade = "g8"
-var g = 8
-var collection = "practices"
-
-var rep repo.PracticeRepo
-
-func CrawlMath(practiceRepo repo.PracticeRepo) {
-	rep = practiceRepo
-	CrawlUp()
-	CrawlHsp()
-	CrawlGrade()
-	CrawlSGKTHCS()
-	CrawlSGKTHPT()
+func CrawlMath() {
+	crawlUp()
+	crawlHsp()
+	crawlGrade()
+	crawlSGKTHCS()
+	crawlSGKTHPT()
 }
 
-func CrawlSGKTHCS() {
+func crawlSGKTHCS() {
 	grade = "sgk"
 	var sources = []models.Input{
 		{
@@ -44,11 +28,11 @@ func CrawlSGKTHCS() {
 		},
 	}
 	for _, source := range sources {
-		AutoCrawl(source)
+		autoCrawl(source)
 	}
 }
 
-func CrawlSGKTHPT() {
+func crawlSGKTHPT() {
 	grade = "sgk"
 	var sources = []models.Input{
 		{
@@ -57,11 +41,11 @@ func CrawlSGKTHPT() {
 		},
 	}
 	for _, source := range sources {
-		AutoCrawl(source)
+		autoCrawl(source)
 	}
 }
 
-func CrawlUp() {
+func crawlUp() {
 	grade = "up"
 	var sources = []models.Input{
 		{
@@ -82,11 +66,11 @@ func CrawlUp() {
 		},
 	}
 	for _, source := range sources {
-		AutoCrawl(source)
+		autoCrawl(source)
 	}
 }
 
-func CrawlHsp() {
+func crawlHsp() {
 	grade = "hsp"
 	var sources = []models.Input{
 		{
@@ -99,11 +83,11 @@ func CrawlHsp() {
 		},
 	}
 	for _, source := range sources {
-		AutoCrawl(source)
+		autoCrawl(source)
 	}
 }
 
-func CrawlGrade() {
+func crawlGrade() {
 	for i := 6; i <= 12; i++ {
 		grade = fmt.Sprintf("g%d", i)
 		g = i
@@ -187,12 +171,12 @@ func CrawlGrade() {
 		}
 
 		for _, source := range sources {
-			AutoCrawl(source)
+			autoCrawl(source)
 		}
 	}
 }
 
-func AutoCrawl(source models.Input) {
+func autoCrawl(source models.Input) {
 	var listPractice []models.Practice
 	pageCount := 1
 	for i := 1; i <= pageCount; i++ {
@@ -215,20 +199,9 @@ func AutoCrawl(source models.Input) {
 		fmt.Println("Type: " + practice.Type)
 		fmt.Println("Url: " + practice.Url)
 		fmt.Println("Last Modified: " + practice.LastModified.Format("02/01/2006"))
-		UpdatePracticeToFirestore(practice)
+		updatePracticeToFirestore(practice)
 		fmt.Println("----------------------------")
 	}
-}
-
-func UpdatePracticeToFirestore(practice models.Practice) error {
-	err := rep.SavePractice(&practice, collection)
-	if err != nil {
-		log.Printf("Lỗi cập nhật practice: %v", err)
-		return err
-	}
-
-	log.Printf("✅ Đã cập nhật practice: %s", practice.Title)
-	return nil
 }
 
 func getListPractice(url string, type1 string) ([]models.Practice, int, error) {
@@ -312,24 +285,3 @@ func convertToTimestamp(dateStr string) (time.Time, error) {
 	return t, nil
 }
 
-func getDocument(url string) (*goquery.Document, error) {
-	client := &http.Client{}
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")
-
-	res, err := client.Do(req)
-	if err != nil {
-		return nil, err
-	}
-	defer res.Body.Close()
-
-	if res.StatusCode != 200 {
-		return nil, fmt.Errorf("status code error: %d %s", res.StatusCode, res.Status)
-	}
-
-	return goquery.NewDocumentFromReader(res.Body)
-}
