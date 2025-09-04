@@ -11,8 +11,8 @@ import (
 )
 
 const (
-	minTime = "23/08/2025"
-	maxTime = "24/08/2025" //Nếu bằng ngày hôm nay tức là đã crawl
+	minTime = "01/09/2025"
+	maxTime = "04/09/2025" //Nếu bằng ngày hôm nay tức là đã crawl
 )
 
 var grade = "g8"
