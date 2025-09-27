@@ -5,6 +5,7 @@ go 1.23.6
 require (
 	cloud.google.com/go/firestore v1.18.0
 	github.com/PuerkitoBio/goquery v1.10.3
+	golang.org/x/text v0.26.0
 	google.golang.org/api v0.214.0
 )
 
@@ -31,7 +32,6 @@ require (
 	golang.org/x/oauth2 v0.24.0 // indirect
 	golang.org/x/sync v0.15.0 // indirect
 	golang.org/x/sys v0.32.0 // indirect
-	golang.org/x/text v0.26.0 // indirect
 	golang.org/x/time v0.8.0 // indirect
 	google.golang.org/genproto v0.0.0-20241118233622-e639e219e697 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20241118233622-e639e219e697 // indirect
