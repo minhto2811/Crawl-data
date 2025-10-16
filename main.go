@@ -7,10 +7,9 @@ import (
 	"mxgk/crawl/repo"
 
 	"cloud.google.com/go/firestore"
+	"cloud.google.com/go/storage"
 	"google.golang.org/api/option"
 )
-
-
 
 var practiceRepo repo.PracticeRepo
 
@@ -23,9 +22,16 @@ func main() {
 	}
 	defer client.Close()
 
-	practiceRepo = repo.NewPracticeRepo(client, ctx)
-	crawl.SetRepo(practiceRepo)
-	//crawl.CrawlLiterature()
-	crawl.CrawlMath()
-}
+	stor1, err := storage.NewClient(ctx, sa)
+	if err != nil {
+		// TODO: Handle error.
+	}
 
+	practiceRepo = repo.NewPracticeRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
+	crawl.SetRepo(practiceRepo)
+
+	// crawl.CrawlVideo("PLXYp7Odn5ED8jj_ROzHTVt5H4NNYZtY66","up")
+	// return
+	crawl.CrawlMath()
+	crawl.BackUp()
+}
