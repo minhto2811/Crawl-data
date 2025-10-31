@@ -17,8 +17,8 @@ import (
 )
 
 const (
-	minTime = "29/10/2025"
-	maxTime = "30/10/2025" //Nếu bằng ngày hôm nay tức là đã crawl
+	minTime = "30/10/2025"
+	maxTime = "31/10/2025" //Nếu bằng ngày hôm nay tức là đã crawl
 )
 
 var grade = "g8"
@@ -52,8 +52,8 @@ func bytesToLines(b []byte) []string {
 	return lines
 }
 
-func CrawlVideo(playlist string,gr string) {
-cmd := exec.Command("yt-dlp", "-j", "--flat-playlist", playlist)
+func CrawlVideo(playlist string, gr string) {
+	cmd := exec.Command("yt-dlp", "-j", "--flat-playlist", playlist)
 	output, err := cmd.Output()
 	if err != nil {
 		panic(err)
@@ -61,7 +61,7 @@ cmd := exec.Command("yt-dlp", "-j", "--flat-playlist", playlist)
 
 	// Mỗi dòng là một JSON object -> parse từng dòng
 	lines := bytesToLines(output)
-	var urls []string 
+	var urls []string
 	for _, line := range lines {
 		if len(line) == 0 {
 			continue
@@ -75,59 +75,62 @@ cmd := exec.Command("yt-dlp", "-j", "--flat-playlist", playlist)
 	}
 
 	var videos []models.Video
-    for _, url := range urls {
-        title, err := getYouTubeTitle(url)
-        if err != nil {
-            fmt.Println("Lỗi lấy title:", err)
-            continue
-        }
+	for _, url := range urls {
+		title, err := getYouTubeTitle(url)
+		if err != nil {
+			fmt.Println("Lỗi lấy title:", err)
+			continue
+		}
 		if title == "- YouTube" {
-            fmt.Println("Xóa video pivate")
-            continue
-        }
-        videos = append(videos, models.Video{
-            Title:        title,
-            URL:          url,
-            Grade:        gr,
-            LastModified: time.Now(),
-			Playlist: playlist,
-        })
-    }
-    rep.Tutorial(videos)
+			fmt.Println("Xóa video pivate")
+			continue
+		}
+		videos = append(videos, models.Video{
+			Title:        title,
+			URL:          url,
+			Grade:        gr,
+			LastModified: time.Now(),
+			Playlist:     playlist,
+		})
+	}
+	rep.Tutorial(videos)
 }
 
 func getYouTubeTitle(url string) (string, error) {
-    resp, err := http.Get(url)
-    if err != nil {
-        return "", err
-    }
-    defer resp.Body.Close()
+	resp, err := http.Get(url)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
 
-    tokenizer := html.NewTokenizer(resp.Body)
-    for {
-        tt := tokenizer.Next()
-        switch tt {
-        case html.ErrorToken:
-            return "", fmt.Errorf("title not found")
-        case html.StartTagToken:
-            t := tokenizer.Token()
-            if t.Data == "title" {
-                tokenizer.Next()
-                title := strings.TrimSpace(tokenizer.Token().Data)
-                // YouTube title thường có “ - YouTube”, ta bỏ đi
-                return strings.TrimSuffix(title, " - YouTube"), nil
-            }
-        }
-    }
+	tokenizer := html.NewTokenizer(resp.Body)
+	for {
+		tt := tokenizer.Next()
+		switch tt {
+		case html.ErrorToken:
+			return "", fmt.Errorf("title not found")
+		case html.StartTagToken:
+			t := tokenizer.Token()
+			if t.Data == "title" {
+				tokenizer.Next()
+				title := strings.TrimSpace(tokenizer.Token().Data)
+				// YouTube title thường có “ - YouTube”, ta bỏ đi
+				return strings.TrimSuffix(title, " - YouTube"), nil
+			}
+		}
+	}
 }
-
-
 
 func BackUp() error {
 	return rep.Backup()
 }
 
 func updatePracticeToFirestore(practice models.Practice) error {
+	log.Printf("Url cũ: %s", practice.Url)
+	practice.Url = rep.Upload(practice.Url)
+	log.Printf("Url mới: %s", practice.Url)
+
+	// Cập nhật lại document Firestore
 	err := rep.SavePractice(&practice, collection)
 	if err != nil {
 		log.Printf("Lỗi cập nhật practice: %v", err)

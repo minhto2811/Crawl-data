@@ -31,7 +31,6 @@ func main() {
 	crawl.SetRepo(practiceRepo)
 
 	// crawl.CrawlVideo("PLXYp7Odn5ED8jj_ROzHTVt5H4NNYZtY66","up")
-	// return
+
 	crawl.CrawlMath()
-	crawl.BackUp()
 }

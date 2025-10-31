@@ -24,6 +24,7 @@ type PracticeRepo interface {
 	Remove() error
 	Backup() error
 	Tutorial(videos []models.Video) error
+	Upload(url string) string
 }
 
 type PracticeRepoImp struct {
@@ -52,7 +53,7 @@ func (r *PracticeRepoImp) Update() error {
 			continue
 		}
 		_, err := r.client.Collection("practices").Doc(doc.Ref.ID).Set(r.ctx, map[string]interface{}{
-			"subject": "math",
+			"subject": "math", 
 		}, firestore.MergeAll)
 		if err != nil {
 			fmt.Printf("Error: %s\n", doc.Ref.ID)
@@ -65,16 +66,34 @@ func (r *PracticeRepoImp) Update() error {
 }
 
 func (r *PracticeRepoImp) Remove() error {
-	snapshot, err := r.client.Collection("practices").Where("type", "==", "sgk").Documents(r.ctx).GetAll()
+	snapshot, err := r.client.Collection("practices").Where("lastModified", ">=", time.Date(2025, 10, 30, 0, 0, 0, 0, time.UTC)).Documents(r.ctx).GetAll()
+	fmt.Println("length: %s", len(snapshot))
 	if err != nil {
 		return err
 	}
 	for _, doc := range snapshot {
-		fmt.Printf("Removing document %s\n", doc.Ref.ID)
+		fileURL := doc.Data()["url"].(string)
+		fmt.Println("Removing document %s\n", doc.Ref.ID)
 		_, err := r.client.Collection("practices").Doc(doc.Ref.ID).Delete(r.ctx)
 		if err != nil {
 			return err
 		}
+		start := strings.Index(fileURL, "/o/")
+		if start == -1 {
+			return fmt.Errorf("URL không hợp lệ: %s", fileURL)
+		}
+		start += len("/o/")
+		end := strings.Index(fileURL, "?")
+		if end == -1 {
+			end = len(fileURL)
+		}
+		path := fileURL[start:end]
+		path = strings.ReplaceAll(path, "%2F", "/")
+		obj := r.storage.Bucket(r.bucketName).Object(path)
+		if err := obj.Delete(r.ctx); err != nil {
+			return fmt.Errorf("lỗi khi xóa file %q: %v", path, err)
+		}
+		fmt.Println("🗑️ Đã xóa file: %s", path)
 	}
 	return nil
 }
@@ -161,4 +180,42 @@ func (r *PracticeRepoImp) Tutorial(videos []models.Video) error {
 		fmt.Printf("Đã thêm video: %s\n", video.Title)
 	}
 	return nil
+}
+
+func (r *PracticeRepoImp) Upload(url1 string) string {
+	// 🔹 1. Tải file từ URL cũ
+	resp, err := http.Get(url1)
+	if err != nil {
+		fmt.Printf("Không tải được %s: %v\n", url1, err)
+		return url1
+	}
+	defer resp.Body.Close()
+
+	// 🔹 2. Tạo tên file trong Firebase Storage
+	fileName := filepath.Base(url1)
+	if fileName == "" {
+		fileName = fmt.Sprintf("%s_%d", "tailieu", time.Now().Unix())
+	}
+	objectPath := fmt.Sprintf("math/%s", fileName)
+
+	// 🔹 3. Upload file lên Storage
+	wc := r.storage.Bucket(r.bucketName).Object(objectPath).NewWriter(r.ctx)
+	uuid := uuid.New().String()
+	wc.Metadata = map[string]string{
+		"firebaseStorageDownloadTokens": uuid, // <--- HERE
+	}
+	if _, err := io.Copy(wc, resp.Body); err != nil {
+		fmt.Printf("Lỗi upload %s: %v\n", fileName, err)
+		wc.Close()
+		return url1
+	}
+	if err := wc.Close(); err != nil {
+		fmt.Printf("Lỗi đóng writer: %v\n", err)
+		return url1
+	}
+
+	// 🔹 4. Lấy URL công khai (hoặc signed URL nếu bạn muốn bảo mật)
+	escapedPath := url.PathEscape(objectPath)
+	newURL := fmt.Sprintf("https://firebasestorage.googleapis.com/v0/b/%s/o/%s?alt=media&token=%s", r.bucketName, escapedPath, uuid)
+	return newURL
 }
