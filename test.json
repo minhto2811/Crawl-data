@@ -1,0 +1,217 @@
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "name": "Trắc nghiệm giữa học kỳ I",
+  "description": "Kiểm tra kiến thức về số tự nhiên, tính chia hết, và các hình phẳng trong thực tiễn.",
+  "grade": "g6",
+  "questions": [
+    {
+      "question": "Cho $M$ là tập hợp các số tự nhiên lẻ nhỏ hơn 9. Khẳng định nào là đúng?",
+      "answers": [
+        "$5 \\in M$",
+        "$6 \\in M$", 
+        "$7 \\notin M$",
+        "$9 \\in M$"
+      ],
+      "indexAnswer": 0,
+      "solution": "Tập hợp $M$ gồm các số tự nhiên lẻ nhỏ hơn 9 là: $M = \\{1; 3; 5; 7\\}$. Do đó $5 \\in M$ là khẳng định đúng."
+    },
+    {
+      "question": "Thứ tự thực hiện phép tính đối với biểu thức có chứa dấu ngoặc là",
+      "answers": [
+        "$( ) \\rightarrow [ ] \\rightarrow \\{ \\}$",
+        "$( ) \\rightarrow \\{ \\} \\rightarrow [ ]$",
+        "$\\{ \\} \\rightarrow [ ] \\rightarrow ( )$",
+        "$[ ] \\rightarrow ( ) \\rightarrow \\{ \\}$"
+      ],
+      "indexAnswer": 0,
+      "solution": "Quy tắc: Thực hiện phép tính trong ngoặc tròn $( )$ trước, sau đó đến ngoặc vuông $[ ]$, cuối cùng là ngoặc nhọn $\\{ \\}$."
+    },
+    {
+      "question": "Tổng nào dưới đây chia hết cho 3?",
+      "answers": [
+        "$3^4 + 1$",
+        "$3^5 - 1$", 
+        "$3^4 - 9$",
+        "$3^4 + 11$"
+      ],
+      "indexAnswer": 2,
+      "solution": "$3^4 - 9 = 81 - 9 = 72$, mà $72 \\div 3 = 24$ nên $3^4 - 9$ chia hết cho 3."
+    },
+    {
+      "question": "Trong các số sau số nào là bội của 5?",
+      "answers": [
+        "36",
+        "38",
+        "51", 
+        "55"
+      ],
+      "indexAnswer": 3,
+      "solution": "Bội của 5 là các số có chữ số tận cùng là 0 hoặc 5. Trong các số đã cho, 55 có chữ số tận cùng là 5 nên là bội của 5."
+    },
+    {
+      "question": "Số liền trước của số 2022 là",
+      "answers": [
+        "2021",
+        "2024",
+        "2023",
+        "2022"
+      ],
+      "indexAnswer": 0,
+      "solution": "Số liền trước của một số là số đứng ngay trước nó. Số liền trước của 2022 là 2021."
+    },
+    {
+      "question": "Kết quả của phép tính $2^2 \\cdot 2^4 \\cdot 2$ là",
+      "answers": [
+        "$2^6$",
+        "$2^7$", 
+        "$2^8$",
+        "$8^6$"
+      ],
+      "indexAnswer": 1,
+      "solution": "$2^2 \\cdot 2^4 \\cdot 2 = 2^{2+4+1} = 2^7$ (theo quy tắc nhân hai lũy thừa cùng cơ số)."
+    },
+    {
+      "question": "Số nào sau đây là ước của 9?",
+      "answers": [
+        "2",
+        "3",
+        "4", 
+        "18"
+      ],
+      "indexAnswer": 1,
+      "solution": "Ước của 9 là các số mà 9 chia hết cho nó. Các ước của 9 là: 1, 3, 9. Do đó 3 là ước của 9."
+    },
+    {
+      "question": "Biểu diễn số 14 bằng số La Mã là",
+      "answers": [
+        "VIIII",
+        "XIIII", 
+        "XIX",
+        "XIV"
+      ],
+      "indexAnswer": 3,
+      "solution": "Số 14 trong số La Mã được viết là XIV (X = 10, IV = 4)."
+    },
+    {
+      "question": "Tập hợp các chữ cái trong cụm từ \"BAC NINH\" là",
+      "answers": [
+        "$\\{B;A;C;N;I;N;H\\}$",
+        "$\\{B;A;C;N;I\\}$", 
+        "$\\{B;A;C;I;N;H\\}$",
+        "$\\{B;C;N;I;H\\}$"
+      ],
+      "indexAnswer": 2,
+      "solution": "Tập hợp không có phần tử trùng lặp. Các chữ cái khác nhau trong \"BAC NINH\" là: B, A, C, I, N, H."
+    },
+    {
+      "question": "Số nào sau đây không phải là số nguyên tố?",
+      "answers": [
+        "2",
+        "3", 
+        "4",
+        "5"
+      ],
+      "indexAnswer": 2,
+      "solution": "Số nguyên tố là số tự nhiên lớn hơn 1 và chỉ có hai ước là 1 và chính nó. Số 4 có các ước là 1, 2, 4 nên không phải là số nguyên tố."
+    },
+    {
+      "question": "Kết quả của phép tính $3^8 : 3^6$ là",
+      "answers": [
+        "$3^{14}$",
+        "$3^2$", 
+        "$3^1$",
+        "$3^0$"
+      ],
+      "indexAnswer": 1,
+      "solution": "$3^8 : 3^6 = 3^{8-6} = 3^2$ (theo quy tắc chia hai lũy thừa cùng cơ số)."
+    },
+    {
+      "question": "Trong các hình sau, hình nào có hai đường chéo vuông góc?",
+      "answers": [
+        "Hình bình hành",
+        "Hình chữ nhật", 
+        "Hình thang cân",
+        "Hình thoi"
+      ],
+      "indexAnswer": 3,
+      "solution": "Hình thoi có hai đường chéo vuông góc với nhau và cắt nhau tại trung điểm mỗi đường."
+    },
+    {
+      "question": "Mỗi góc của hình lục giác đều bằng",
+      "answers": [
+        "$45^\\circ$",
+        "$60^\\circ$", 
+        "$90^\\circ$",
+        "$120^\\circ$"
+      ],
+      "indexAnswer": 3,
+      "solution": "Tổng số đo các góc của lục giác đều là $(6-2) \\times 180^\\circ = 720^\\circ$. Mỗi góc của lục giác đều bằng $720^\\circ : 6 = 120^\\circ$."
+    },
+    {
+      "question": "Cho hình thoi $ABCD$. Khẳng định nào sau đây là sai?",
+      "answers": [
+        "$AB = CD$",
+        "$AC = BD$", 
+        "$BC = CD$",
+        "$AD = CD$"
+      ],
+      "indexAnswer": 1,
+      "solution": "Trong hình thoi, các cạnh bằng nhau nhưng hai đường chéo không nhất thiết bằng nhau. Do đó $AC = BD$ là khẳng định sai."
+    },
+    {
+      "question": "Mỗi góc của hình chữ nhật có số đo là",
+      "answers": [
+        "$30^\\circ$",
+        "$90^\\circ$", 
+        "$120^\\circ$",
+        "$60^\\circ$"
+      ],
+      "indexAnswer": 1,
+      "solution": "Hình chữ nhật có 4 góc vuông, mỗi góc bằng $90^\\circ$."
+    },
+    {
+      "question": "Ghép 6 tam giác đều có độ dài cạnh là 5cm thành một lục giác đều. Khi đó độ dài đường chéo chính là",
+      "answers": [
+        "10cm",
+        "30cm", 
+        "5cm",
+        "15cm"
+      ],
+      "indexAnswer": 0,
+      "solution": "Đường chéo chính của lục giác đều bằng 2 lần cạnh tam giác đều: $2 \\times 5 = 10$cm."
+    },
+    {
+      "question": "Cho tổng $M = 75 + 120 + m$. Với giá trị nào của $m$ dưới đây thì $M$ chia hết cho 3?",
+      "answers": [
+        "5",
+        "7", 
+        "4",
+        "12"
+      ],
+      "indexAnswer": 3,
+      "solution": "$75 \\div 3 = 25$, $120 \\div 3 = 40$, do đó để $M$ chia hết cho 3 thì $m$ phải chia hết cho 3. Trong các đáp án, chỉ có 12 chia hết cho 3."
+    },
+    {
+      "question": "Khẳng định nào sau đây đúng?",
+      "answers": [
+        "$3 \\in UC(6, 9, 18)$",
+        "$2 \\in UC(6, 9, 18)$", 
+        "$4 \\in UC(6, 9, 18)$",
+        "$5 \\in UC(6, 9, 18)$"
+      ],
+      "indexAnswer": 0,
+      "solution": "Ước chung của 6, 9, 18 là các số mà cả ba số đều chia hết. $UC(6, 9, 18) = \\{1, 3\\}$. Do đó $3 \\in UC(6, 9, 18)$ là khẳng định đúng."
+    },
+    {
+      "question": "Số 60 có bao nhiêu ước?",
+      "answers": [
+        "8",
+        "9", 
+        "10",
+        "12"
+      ],
+      "indexAnswer": 3,
+      "solution": "Phân tích $60 = 2^2 \\times 3 \\times 5$. Số ước của 60 là $(2+1)(1+1)(1+1) = 3 \\times 2 \\times 2 = 12$ ước."
+    }
+  ]
+}

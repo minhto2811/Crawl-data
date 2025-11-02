@@ -26,7 +26,9 @@ func main() {
 	if err != nil {
 		// TODO: Handle error.
 	}
-
+	// tr := repo.NewTestRepo(client, ctx)
+	// tr.Update()
+	// return
 	practiceRepo = repo.NewPracticeRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
 	crawl.SetRepo(practiceRepo)
 
