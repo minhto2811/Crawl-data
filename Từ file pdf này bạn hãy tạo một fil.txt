@@ -1,0 +1,31 @@
+Từ file pdf này bạn hãy tạo một file json đề toán trắc nghiệm có dạng như sau,
+CHÚ Ý NAME VÀ GRADE PHải chính xác tuyệt đố,Bỏ qua các link trong tài liệu. Tạo JSON với các câu hỏi hoàn chỉnh từ dữ liệu có sẵn nếu thiếu hãy tạo thêm cho đủ 20 câu.
+Mấy câu nào mà chỉ dựa vào hình ảnh để đưa ra đáp án thì bỏ qua, vì không có thông tin để giải.
+{
+"id": "Hãy gen ra uuid",
+"name": "Đề Trắc Nghiệm Toán X - Tên Trường Học, hãy điển số lớp tự động theo tài liệu ví dụ Toán 6, Toán 7, Toán 8 ,..."
+"description":"Tạo mô tả cho đề trắc nghiệm này gồm những kiến thức gì, đừng nhắc gì về thời gian",
+"grade":"Bắt đầu bằng g kết hợp với lớp, ví dụ lớp 10 là g10, lớp 12 là g12",
+"questions":[
+{
+"question":"Câu hỏi nếu có kí tự hãy đưa về dạng latex  ở chế độ math mode, yêu cầu cung cấp đầy đủ thông tin mà bài toán cung cấp để có thể giải được",
+"answers": [
+"Hãy nhập lần lượt đáp án vào đây dưới dạng string nếu có, nếu không có hãy tạo ra một đáp án đúng 3 và 3 đáp án sai"
+],
+"indexAnswer": Vị trí đáp án đúng kiểu int,
+"solution":"Hướng dẫn giải chi tiết, rõ ràng, nếu có kí tự latex hãy viết dưới dạng latex ở chế độ math mode"
+}
+]
+} hãy tạo ra nhiều câu hỏi nhất có trong tài liệu nếu có thể nhé,
+ bạn có thể bỏ qua các câu hỏi không có đầy đủ thông tin để tính kết quả như : 
+ {
+      "question": "Chiều cao của hình lăng trụ đứng tam giác dưới đây là:",
+      "answers": [
+        "70 cm",
+        "90 cm",
+        "60 cm",
+        "80 cm"
+      ],
+      "indexAnswer": 0,
+      "solution": "Chiều cao của lăng trụ đứng là độ dài cạnh bên. Quan sát hình, chiều cao là 70 cm."
+    } vì không có hình ảnh nên không biết được.  tôi muốn latex ở math mode có dấu $.

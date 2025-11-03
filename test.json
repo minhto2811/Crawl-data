@@ -1,217 +1,217 @@
 {
-  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "name": "Trắc nghiệm giữa học kỳ I",
-  "description": "Kiểm tra kiến thức về số tự nhiên, tính chia hết, và các hình phẳng trong thực tiễn.",
-  "grade": "g6",
+  "id": "de-giua-hoc-ki-1-toan-9-2024-2025-phong-gddt-tan-yen",
+  "name": "Đề Trắc Nghiệm Toán 9 - Phòng GDĐT Tân Yên",
+  "description": "Đề kiểm tra kiến thức giữa học kỳ 1 môn Toán lớp 9, bao gồm các chủ đề: phương trình bậc nhất hai ẩn, hệ phương trình, đường tròn, tỉ số lượng giác trong tam giác vuông, bất đẳng thức và giải bài toán bằng cách lập phương trình.",
+  "grade": "g9",
   "questions": [
     {
-      "question": "Cho $M$ là tập hợp các số tự nhiên lẻ nhỏ hơn 9. Khẳng định nào là đúng?",
+      "question": "Trong các phương trình sau, phương trình nào là phương trình bậc nhất hai ẩn?",
       "answers": [
-        "$5 \\in M$",
-        "$6 \\in M$", 
-        "$7 \\notin M$",
-        "$9 \\in M$"
+        "$2x + 3y = 0$",
+        "$x^2 + 3y = 0$",
+        "$3x - y^2 = 0$",
+        "$2\\sqrt{x} + 3y = 1$"
       ],
       "indexAnswer": 0,
-      "solution": "Tập hợp $M$ gồm các số tự nhiên lẻ nhỏ hơn 9 là: $M = \\{1; 3; 5; 7\\}$. Do đó $5 \\in M$ là khẳng định đúng."
+      "solution": "Phương trình bậc nhất hai ẩn có dạng $ax + by = c$ với $a$, $b$, $c$ là các số và $a$, $b$ không đồng thời bằng 0. Chỉ có phương trình $2x + 3y = 0$ thỏa mãn điều kiện này."
     },
     {
-      "question": "Thứ tự thực hiện phép tính đối với biểu thức có chứa dấu ngoặc là",
+      "question": "Đường tròn $(O;5\\text{cm})$. Đường kính của đường tròn đó có độ dài:",
       "answers": [
-        "$( ) \\rightarrow [ ] \\rightarrow \\{ \\}$",
-        "$( ) \\rightarrow \\{ \\} \\rightarrow [ ]$",
-        "$\\{ \\} \\rightarrow [ ] \\rightarrow ( )$",
-        "$[ ] \\rightarrow ( ) \\rightarrow \\{ \\}$"
-      ],
-      "indexAnswer": 0,
-      "solution": "Quy tắc: Thực hiện phép tính trong ngoặc tròn $( )$ trước, sau đó đến ngoặc vuông $[ ]$, cuối cùng là ngoặc nhọn $\\{ \\}$."
-    },
-    {
-      "question": "Tổng nào dưới đây chia hết cho 3?",
-      "answers": [
-        "$3^4 + 1$",
-        "$3^5 - 1$", 
-        "$3^4 - 9$",
-        "$3^4 + 11$"
-      ],
-      "indexAnswer": 2,
-      "solution": "$3^4 - 9 = 81 - 9 = 72$, mà $72 \\div 3 = 24$ nên $3^4 - 9$ chia hết cho 3."
-    },
-    {
-      "question": "Trong các số sau số nào là bội của 5?",
-      "answers": [
-        "36",
-        "38",
-        "51", 
-        "55"
-      ],
-      "indexAnswer": 3,
-      "solution": "Bội của 5 là các số có chữ số tận cùng là 0 hoặc 5. Trong các số đã cho, 55 có chữ số tận cùng là 5 nên là bội của 5."
-    },
-    {
-      "question": "Số liền trước của số 2022 là",
-      "answers": [
-        "2021",
-        "2024",
-        "2023",
-        "2022"
-      ],
-      "indexAnswer": 0,
-      "solution": "Số liền trước của một số là số đứng ngay trước nó. Số liền trước của 2022 là 2021."
-    },
-    {
-      "question": "Kết quả của phép tính $2^2 \\cdot 2^4 \\cdot 2$ là",
-      "answers": [
-        "$2^6$",
-        "$2^7$", 
-        "$2^8$",
-        "$8^6$"
+        "$5\\text{cm}$",
+        "$10\\text{cm}$",
+        "$25\\text{cm}$",
+        "$2,5\\text{cm}$"
       ],
       "indexAnswer": 1,
-      "solution": "$2^2 \\cdot 2^4 \\cdot 2 = 2^{2+4+1} = 2^7$ (theo quy tắc nhân hai lũy thừa cùng cơ số)."
+      "solution": "Đường kính của đường tròn bằng hai lần bán kính: $d = 2R = 2 \\times 5 = 10\\text{cm}$."
     },
     {
-      "question": "Số nào sau đây là ước của 9?",
+      "question": "Cặp số $(1;2)$ là một nghiệm của phương trình nào trong các phương trình sau:",
       "answers": [
-        "2",
+        "$2x - 3y = 1$",
+        "$3x - y = 1$",
+        "$-x + y = -1$",
+        "$x - y = 1$"
+      ],
+      "indexAnswer": 1,
+      "solution": "Thay $x = 1$ và $y = 2$ vào phương trình $3x - y = 1$: $3(1) - 2 = 3 - 2 = 1$. Vậy $(1;2)$ là nghiệm của phương trình này."
+    },
+    {
+      "question": "Với giá trị nào của $k$ thì phương trình $(k - 2)x + y = 1$ có một nghiệm là $(2;1)$?",
+      "answers": [
+        "$k = -1$",
+        "$k = 3$",
+        "$k = 1$",
+        "$k = 2$"
+      ],
+      "indexAnswer": 3,
+      "solution": "Thay $x = 2$ và $y = 1$ vào phương trình: $(k - 2)(2) + 1 = 1 \\Rightarrow 2(k - 2) = 0 \\Rightarrow k - 2 = 0 \\Rightarrow k = 2$."
+    },
+    {
+      "question": "Điều kiện xác định của phương trình $\\frac{2}{x-2} + \\frac{1}{x+3} = \\frac{3}{10}$ là:",
+      "answers": [
+        "$x \\neq 2$",
+        "$x \\neq 2; x \\neq -3$",
+        "$x \\neq -3$",
+        "$x \\neq 0$"
+      ],
+      "indexAnswer": 1,
+      "solution": "Điều kiện xác định: Mẫu thức khác 0. Do đó: $x - 2 \\neq 0$ và $x + 3 \\neq 0 \\Rightarrow x \\neq 2$ và $x \\neq -3$."
+    },
+    {
+      "question": "Số nghiệm của phương trình $(x^2 + 4)(x - 1) = 0$ là:",
+      "answers": [
         "3",
-        "4", 
-        "18"
-      ],
-      "indexAnswer": 1,
-      "solution": "Ước của 9 là các số mà 9 chia hết cho nó. Các ước của 9 là: 1, 3, 9. Do đó 3 là ước của 9."
-    },
-    {
-      "question": "Biểu diễn số 14 bằng số La Mã là",
-      "answers": [
-        "VIIII",
-        "XIIII", 
-        "XIX",
-        "XIV"
-      ],
-      "indexAnswer": 3,
-      "solution": "Số 14 trong số La Mã được viết là XIV (X = 10, IV = 4)."
-    },
-    {
-      "question": "Tập hợp các chữ cái trong cụm từ \"BAC NINH\" là",
-      "answers": [
-        "$\\{B;A;C;N;I;N;H\\}$",
-        "$\\{B;A;C;N;I\\}$", 
-        "$\\{B;A;C;I;N;H\\}$",
-        "$\\{B;C;N;I;H\\}$"
-      ],
-      "indexAnswer": 2,
-      "solution": "Tập hợp không có phần tử trùng lặp. Các chữ cái khác nhau trong \"BAC NINH\" là: B, A, C, I, N, H."
-    },
-    {
-      "question": "Số nào sau đây không phải là số nguyên tố?",
-      "answers": [
         "2",
-        "3", 
-        "4",
-        "5"
+        "1",
+        "0"
       ],
       "indexAnswer": 2,
-      "solution": "Số nguyên tố là số tự nhiên lớn hơn 1 và chỉ có hai ước là 1 và chính nó. Số 4 có các ước là 1, 2, 4 nên không phải là số nguyên tố."
+      "solution": "Phương trình tương đương với: $x^2 + 4 = 0$ hoặc $x - 1 = 0$. $x^2 + 4 = 0$ vô nghiệm, $x - 1 = 0$ có nghiệm $x = 1$. Vậy phương trình có 1 nghiệm."
     },
     {
-      "question": "Kết quả của phép tính $3^8 : 3^6$ là",
+      "question": "Cho đường tròn tâm $O$ bán kính $10\\text{cm}$, $AB$ là một dây bất kì của đường tròn đó. Biết $AB = 16\\text{cm}$. Khoảng cách từ tâm $O$ tới đường thẳng $AB$ bằng:",
       "answers": [
-        "$3^{14}$",
-        "$3^2$", 
-        "$3^1$",
-        "$3^0$"
+        "$12\\text{cm}$",
+        "$8\\text{cm}$",
+        "$6\\text{cm}$",
+        "$5\\text{cm}$"
+      ],
+      "indexAnswer": 2,
+      "solution": "Gọi $H$ là trung điểm $AB$, $OH \\perp AB$, $AH = 8\\text{cm}$. Áp dụng định lý Pytago: $OH = \\sqrt{OA^2 - AH^2} = \\sqrt{100 - 64} = \\sqrt{36} = 6\\text{cm}$."
+    },
+    {
+      "question": "Nghiệm tổng quát của phương trình $x + 5y = 3$ là:",
+      "answers": [
+        "$(x;3 - 5x)$",
+        "$(3 - 5y; y)$",
+        "$(x; \\frac{x - 3}{5})$",
+        "$(y;3 - 5y)$"
       ],
       "indexAnswer": 1,
-      "solution": "$3^8 : 3^6 = 3^{8-6} = 3^2$ (theo quy tắc chia hai lũy thừa cùng cơ số)."
+      "solution": "Từ phương trình $x + 5y = 3$, ta có $x = 3 - 5y$. Vậy nghiệm tổng quát là $(3 - 5y; y)$ với $y$ là số thực bất kỳ."
     },
     {
-      "question": "Trong các hình sau, hình nào có hai đường chéo vuông góc?",
+      "question": "Nghiệm của phương trình $(x - 1)(x - 2) = 0$ là:",
       "answers": [
-        "Hình bình hành",
-        "Hình chữ nhật", 
-        "Hình thang cân",
-        "Hình thoi"
+        "$x = 1$ và $x = 2$",
+        "$x = 1$",
+        "$x = 2$",
+        "$x = 1$ hoặc $x = 2$"
       ],
       "indexAnswer": 3,
-      "solution": "Hình thoi có hai đường chéo vuông góc với nhau và cắt nhau tại trung điểm mỗi đường."
+      "solution": "Phương trình $(x - 1)(x - 2) = 0$ tương đương với: $x - 1 = 0$ hoặc $x - 2 = 0 \\Rightarrow x = 1$ hoặc $x = 2$."
     },
     {
-      "question": "Mỗi góc của hình lục giác đều bằng",
+      "question": "Một người quan sát từ đỉnh của một ngọn Hải Đăng cao $350\\text{m}$ so với mực nước biển, nhìn thấy một chiếc thuyền bị nạn dưới góc $20^\\circ$ so với phương ngang. Khoảng cách từ chân ngọn Hải Đăng đến thuyền là:",
       "answers": [
-        "$45^\\circ$",
-        "$60^\\circ$", 
-        "$90^\\circ$",
-        "$120^\\circ$"
-      ],
-      "indexAnswer": 3,
-      "solution": "Tổng số đo các góc của lục giác đều là $(6-2) \\times 180^\\circ = 720^\\circ$. Mỗi góc của lục giác đều bằng $720^\\circ : 6 = 120^\\circ$."
-    },
-    {
-      "question": "Cho hình thoi $ABCD$. Khẳng định nào sau đây là sai?",
-      "answers": [
-        "$AB = CD$",
-        "$AC = BD$", 
-        "$BC = CD$",
-        "$AD = CD$"
+        "$916,6\\text{m}$",
+        "$961,6\\text{m}$",
+        "$127,4\\text{m}$",
+        "$961,7\\text{m}$"
       ],
       "indexAnswer": 1,
-      "solution": "Trong hình thoi, các cạnh bằng nhau nhưng hai đường chéo không nhất thiết bằng nhau. Do đó $AC = BD$ là khẳng định sai."
+      "solution": "Gọi khoảng cách là $d$. Ta có: $\\tan 20^\\circ = \\frac{350}{d} \\Rightarrow d = \\frac{350}{\\tan 20^\\circ} \\approx \\frac{350}{0,3640} \\approx 961,6\\text{m}$."
     },
     {
-      "question": "Mỗi góc của hình chữ nhật có số đo là",
+      "question": "Cặp số nào sau đây là nghiệm của hệ phương trình $\\begin{cases} x + 3y = 13 \\\\ 2x - y = -2 \\end{cases}$?",
       "answers": [
-        "$30^\\circ$",
-        "$90^\\circ$", 
-        "$120^\\circ$",
-        "$60^\\circ$"
+        "$(4;1)$",
+        "$(2;4)$",
+        "$(1;4)$",
+        "$(0;5)$"
       ],
-      "indexAnswer": 1,
-      "solution": "Hình chữ nhật có 4 góc vuông, mỗi góc bằng $90^\\circ$."
+      "indexAnswer": 2,
+      "solution": "Thay $x = 1$ và $y = 4$ vào hệ: $1 + 3(4) = 13$ và $2(1) - 4 = -2$. Cả hai phương trình đều thỏa mãn."
     },
     {
-      "question": "Ghép 6 tam giác đều có độ dài cạnh là 5cm thành một lục giác đều. Khi đó độ dài đường chéo chính là",
+      "question": "Cho $a > b$, khi đó ta có:",
       "answers": [
-        "10cm",
-        "30cm", 
-        "5cm",
-        "15cm"
+        "$a + 5 > b + 5$",
+        "$a - 2 > b - 1$",
+        "$a + 1 > b + 2$",
+        "$a > b + 1$"
       ],
       "indexAnswer": 0,
-      "solution": "Đường chéo chính của lục giác đều bằng 2 lần cạnh tam giác đều: $2 \\times 5 = 10$cm."
+      "solution": "Từ $a > b$, cộng cả hai vế với 5 ta được $a + 5 > b + 5$."
     },
     {
-      "question": "Cho tổng $M = 75 + 120 + m$. Với giá trị nào của $m$ dưới đây thì $M$ chia hết cho 3?",
+      "question": "Tam giác $ABC$ vuông tại $A$, biết $AB = 6\\text{cm}$, $AC = 8\\text{cm}$, $BC = 10\\text{cm}$. Tỉ số $\\tan B$ bằng:",
       "answers": [
-        "5",
-        "7", 
-        "4",
-        "12"
-      ],
-      "indexAnswer": 3,
-      "solution": "$75 \\div 3 = 25$, $120 \\div 3 = 40$, do đó để $M$ chia hết cho 3 thì $m$ phải chia hết cho 3. Trong các đáp án, chỉ có 12 chia hết cho 3."
-    },
-    {
-      "question": "Khẳng định nào sau đây đúng?",
-      "answers": [
-        "$3 \\in UC(6, 9, 18)$",
-        "$2 \\in UC(6, 9, 18)$", 
-        "$4 \\in UC(6, 9, 18)$",
-        "$5 \\in UC(6, 9, 18)$"
+        "$\\frac{4}{3}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{4}{5}$",
+        "$\\frac{3}{5}$"
       ],
       "indexAnswer": 0,
-      "solution": "Ước chung của 6, 9, 18 là các số mà cả ba số đều chia hết. $UC(6, 9, 18) = \\{1, 3\\}$. Do đó $3 \\in UC(6, 9, 18)$ là khẳng định đúng."
+      "solution": "$\\tan B = \\frac{AC}{AB} = \\frac{8}{6} = \\frac{4}{3}$."
     },
     {
-      "question": "Số 60 có bao nhiêu ước?",
+      "question": "Cho $m < n$, khi đó ta có:",
       "answers": [
-        "8",
-        "9", 
-        "10",
-        "12"
+        "$m < n - 5$",
+        "$m + 3 < n$",
+        "$m + 9 < m + 8$",
+        "$m - 4 < n - 3$"
       ],
       "indexAnswer": 3,
-      "solution": "Phân tích $60 = 2^2 \\times 3 \\times 5$. Số ước của 60 là $(2+1)(1+1)(1+1) = 3 \\times 2 \\times 2 = 12$ ước."
+      "solution": "Từ $m < n$, trừ cả hai vế cho 3 ta được $m - 3 < n - 3$, nhưng không có đáp án này. Xét $m - 4 < n - 3$: từ $m < n$ ta có $m - 4 < n - 4$, mà $n - 4 < n - 3$ nên $m - 4 < n - 3$."
+    },
+    {
+      "question": "Nghiệm của hệ phương trình $\\begin{cases} x + 3y = 5 \\\\ 2x + y = 0 \\end{cases}$ là:",
+      "answers": [
+        "$(-1; 2)$",
+        "$(1; -2)$",
+        "$(2; -1)$",
+        "$(-2; 1)$"
+      ],
+      "indexAnswer": 0,
+      "solution": "Nhân phương trình thứ hai với 3: $6x + 3y = 0$. Trừ phương trình đầu: $5x = -5 \\Rightarrow x = -1$. Thay vào: $2(-1) + y = 0 \\Rightarrow y = 2$."
+    },
+    {
+      "question": "Nghiệm của phương trình $(x - 3)(2x - 4) = 0$ là:",
+      "answers": [
+        "$x = 3$ hoặc $x = 2$",
+        "$x = -3$ hoặc $x = -2$",
+        "$x = 3$ hoặc $x = -2$",
+        "$x = -3$ hoặc $x = 2$"
+      ],
+      "indexAnswer": 0,
+      "solution": "Phương trình tương đương với: $x - 3 = 0$ hoặc $2x - 4 = 0 \\Rightarrow x = 3$ hoặc $x = 2$."
+    },
+    {
+      "question": "Hai lớp 9A và 9B có tổng 85 học sinh, quyên góp được 382 quyển vở. Biết lớp 9A mỗi bạn góp 5 quyển, lớp 9B mỗi bạn góp 4 quyển. Số học sinh lớp 9A là:",
+      "answers": [
+        "42 học sinh",
+        "43 học sinh",
+        "40 học sinh",
+        "45 học sinh"
+      ],
+      "indexAnswer": 0,
+      "solution": "Gọi số học sinh lớp 9A là $x$, lớp 9B là $y$. Ta có hệ: $x + y = 85$ và $5x + 4y = 382$. Giải hệ được $x = 42$, $y = 43$."
+    },
+    {
+      "question": "Cho tam giác $ABC$ vuông tại $A$, đường cao $AH$. Biết $\\hat{C} = 30^\\circ$, $AB = 6\\text{cm}$. Độ dài $BC$ là:",
+      "answers": [
+        "$12\\text{cm}$",
+        "$6\\sqrt{3}\\text{cm}$",
+        "$8\\text{cm}$",
+        "$10\\text{cm}$"
+      ],
+      "indexAnswer": 0,
+      "solution": "Ta có $\\hat{B} = 60^\\circ$. $\\sin C = \\frac{AB}{BC} \\Rightarrow \\sin 30^\\circ = \\frac{6}{BC} \\Rightarrow \\frac{1}{2} = \\frac{6}{BC} \\Rightarrow BC = 12\\text{cm}$."
+    },
+    {
+      "question": "Cho tam giác $ABC$ vuông tại $A$, $AB = 6\\text{cm}$, $\\hat{C} = 30^\\circ$. Độ dài $AH$ là:",
+      "answers": [
+        "$3\\sqrt{3}\\text{cm}$",
+        "$6\\text{cm}$",
+        "$4\\text{cm}$",
+        "$5\\text{cm}$"
+      ],
+      "indexAnswer": 0,
+      "solution": "Tính được $AC = AB \\cdot \\cot C = 6 \\cdot \\sqrt{3} = 6\\sqrt{3}\\text{cm}$. $AH = \\frac{AB \\cdot AC}{BC} = \\frac{6 \\cdot 6\\sqrt{3}}{12} = 3\\sqrt{3}\\text{cm}$."
     }
   ]
 }

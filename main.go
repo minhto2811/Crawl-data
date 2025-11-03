@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"mxgk/crawl/crawl"
 	"mxgk/crawl/repo"
@@ -24,11 +25,16 @@ func main() {
 
 	stor1, err := storage.NewClient(ctx, sa)
 	if err != nil {
+		fmt.Println("Lỗi tạo Storage client:", err)
+		return
 		// TODO: Handle error.
 	}
-	// tr := repo.NewTestRepo(client, ctx)
-	// tr.Update()
-	// return
+	tr := repo.NewTestRepo(client, ctx)
+	err = tr.Update()
+	if err != nil {
+		fmt.Println("Lỗi cập nhật test:", err)
+	}
+	return
 	practiceRepo = repo.NewPracticeRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
 	crawl.SetRepo(practiceRepo)
 
