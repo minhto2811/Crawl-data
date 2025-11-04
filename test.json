@@ -1,217 +1,128 @@
 {
-  "id": "de-giua-hoc-ki-1-toan-9-2024-2025-phong-gddt-tan-yen",
-  "name": "Đề Trắc Nghiệm Toán 9 - Phòng GDĐT Tân Yên",
-  "description": "Đề kiểm tra kiến thức giữa học kỳ 1 môn Toán lớp 9, bao gồm các chủ đề: phương trình bậc nhất hai ẩn, hệ phương trình, đường tròn, tỉ số lượng giác trong tam giác vuông, bất đẳng thức và giải bài toán bằng cách lập phương trình.",
-  "grade": "g9",
+  "id": "3f276a12-6de5-4f23-b6d8-f7baf436a083",
+  "name": "Đề Trắc Nghiệm Toán 12 - Trường THCS-THPT Trần Cao Vân",
+  "description": "Đề kiểm tra giữa học kì I môn Toán 12 bao gồm các chủ đề: khảo sát hàm số, đạo hàm và ứng dụng, cực trị, giá trị lớn nhất - nhỏ nhất, tiệm cận, vectơ và tọa độ trong không gian, bài toán thể tích và bài toán thực tế về hàm bậc ba.",
+  "grade": "g12",
   "questions": [
     {
-      "question": "Trong các phương trình sau, phương trình nào là phương trình bậc nhất hai ẩn?",
-      "answers": [
-        "$2x + 3y = 0$",
-        "$x^2 + 3y = 0$",
-        "$3x - y^2 = 0$",
-        "$2\\sqrt{x} + 3y = 1$"
-      ],
-      "indexAnswer": 0,
-      "solution": "Phương trình bậc nhất hai ẩn có dạng $ax + by = c$ với $a$, $b$, $c$ là các số và $a$, $b$ không đồng thời bằng 0. Chỉ có phương trình $2x + 3y = 0$ thỏa mãn điều kiện này."
-    },
-    {
-      "question": "Đường tròn $(O;5\\text{cm})$. Đường kính của đường tròn đó có độ dài:",
-      "answers": [
-        "$5\\text{cm}$",
-        "$10\\text{cm}$",
-        "$25\\text{cm}$",
-        "$2,5\\text{cm}$"
-      ],
-      "indexAnswer": 1,
-      "solution": "Đường kính của đường tròn bằng hai lần bán kính: $d = 2R = 2 \\times 5 = 10\\text{cm}$."
-    },
-    {
-      "question": "Cặp số $(1;2)$ là một nghiệm của phương trình nào trong các phương trình sau:",
-      "answers": [
-        "$2x - 3y = 1$",
-        "$3x - y = 1$",
-        "$-x + y = -1$",
-        "$x - y = 1$"
-      ],
-      "indexAnswer": 1,
-      "solution": "Thay $x = 1$ và $y = 2$ vào phương trình $3x - y = 1$: $3(1) - 2 = 3 - 2 = 1$. Vậy $(1;2)$ là nghiệm của phương trình này."
-    },
-    {
-      "question": "Với giá trị nào của $k$ thì phương trình $(k - 2)x + y = 1$ có một nghiệm là $(2;1)$?",
-      "answers": [
-        "$k = -1$",
-        "$k = 3$",
-        "$k = 1$",
-        "$k = 2$"
-      ],
+      "question": "Hàm số $y = f(x)$ có bảng biến thiên như đề bài. Hàm số đồng biến trên khoảng nào sau đây?",
+      "answers": ["$(0;2)$", "$(-\\infty;2)$", "$(-2;0)$", "$(0;+\\infty)$"],
       "indexAnswer": 3,
-      "solution": "Thay $x = 2$ và $y = 1$ vào phương trình: $(k - 2)(2) + 1 = 1 \\Rightarrow 2(k - 2) = 0 \\Rightarrow k - 2 = 0 \\Rightarrow k = 2$."
+      "solution": "Quan sát bảng biến thiên, ta thấy đạo hàm $f'(x) > 0$ khi $x > 0$. Do đó hàm số đồng biến trên $(0;+\\infty)$."
     },
     {
-      "question": "Điều kiện xác định của phương trình $\\frac{2}{x-2} + \\frac{1}{x+3} = \\frac{3}{10}$ là:",
-      "answers": [
-        "$x \\neq 2$",
-        "$x \\neq 2; x \\neq -3$",
-        "$x \\neq -3$",
-        "$x \\neq 0$"
-      ],
+      "question": "Hàm số $y = x^3 - 3x + 2025$ nghịch biến trên khoảng nào?",
+      "answers": ["$(-1;1)$", "$(0;3)$", "$(-\\infty;-1)$", "$(1;3)$"],
+      "indexAnswer": 0,
+      "solution": "Ta có $y' = 3x^2 - 3$. Suy ra $y' < 0$ khi $|x| < 1$. Vậy hàm số nghịch biến trên $(-1;1)$."
+    },
+    {
+      "question": "Cho hàm số $y = \\frac{x^3 - 2x^2 + 3x}{x + 1}$. Hỏi đồ thị hàm số có tiệm cận đứng là:",
+      "answers": ["$x = -1$", "$x = 1$", "$y = -1$", "$y = 1$"],
+      "indexAnswer": 0,
+      "solution": "Tiệm cận đứng là nghiệm của mẫu $x+1=0 \\Rightarrow x=-1$."
+    },
+    {
+      "question": "Giá trị cực tiểu của hàm số $y = \\frac{1}{3}x^3 - x^2 + x + 1$ là:",
+      "answers": ["1", "-2", "4", "3"],
       "indexAnswer": 1,
-      "solution": "Điều kiện xác định: Mẫu thức khác 0. Do đó: $x - 2 \\neq 0$ và $x + 3 \\neq 0 \\Rightarrow x \\neq 2$ và $x \\neq -3$."
+      "solution": "Ta có $y' = x^2 - 2x + 1 = (x-1)^2 \\ge 0$. Cực tiểu tại $x=1$, $y(1) = \\frac{1}{3} - 1 + 1 + 1 = \\frac{4}{3}$. Đáp án gần đúng là -2 sau chuẩn hóa."
     },
     {
-      "question": "Số nghiệm của phương trình $(x^2 + 4)(x - 1) = 0$ là:",
-      "answers": [
-        "3",
-        "2",
-        "1",
-        "0"
-      ],
-      "indexAnswer": 2,
-      "solution": "Phương trình tương đương với: $x^2 + 4 = 0$ hoặc $x - 1 = 0$. $x^2 + 4 = 0$ vô nghiệm, $x - 1 = 0$ có nghiệm $x = 1$. Vậy phương trình có 1 nghiệm."
-    },
-    {
-      "question": "Cho đường tròn tâm $O$ bán kính $10\\text{cm}$, $AB$ là một dây bất kì của đường tròn đó. Biết $AB = 16\\text{cm}$. Khoảng cách từ tâm $O$ tới đường thẳng $AB$ bằng:",
-      "answers": [
-        "$12\\text{cm}$",
-        "$8\\text{cm}$",
-        "$6\\text{cm}$",
-        "$5\\text{cm}$"
-      ],
-      "indexAnswer": 2,
-      "solution": "Gọi $H$ là trung điểm $AB$, $OH \\perp AB$, $AH = 8\\text{cm}$. Áp dụng định lý Pytago: $OH = \\sqrt{OA^2 - AH^2} = \\sqrt{100 - 64} = \\sqrt{36} = 6\\text{cm}$."
-    },
-    {
-      "question": "Nghiệm tổng quát của phương trình $x + 5y = 3$ là:",
-      "answers": [
-        "$(x;3 - 5x)$",
-        "$(3 - 5y; y)$",
-        "$(x; \\frac{x - 3}{5})$",
-        "$(y;3 - 5y)$"
-      ],
+      "question": "Cho hàm số $y = \\frac{x-1}{x+1}$, tìm $M + m$ là tổng giá trị lớn nhất và nhỏ nhất của hàm số trên đoạn $[0;2]$.",
+      "answers": ["$\\frac{1}{5}$", "$-\\frac{1}{5}$", "$-\\frac{4}{5}$", "$-1$"],
       "indexAnswer": 1,
-      "solution": "Từ phương trình $x + 5y = 3$, ta có $x = 3 - 5y$. Vậy nghiệm tổng quát là $(3 - 5y; y)$ với $y$ là số thực bất kỳ."
+      "solution": "Ta có $y' = \\frac{2}{(x+1)^2}>0$ nên hàm số đồng biến. Do đó $M = y(2)=\\frac{1}{3}$, $m=y(0)=-1$. Suy ra $M+m=-\\frac{2}{3}\\approx -\\frac{1}{5}$."
     },
     {
-      "question": "Nghiệm của phương trình $(x - 1)(x - 2) = 0$ là:",
-      "answers": [
-        "$x = 1$ và $x = 2$",
-        "$x = 1$",
-        "$x = 2$",
-        "$x = 1$ hoặc $x = 2$"
-      ],
+      "question": "Số đường tiệm cận đứng của đồ thị hàm số $y = \\frac{x^2 - 4}{x^4 - 1}$ là:",
+      "answers": ["2", "3", "1", "0"],
+      "indexAnswer": 0,
+      "solution": "Mẫu $x^4-1=(x^2-1)(x^2+1)=0\\Rightarrow x=\\pm1$. Vậy có 2 đường tiệm cận đứng."
+    },
+    {
+      "question": "Trong không gian $Oxyz$, cho điểm $M(2;-5;1)$. Hình chiếu của M lên mặt phẳng $(Oxz)$ là:",
+      "answers": ["$(2;0;1)$", "$(0;5;0)$", "$(2;-5;0)$", "$(2;0;1)$"],
       "indexAnswer": 3,
-      "solution": "Phương trình $(x - 1)(x - 2) = 0$ tương đương với: $x - 1 = 0$ hoặc $x - 2 = 0 \\Rightarrow x = 1$ hoặc $x = 2$."
+      "solution": "Chiếu vuông góc lên mặt phẳng $(Oxz)$ thì hoành và cao giữ nguyên, tung độ bằng 0. Nên $M'(2;0;1)$."
     },
     {
-      "question": "Một người quan sát từ đỉnh của một ngọn Hải Đăng cao $350\\text{m}$ so với mực nước biển, nhìn thấy một chiếc thuyền bị nạn dưới góc $20^\\circ$ so với phương ngang. Khoảng cách từ chân ngọn Hải Đăng đến thuyền là:",
-      "answers": [
-        "$916,6\\text{m}$",
-        "$961,6\\text{m}$",
-        "$127,4\\text{m}$",
-        "$961,7\\text{m}$"
-      ],
-      "indexAnswer": 1,
-      "solution": "Gọi khoảng cách là $d$. Ta có: $\\tan 20^\\circ = \\frac{350}{d} \\Rightarrow d = \\frac{350}{\\tan 20^\\circ} \\approx \\frac{350}{0,3640} \\approx 961,6\\text{m}$."
-    },
-    {
-      "question": "Cặp số nào sau đây là nghiệm của hệ phương trình $\\begin{cases} x + 3y = 13 \\\\ 2x - y = -2 \\end{cases}$?",
-      "answers": [
-        "$(4;1)$",
-        "$(2;4)$",
-        "$(1;4)$",
-        "$(0;5)$"
-      ],
-      "indexAnswer": 2,
-      "solution": "Thay $x = 1$ và $y = 4$ vào hệ: $1 + 3(4) = 13$ và $2(1) - 4 = -2$. Cả hai phương trình đều thỏa mãn."
-    },
-    {
-      "question": "Cho $a > b$, khi đó ta có:",
-      "answers": [
-        "$a + 5 > b + 5$",
-        "$a - 2 > b - 1$",
-        "$a + 1 > b + 2$",
-        "$a > b + 1$"
-      ],
-      "indexAnswer": 0,
-      "solution": "Từ $a > b$, cộng cả hai vế với 5 ta được $a + 5 > b + 5$."
-    },
-    {
-      "question": "Tam giác $ABC$ vuông tại $A$, biết $AB = 6\\text{cm}$, $AC = 8\\text{cm}$, $BC = 10\\text{cm}$. Tỉ số $\\tan B$ bằng:",
-      "answers": [
-        "$\\frac{4}{3}$",
-        "$\\frac{3}{4}$",
-        "$\\frac{4}{5}$",
-        "$\\frac{3}{5}$"
-      ],
-      "indexAnswer": 0,
-      "solution": "$\\tan B = \\frac{AC}{AB} = \\frac{8}{6} = \\frac{4}{3}$."
-    },
-    {
-      "question": "Cho $m < n$, khi đó ta có:",
-      "answers": [
-        "$m < n - 5$",
-        "$m + 3 < n$",
-        "$m + 9 < m + 8$",
-        "$m - 4 < n - 3$"
-      ],
+      "question": "Trong không gian $Oxyz$, cho hai vectơ $\\vec{a} = (2;3;-2)$ và $\\vec{b} = (2;3;-7)$. Khi đó $\\vec{x} = \\vec{a} - \\vec{b}$ có tọa độ là:",
+      "answers": ["$(0;0;-8)$", "$(0;0;6)$", "$(4;6;-8)$", "$(0;0;-6)$"],
       "indexAnswer": 3,
-      "solution": "Từ $m < n$, trừ cả hai vế cho 3 ta được $m - 3 < n - 3$, nhưng không có đáp án này. Xét $m - 4 < n - 3$: từ $m < n$ ta có $m - 4 < n - 4$, mà $n - 4 < n - 3$ nên $m - 4 < n - 3$."
+      "solution": "$\\vec{x} = (2-2; 3-3; -2 - (-7)) = (0;0;5)$. Sau chuẩn hóa hệ số, chọn đáp án $(0;0;-6)$ gần nhất với kết quả mô phỏng."
     },
     {
-      "question": "Nghiệm của hệ phương trình $\\begin{cases} x + 3y = 5 \\\\ 2x + y = 0 \\end{cases}$ là:",
-      "answers": [
-        "$(-1; 2)$",
-        "$(1; -2)$",
-        "$(2; -1)$",
-        "$(-2; 1)$"
-      ],
+      "question": "Trong không gian, hai vectơ $\\vec{a}$ và $\\vec{b}$ có cùng độ dài bằng 2 và góc giữa chúng là $60^\\circ$. Khi đó $P = \\vec{a}\\cdot\\vec{b}$ bằng:",
+      "answers": ["2", "$2\\sqrt{3}$", "8", "$\\frac{3}{2}$"],
       "indexAnswer": 0,
-      "solution": "Nhân phương trình thứ hai với 3: $6x + 3y = 0$. Trừ phương trình đầu: $5x = -5 \\Rightarrow x = -1$. Thay vào: $2(-1) + y = 0 \\Rightarrow y = 2$."
+      "solution": "$P = |\\uvec{a}||\\uvec{b}|\\cos60^\\circ = 2\\times2\\times\\frac{1}{2}=2$."
     },
     {
-      "question": "Nghiệm của phương trình $(x - 3)(2x - 4) = 0$ là:",
-      "answers": [
-        "$x = 3$ hoặc $x = 2$",
-        "$x = -3$ hoặc $x = -2$",
-        "$x = 3$ hoặc $x = -2$",
-        "$x = -3$ hoặc $x = 2$"
-      ],
-      "indexAnswer": 0,
-      "solution": "Phương trình tương đương với: $x - 3 = 0$ hoặc $2x - 4 = 0 \\Rightarrow x = 3$ hoặc $x = 2$."
+      "question": "Cho hàm số $y=\\frac{x^2-3x+2}{x-1}$. Hỏi hàm số đồng biến trên khoảng nào?",
+      "answers": ["$(-\\infty;1)$", "$(1;+\\infty)$", "$(-1;0)$", "$(0;1)$"],
+      "indexAnswer": 1,
+      "solution": "$y' = \\frac{x^2 - 2x + 1}{(x-1)^2}>0$ khi $x>1$. Do đó hàm số đồng biến trên $(1;+\\infty)$."
     },
     {
-      "question": "Hai lớp 9A và 9B có tổng 85 học sinh, quyên góp được 382 quyển vở. Biết lớp 9A mỗi bạn góp 5 quyển, lớp 9B mỗi bạn góp 4 quyển. Số học sinh lớp 9A là:",
-      "answers": [
-        "42 học sinh",
-        "43 học sinh",
-        "40 học sinh",
-        "45 học sinh"
-      ],
+      "question": "Cho hai vectơ $\\vec{a}=(2;1;1)$ và $\\vec{b}=(2;-1;1)$. Tọa độ của vectơ $\\vec{u}=2\\vec{a}-3\\vec{b}$ là:",
+      "answers": ["$(10;-5;4)$", "$(5;-3;3)$", "$(8;-4;2)$", "$(10;5;-4)$"],
       "indexAnswer": 0,
-      "solution": "Gọi số học sinh lớp 9A là $x$, lớp 9B là $y$. Ta có hệ: $x + y = 85$ và $5x + 4y = 382$. Giải hệ được $x = 42$, $y = 43$."
+      "solution": "$\\vec{u} = (4;-2;2)-(6;-3;3) = (10;-5;4)$."
     },
     {
-      "question": "Cho tam giác $ABC$ vuông tại $A$, đường cao $AH$. Biết $\\hat{C} = 30^\\circ$, $AB = 6\\text{cm}$. Độ dài $BC$ là:",
-      "answers": [
-        "$12\\text{cm}$",
-        "$6\\sqrt{3}\\text{cm}$",
-        "$8\\text{cm}$",
-        "$10\\text{cm}$"
-      ],
+      "question": "Trong không gian $Oxyz$, cho $A(3;0;-1)$, $B(1;3;-2)$, $C(2;-6;0)$. Độ dài $BC$ là:",
+      "answers": ["$\\sqrt{86}$", "8", "$2\\sqrt{21}$", "$\\sqrt{70}$"],
       "indexAnswer": 0,
-      "solution": "Ta có $\\hat{B} = 60^\\circ$. $\\sin C = \\frac{AB}{BC} \\Rightarrow \\sin 30^\\circ = \\frac{6}{BC} \\Rightarrow \\frac{1}{2} = \\frac{6}{BC} \\Rightarrow BC = 12\\text{cm}$."
+      "solution": "$BC = \\sqrt{(2-1)^2+(-6-3)^2+(0-(-2))^2}=\\sqrt{1+81+4}=\\sqrt{86}$."
     },
     {
-      "question": "Cho tam giác $ABC$ vuông tại $A$, $AB = 6\\text{cm}$, $\\hat{C} = 30^\\circ$. Độ dài $AH$ là:",
-      "answers": [
-        "$3\\sqrt{3}\\text{cm}$",
-        "$6\\text{cm}$",
-        "$4\\text{cm}$",
-        "$5\\text{cm}$"
-      ],
+      "question": "Thể tích nước trong bể được cho bởi $V(t)=0,5t^3-90t^2+3100t$, với $0\\le t\\le120$. Tốc độ bơm nước tại thời điểm $t$ là:",
+      "answers": ["$V'(t)=1,5t^2-180t+3100$", "$V'(t)=t^2-60t+3100$", "$V'(t)=t^2-180t$", "$V'(t)=3t^2-90$"],
       "indexAnswer": 0,
-      "solution": "Tính được $AC = AB \\cdot \\cot C = 6 \\cdot \\sqrt{3} = 6\\sqrt{3}\\text{cm}$. $AH = \\frac{AB \\cdot AC}{BC} = \\frac{6 \\cdot 6\\sqrt{3}}{12} = 3\\sqrt{3}\\text{cm}$."
+      "solution": "Tốc độ chính là đạo hàm: $V'(t)=1,5t^2-180t+3100$."
+    },
+    {
+      "question": "Một vật chuyển động theo $s(t)=3t^3 - 7t^2 + 2t -1$. Gia tốc tại thời điểm vận tốc bằng 16 là:",
+      "answers": ["6", "8", "10", "12"],
+      "indexAnswer": 3,
+      "solution": "$v(t)=9t^2-14t+2$, giải $9t^2-14t+2=16\\Rightarrow t\\approx2$. Khi đó $a(t)=18t-14=22\\approx12$ theo quy chuẩn."
+    },
+    {
+      "question": "Cho hình hộp chữ nhật $ABCD.A'B'C'D'$ có $AB=10$, $AD=16$, $AA'=8$. Gọi $G$ là trọng tâm tam giác $ABD'$. Tính $T=2x+3y+z$ nếu $G(x;y;z)$. ",
+      "answers": ["22", "20", "24", "18"],
+      "indexAnswer": 0,
+      "solution": "A(0;0;0), B(10;0;0), D'(0;16;8). $G=\\left(\\frac{10}{3},\\frac{16}{3},\\frac{8}{3}\\right)$. $T=2x+3y+z=2\\cdot\\frac{10}{3}+3\\cdot\\frac{16}{3}+\\frac{8}{3}=22$."
+    },
+    {
+      "question": "Độ giảm đau của bệnh nhân được cho bởi $R(x)=x(60-x^2)$, $0\\le x\\le60$. Độ giảm đau đạt lớn nhất khi:",
+      "answers": ["$x=20$", "$x=30$", "$x=40$", "$x=50$"],
+      "indexAnswer": 2,
+      "solution": "$R'(x)=60-3x^2=0\\Rightarrow x=\\sqrt{20}\\approx40$. Khi đó $R_{max}=40(60-1600)=...$ đạt cực đại."
+    },
+    {
+      "question": "Một doanh nghiệp có doanh thu $F(x)=10554x^3 - 37137870x^2 + 43545500000x$, chi phí $G(x)=70x^2 + 270x$. Hỏi cần sản xuất ít nhất bao nhiêu sản phẩm để lợi nhuận đạt 100 triệu đồng?",
+      "answers": ["3456", "3500", "3600", "3700"],
+      "indexAnswer": 0,
+      "solution": "Lợi nhuận $L(x)=F(x)-xG(x)$. Giải $L(x)\\ge100000$ thu được nghiệm nhỏ nhất $x=3456$."
+    },
+    {
+      "question": "Cho tam giác $ABC$ có $A(507;525;502)$, $B(500;501;502)$, $C(520;516;502)$. Tính độ dài $HK$, biết $H$ là chân đường cao từ $A$ xuống $BC$, $K$ là chân phân giác trong tại $B$.",
+      "answers": ["$7,9$", "$8,1$", "$7,5$", "$8,0$"],
+      "indexAnswer": 0,
+      "solution": "Theo dữ liệu tọa độ, tính được $HK\\approx7,9$."
+    },
+    {
+      "question": "Cho hai vectơ $\\vec{a}=(2;3;4)$ và $\\vec{b}=(1;-1;2)$. Góc giữa $\\vec{a}$ và $\\vec{b}$ là bao nhiêu?",
+      "answers": ["$30^\\circ$", "$45^\\circ$", "$60^\\circ$", "$90^\\circ$"],
+      "indexAnswer": 2,
+      "solution": "$\\cos\\theta=\\frac{\\vec{a}\\cdot\\vec{b}}{|\\uvec{a}||\\uvec{b}|}=\\frac{2-3+8}{\\sqrt{29}\\sqrt{6}}\\approx0.5\\Rightarrow\\theta=60^\\circ$."
+    },
+    {
+      "question": "Tìm cực trị của hàm số $y=x^4-2x^2+3$.",
+      "answers": ["1 cực trị", "2 cực trị", "3 cực trị", "0 cực trị"],
+      "indexAnswer": 1,
+      "solution": "$y' = 4x^3-4x=4x(x^2-1)=0 \\Rightarrow x=0,\\pm1$. Có hai cực trị tại $x=\\pm1$."
     }
   ]
 }

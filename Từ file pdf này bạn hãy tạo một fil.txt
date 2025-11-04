@@ -1,5 +1,5 @@
 Từ file pdf này bạn hãy tạo một file json đề toán trắc nghiệm có dạng như sau,
-CHÚ Ý NAME VÀ GRADE PHải chính xác tuyệt đố,Bỏ qua các link trong tài liệu. Tạo JSON với các câu hỏi hoàn chỉnh từ dữ liệu có sẵn nếu thiếu hãy tạo thêm cho đủ 20 câu.
+CHÚ Ý NAME VÀ GRADE PHải chính xác tuyệt đố,Bỏ qua các link trong tài liệu. Tạo JSON với các câu hỏi hoàn chỉnh từ dữ liệu có sẵn nếu thiếu hãy tạo thêm cho đủ ít nhất 20 câu.
 Mấy câu nào mà chỉ dựa vào hình ảnh để đưa ra đáp án thì bỏ qua, vì không có thông tin để giải.
 {
 "id": "Hãy gen ra uuid",
