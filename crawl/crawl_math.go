@@ -474,10 +474,20 @@ func getListPractice(url string, type1 string, topic string) ([]models.Practice,
 }
 
 func convertToTimestamp(dateStr string) (time.Time, error) {
-	layout := "02/01/2006" // Định dạng ngày: dd/MM/yyyy
-	t, err := time.Parse(layout, dateStr)
-	if err != nil {
-		return time.Time{}, err
+	dateStr = strings.TrimSpace(dateStr)
+	layouts := []string{
+		"02/01/2006 15:04:05",
+		"02/01/2006 15:04",
+		"02/01/2006",
 	}
-	return t, nil
+	var t time.Time
+	var err error
+	for _, l := range layouts {
+		t, err = time.Parse(l, dateStr) // time.Parse -> trả UTC
+		if err == nil {
+			return t.UTC(), nil
+		}
+	}
+	return time.Time{}, fmt.Errorf("cannot parse time %q", dateStr)
 }
+

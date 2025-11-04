@@ -29,12 +29,12 @@ func main() {
 		return
 		// TODO: Handle error.
 	}
-	tr := repo.NewTestRepo(client, ctx)
-	err = tr.Update()
-	if err != nil {
-		fmt.Println("Lỗi cập nhật test:", err)
-	}
-	return
+	// tr := repo.NewTestRepo(client, ctx)
+	// err = tr.Update()
+	// if err != nil {
+	// 	fmt.Println("Lỗi cập nhật test:", err)
+	// }
+	// return
 	practiceRepo = repo.NewPracticeRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
 	crawl.SetRepo(practiceRepo)
 
