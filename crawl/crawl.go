@@ -7,6 +7,7 @@ import (
 	"mxgk/crawl/models"
 	"mxgk/crawl/repo"
 	"net/http"
+	"regexp"
 	"strings"
 	"time"
 
@@ -18,7 +19,7 @@ import (
 
 const (
 	minTime = "06/11/2025"
-	maxTime = "07/11/2025" 
+	maxTime = "07/11/2025"
 )
 
 var grade = "g8"
@@ -85,15 +86,55 @@ func CrawlVideo(playlist string, gr string) {
 			fmt.Println("Xóa video pivate")
 			continue
 		}
+
+		LastModified, err := getYouTubeUploadDate(url)
+		if err != nil {
+			fmt.Println("Lỗi lấy ngày đăng:", err)
+			continue
+		}
+
 		videos = append(videos, models.Video{
+			Id:           getYouTubeID(url),
 			Title:        title,
 			URL:          url,
 			Grade:        gr,
-			LastModified: time.Now(),
+			LastModified: LastModified,
 			Playlist:     playlist,
 		})
 	}
 	rep.Tutorial(videos)
+}
+
+func getYouTubeUploadDate(videoURL string) (time.Time, error) {
+	cmd := exec.Command("yt-dlp", "-j", videoURL)
+	output, err := cmd.Output()
+	if err != nil {
+		return time.Time{}, err
+	}
+	var data struct {
+		UploadDate string `json:"upload_date"` // dạng "YYYYMMDD"
+	}
+	if err := json.Unmarshal(output, &data); err != nil {
+		return time.Time{}, err
+	}
+	if data.UploadDate == "" {
+		return time.Time{}, fmt.Errorf("không tìm thấy upload_date")
+	}
+
+	t, err := time.Parse("20060102", data.UploadDate)
+	if err != nil {
+		return time.Time{}, err
+	}
+	return t, nil
+}
+
+func getYouTubeID(videoURL string) string {
+	re := regexp.MustCompile(`(?:v=|youtu\.be/)([A-Za-z0-9_-]{11})`)
+	matches := re.FindStringSubmatch(videoURL)
+	if len(matches) > 1 {
+		return matches[1]
+	}
+	return ""
 }
 
 func getYouTubeTitle(url string) (string, error) {

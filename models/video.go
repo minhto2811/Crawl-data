@@ -5,6 +5,7 @@ import (
 )
 
 type Video struct {
+	Id		   	 string    `firestore:"id"`
 	Title        string    `firestore:"title"`
 	URL          string    `firestore:"url"`
 	Grade        string    `firestore:"grade"`

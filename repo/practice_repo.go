@@ -172,7 +172,7 @@ func (r *PracticeRepoImp) Backup() error {
 
 func (r *PracticeRepoImp) Tutorial(videos []models.Video) error {
 	for _, video := range videos {
-		_, err := r.client.Collection("tutorials").NewDoc().Create(r.ctx, video)
+		_, err := r.client.Collection("tutorials").Doc(video.Id).Set(r.ctx, video)
 		if err != nil {
 			fmt.Printf("Lỗi thêm video: %s, lỗi: %v\n", video.Title, err)
 			continue
