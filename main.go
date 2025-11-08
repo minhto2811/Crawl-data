@@ -29,16 +29,23 @@ func main() {
 		return
 		// TODO: Handle error.
 	}
-	tr := repo.NewTestRepo(client, ctx)
-	err = tr.Update()
-	if err != nil {
-		fmt.Println("Lỗi cập nhật test:", err)
-	}
-	return
+
 	practiceRepo = repo.NewPracticeRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
-	crawl.SetRepo(practiceRepo)
+	videoRepo := repo.NewVideoRepo(client, ctx)
+	crawl.SetRepo(practiceRepo, videoRepo)
 
-	// crawl.CrawlVideo("PLXYp7Odn5ED8jj_ROzHTVt5H4NNYZtY66","up")
+	crawl.CrawlVideo()
+	// crawl.CrawlVideo("","")
+	// crawl.CrawlVideo("","")
+	// crawl.CrawlVideo("","")
+	// return
 
-	crawl.CrawlMath()
+	// tr := repo.NewTestRepo(client, ctx)
+	// err = tr.Update()
+	// if err != nil {
+	// 	fmt.Println("Lỗi cập nhật test:", err)
+	// }
+	// return
+
+	//crawl.CrawlMath()
 }

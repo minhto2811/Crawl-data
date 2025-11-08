@@ -23,7 +23,6 @@ type PracticeRepo interface {
 	Update() error
 	Remove() error
 	Backup() error
-	Tutorial(videos []models.Video) error
 	Upload(url string) string
 }
 
@@ -170,17 +169,7 @@ func (r *PracticeRepoImp) Backup() error {
 	return nil
 }
 
-func (r *PracticeRepoImp) Tutorial(videos []models.Video) error {
-	for _, video := range videos {
-		_, err := r.client.Collection("tutorials").Doc(video.Id).Set(r.ctx, video)
-		if err != nil {
-			fmt.Printf("Lỗi thêm video: %s, lỗi: %v\n", video.Title, err)
-			continue
-		}
-		fmt.Printf("Đã thêm video: %s\n", video.Title)
-	}
-	return nil
-}
+
 
 func (r *PracticeRepoImp) Upload(url1 string) string {
 	// 🔹 1. Tải file từ URL cũ

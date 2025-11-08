@@ -1,178 +1,46 @@
 package crawl
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"mxgk/crawl/models"
 	"mxgk/crawl/repo"
 	"net/http"
-	"regexp"
-	"strings"
-	"time"
-
-	"os/exec"
-
 	"github.com/PuerkitoBio/goquery"
-	"golang.org/x/net/html"
+
 )
 
 const (
-	minTime = "06/11/2025"
-	maxTime = "07/11/2025"
+	minTime = "07/11/2025"
+	maxTime = "08/11/2025"
 )
 
 var grade = "g8"
 var g = 8
 var collection = "practices"
 
-var rep repo.PracticeRepo
+var pRep repo.PracticeRepo
+var vRep repo.VideoRepo
 
-func SetRepo(practiceRepo repo.PracticeRepo) {
-	rep = practiceRepo
+func SetRepo(practiceRepo repo.PracticeRepo, videoRepo repo.VideoRepo) {
+	pRep = practiceRepo
+	vRep = videoRepo
 }
 
-type VideoItem struct {
-	ID string `json:"id"`
-}
 
-func bytesToLines(b []byte) []string {
-	lines := []string{}
-	line := []byte{}
-	for _, c := range b {
-		if c == '\n' {
-			lines = append(lines, string(line))
-			line = []byte{}
-		} else {
-			line = append(line, c)
-		}
-	}
-	if len(line) > 0 {
-		lines = append(lines, string(line))
-	}
-	return lines
-}
 
-func CrawlVideo(playlist string, gr string) {
-	cmd := exec.Command("yt-dlp", "-j", "--flat-playlist", playlist)
-	output, err := cmd.Output()
-	if err != nil {
-		panic(err)
-	}
-
-	// Mỗi dòng là một JSON object -> parse từng dòng
-	lines := bytesToLines(output)
-	var urls []string
-	for _, line := range lines {
-		if len(line) == 0 {
-			continue
-		}
-		var item VideoItem
-		if err := json.Unmarshal([]byte(line), &item); err == nil && item.ID != "" {
-			url := "https://www.youtube.com/watch?v=" + item.ID
-			urls = append(urls, url)
-			fmt.Println(url)
-		}
-	}
-
-	var videos []models.Video
-	for _, url := range urls {
-		title, err := getYouTubeTitle(url)
-		if err != nil {
-			fmt.Println("Lỗi lấy title:", err)
-			continue
-		}
-		if title == "- YouTube" {
-			fmt.Println("Xóa video pivate")
-			continue
-		}
-
-		LastModified, err := getYouTubeUploadDate(url)
-		if err != nil {
-			fmt.Println("Lỗi lấy ngày đăng:", err)
-			continue
-		}
-
-		videos = append(videos, models.Video{
-			Id:           getYouTubeID(url),
-			Title:        title,
-			URL:          url,
-			Grade:        gr,
-			LastModified: LastModified,
-			Playlist:     playlist,
-		})
-	}
-	rep.Tutorial(videos)
-}
-
-func getYouTubeUploadDate(videoURL string) (time.Time, error) {
-	cmd := exec.Command("yt-dlp", "-j", videoURL)
-	output, err := cmd.Output()
-	if err != nil {
-		return time.Time{}, err
-	}
-	var data struct {
-		UploadDate string `json:"upload_date"` // dạng "YYYYMMDD"
-	}
-	if err := json.Unmarshal(output, &data); err != nil {
-		return time.Time{}, err
-	}
-	if data.UploadDate == "" {
-		return time.Time{}, fmt.Errorf("không tìm thấy upload_date")
-	}
-
-	t, err := time.Parse("20060102", data.UploadDate)
-	if err != nil {
-		return time.Time{}, err
-	}
-	return t, nil
-}
-
-func getYouTubeID(videoURL string) string {
-	re := regexp.MustCompile(`(?:v=|youtu\.be/)([A-Za-z0-9_-]{11})`)
-	matches := re.FindStringSubmatch(videoURL)
-	if len(matches) > 1 {
-		return matches[1]
-	}
-	return ""
-}
-
-func getYouTubeTitle(url string) (string, error) {
-	resp, err := http.Get(url)
-	if err != nil {
-		return "", err
-	}
-	defer resp.Body.Close()
-
-	tokenizer := html.NewTokenizer(resp.Body)
-	for {
-		tt := tokenizer.Next()
-		switch tt {
-		case html.ErrorToken:
-			return "", fmt.Errorf("title not found")
-		case html.StartTagToken:
-			t := tokenizer.Token()
-			if t.Data == "title" {
-				tokenizer.Next()
-				title := strings.TrimSpace(tokenizer.Token().Data)
-				// YouTube title thường có “ - YouTube”, ta bỏ đi
-				return strings.TrimSuffix(title, " - YouTube"), nil
-			}
-		}
-	}
-}
 
 func BackUp() error {
-	return rep.Backup()
+	return pRep.Backup()
 }
 
 func updatePracticeToFirestore(practice models.Practice) error {
 	log.Printf("Url cũ: %s", practice.Url)
-	practice.Url = rep.Upload(practice.Url)
+	practice.Url = pRep.Upload(practice.Url)
 	log.Printf("Url mới: %s", practice.Url)
 
 	// Cập nhật lại document Firestore
-	err := rep.SavePractice(&practice, collection)
+	err := pRep.SavePractice(&practice, collection)
 	if err != nil {
 		log.Printf("Lỗi cập nhật practice: %v", err)
 		return err
