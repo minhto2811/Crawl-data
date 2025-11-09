@@ -34,18 +34,12 @@ func main() {
 	videoRepo := repo.NewVideoRepo(client, ctx)
 	crawl.SetRepo(practiceRepo, videoRepo)
 
-	crawl.CrawlVideo()
-	// crawl.CrawlVideo("","")
-	// crawl.CrawlVideo("","")
-	// crawl.CrawlVideo("","")
-	// return
-
 	// tr := repo.NewTestRepo(client, ctx)
 	// err = tr.Update()
 	// if err != nil {
 	// 	fmt.Println("Lỗi cập nhật test:", err)
 	// }
 	// return
-
-	//crawl.CrawlMath()
+	//crawl.CrawlVideo()
+	crawl.CrawlMath()
 }

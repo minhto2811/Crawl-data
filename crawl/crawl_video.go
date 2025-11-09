@@ -359,7 +359,6 @@ func CrawlVideo() {
 	crawlVideo("PLCd8j6ZYo0lYJlV2hC3rsZjGTNyIKAHbs", "g12")
 	crawlVideo("PLe9Mjl61ROzBMleUTUpRdT0zsDUm-md1N", "g12")
 	crawlVideo("PLoXStX_pVfttsdWvf9n7qptxuRXybsKAZ", "g12")
-	crawlVideo("PLXYp7Odn5ED8jj_ROzHTVt5H4NNYZtY66", "g12")
 	crawlVideo("PLW0JdsZ4tzvDsx388NXOk-sMYokhRRNuH", "g12")
 	crawlVideo("PLMzRq608THSN1w-nqAd8URCekx0k4qEnX", "g12")
 	crawlVideo("PLXmeri-X8nVx0PHXb53cfAIS9eH60GkdK", "g12")
