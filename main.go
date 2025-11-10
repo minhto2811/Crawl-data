@@ -40,6 +40,6 @@ func main() {
 	// }
 	// return
 	//crawl.CrawlVideo()
-	//crawl.CrawlMath()
-	crawl.CrawlHocMai()
+	crawl.CrawlMath()
+	//crawl.CrawlHocMai()
 }
