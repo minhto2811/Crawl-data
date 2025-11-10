@@ -6,13 +6,13 @@ import (
 	"mxgk/crawl/models"
 	"mxgk/crawl/repo"
 	"net/http"
-	"github.com/PuerkitoBio/goquery"
 
+	"github.com/PuerkitoBio/goquery"
 )
 
 const (
-	minTime = "08/11/2025"
-	maxTime = "09/11/2025"
+	minTime = "09/11/2025"
+	maxTime = "10/11/2025"
 )
 
 var grade = "g8"
@@ -21,10 +21,12 @@ var collection = "practices"
 
 var pRep repo.PracticeRepo
 var vRep repo.VideoRepo
+var hmRep repo.HocMaiRepo
 
-func SetRepo(practiceRepo repo.PracticeRepo, videoRepo repo.VideoRepo) {
+func SetRepo(practiceRepo repo.PracticeRepo, videoRepo repo.VideoRepo, hocmaiRepo repo.HocMaiRepo) {
 	pRep = practiceRepo
 	vRep = videoRepo
+	hmRep = hocmaiRepo
 }
 
 

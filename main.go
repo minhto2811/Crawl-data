@@ -12,8 +12,6 @@ import (
 	"google.golang.org/api/option"
 )
 
-var practiceRepo repo.PracticeRepo
-
 func main() {
 	ctx := context.Background()
 	sa := option.WithCredentialsFile("./serviceAccountKey.json")
@@ -30,9 +28,10 @@ func main() {
 		// TODO: Handle error.
 	}
 
-	practiceRepo = repo.NewPracticeRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
+	practiceRepo := repo.NewPracticeRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
 	videoRepo := repo.NewVideoRepo(client, ctx)
-	crawl.SetRepo(practiceRepo, videoRepo)
+	hmRepo := repo.NewHocMaiRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
+	crawl.SetRepo(practiceRepo, videoRepo, hmRepo)
 
 	// tr := repo.NewTestRepo(client, ctx)
 	// err = tr.Update()
@@ -41,5 +40,6 @@ func main() {
 	// }
 	// return
 	//crawl.CrawlVideo()
-	crawl.CrawlMath()
+	//crawl.CrawlMath()
+	crawl.CrawlHocMai()
 }
