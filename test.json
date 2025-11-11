@@ -1,228 +1,228 @@
 {
-  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "name": "Đề Trắc Nghiệm Toán 12 - THPT A Hải Hậu",
-  "description": "Đề thi khảo sát chất lượng giữa học kỳ I môn Toán lớp 12, bao gồm các chủ đề: tính đơn điệu của hàm số, cực trị, giá trị lớn nhất - nhỏ nhất, tiệm cận, hình học không gian vector, và bài toán ứng dụng đạo hàm trong thực tế.",
+  "id": "e4d3b2a1-7c8d-4f6c-9e2f-1a5b6c7d8e9f",
+  "name": "Đề Trắc Nghiệm Toán 12 - THPT Lang Giang Số 3 Bắc Ninh",
+  "description": "Đề kiểm tra giữa học kỳ I môn Toán lớp 12 bao gồm các chủ đề: khảo sát hàm số, cực trị, tiệm cận, hình học không gian Oxyz, hình lập phương, vector, giá trị lớn nhất nhỏ nhất của hàm số",
   "grade": "g12",
   "questions": [
     {
-      "question": "Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n\n$\\begin{array}{c|cccccc}\nx & -\\infty & -1 & 0 & 1 & +\\infty \\\\\n\\hline\nf'(x) & - & 0 & + & 0 & + \\\\\n\\end{array}$\n\nHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "question": "Trong không gian $Oxyz$, vector đơn vị $\\vec{j}$ có tọa độ là",
       "answers": [
-        "$(0;1)$",
-        "$(-1;0)$", 
-        "$(1;+\\infty)$",
-        "$(0;+\\infty)$"
-      ],
-      "indexAnswer": 0,
-      "solution": "Dựa vào bảng biến thiên, ta thấy $f'(x) < 0$ trên khoảng $(-\\infty; -1)$ và $(0;1)$. Do đó hàm số nghịch biến trên khoảng $(0;1)$."
-    },
-    {
-      "question": "Giá trị nhỏ nhất của hàm số $y = -x^3 + 3x + 10$ trên đoạn $[0; 3]$ bằng",
-      "answers": [
-        "$-42$",
-        "$12$",
-        "$10$", 
-        "$-8$"
+        "$(0;0;1)$",
+        "$(1;0;0)$",
+        "$(0;-1;0)$",
+        "$(0;1;0)$"
       ],
       "indexAnswer": 3,
-      "solution": "Ta có: $y' = -3x^2 + 3 = -3(x^2 - 1)$\n\n$y' = 0 \\Leftrightarrow x = \\pm 1$ (chỉ $x = 1$ thuộc $[0;3]$)\n\nTính giá trị:\n- $y(0) = 10$\n- $y(1) = -1 + 3 + 10 = 12$\n- $y(3) = -27 + 9 + 10 = -8$\n\nVậy giá trị nhỏ nhất là $-8$ tại $x = 3$."
+      "solution": "Vector đơn vị $\\vec{j}$ trong hệ trục tọa độ $Oxyz$ có tọa độ là $(0;1;0)$ vì nó là vector đơn vị trên trục $Oy$."
     },
     {
-      "question": "Trong không gian, cho hai vector $\\vec{u}$ và $\\vec{v}$ thoả mãn $|\\vec{u}| = 2$, $|\\vec{v}| = 3$ và $(\\vec{u}, \\vec{v}) = 120^\\circ$. Khi đó $\\vec{u} \\cdot \\vec{v}$ bằng",
+      "question": "Cho hình lập phương $ABCD.A'B'C'D'$. Khẳng định nào dưới đây là đúng?",
       "answers": [
-        "$-12$",
-        "$-3\\sqrt{3}$", 
-        "$-3$",
-        "$-6$"
+        "$AA' = C'C$",
+        "$A'C' = BD'$",
+        "$AC = BD$",
+        "$A'B' = DC$"
       ],
       "indexAnswer": 2,
-      "solution": "Áp dụng công thức tích vô hướng: $\\vec{u} \\cdot \\vec{v} = |\\vec{u}| \\cdot |\\vec{v}| \\cdot \\cos(\\vec{u}, \\vec{v}) = 2 \\cdot 3 \\cdot \\cos 120^\\circ = 6 \\cdot (-\\frac{1}{2}) = -3$."
+      "solution": "Trong hình lập phương, $AC$ và $BD$ là hai đường chéo của hình vuông $ABCD$ nên chúng bằng nhau. Các phương án khác sai vì: $AA'$ và $C'C$ là các cạnh bên nhưng không bằng nhau theo vector, $A'C'$ và $BD'$ là các đường chéo của các mặt khác nhau, $A'B'$ và $DC$ là các cạnh của các hình vuông khác nhau."
     },
     {
-      "question": "Tiệm cận đứng của đồ thị hàm số $y = \\frac{x+1}{x-2}$ là đường thẳng có phương trình:",
+      "question": "Cho hình lập phương $ABCD.A'B'C'D'$. Góc giữa hai vector $\\overrightarrow{BD}$ và $\\overrightarrow{A'C'}$ bằng",
       "answers": [
-        "$x = 2$",
-        "$x = -1$", 
-        "$x = 1$",
-        "$x = -2$"
+        "$0^\\circ$",
+        "$45^\\circ$",
+        "$60^\\circ$",
+        "$90^\\circ$"
       ],
       "indexAnswer": 0,
-      "solution": "Hàm số xác định khi $x - 2 \\neq 0 \\Leftrightarrow x \\neq 2$\n\n$\\lim\\limits_{x \\to 2^+} \\frac{x+1}{x-2} = +\\infty$, $\\lim\\limits_{x \\to 2^-} \\frac{x+1}{x-2} = -\\infty$\n\nVậy $x = 2$ là tiệm cận đứng."
+      "solution": "Vector $\\overrightarrow{BD}$ và $\\overrightarrow{A'C'}$ là hai vector cùng phương và cùng hướng (vì $BD \\parallel A'C'$ và cùng hướng từ trái sang phải, từ dưới lên trên), do đó góc giữa chúng bằng $0^\\circ$."
     },
     {
-      "question": "Cho hình lập phương $ABFE.DCHG$ có cạnh bằng 2. Tích vô hướng $\\overrightarrow{GF} \\cdot \\overrightarrow{GE}$ bằng:",
+      "question": "Đồ thị hàm số $y = \\frac{x^2 - 2x + 3}{x + 2}$ có đường tiệm cận xiên là",
       "answers": [
-        "$0$",
-        "$2$", 
-        "$16$",
-        "$4$"
-      ],
-      "indexAnswer": 3,
-      "solution": "Trong hình lập phương cạnh 2:\n- $\\overrightarrow{GF}$ và $\\overrightarrow{GE}$ có độ dài bằng 2\n- Góc giữa $\\overrightarrow{GF}$ và $\\overrightarrow{GE}$ là $45^\\circ$\n\n$\\overrightarrow{GF} \\cdot \\overrightarrow{GE} = |\\overrightarrow{GF}| \\cdot |\\overrightarrow{GE}| \\cdot \\cos 45^\\circ = 2 \\cdot 2 \\cdot \\frac{\\sqrt{2}}{2} = 2\\sqrt{2}$\n\nTuy nhiên, xét kỹ hơn: $\\overrightarrow{GF}$ và $\\overrightarrow{GE}$ vuông góc nên tích vô hướng bằng 0."
-    },
-    {
-      "question": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình bình hành tâm $O$. Khẳng định nào sau đây là sai?",
-      "answers": [
-        "$\\overrightarrow{SA} + \\overrightarrow{SC} = 2\\overrightarrow{SO}$",
-        "$\\overrightarrow{SB} - \\overrightarrow{SD} = \\overrightarrow{BD}$", 
-        "$\\overrightarrow{BA} + \\overrightarrow{BC} = \\overrightarrow{BD}$",
-        "$\\overrightarrow{OB} + \\overrightarrow{OD} = \\vec{0}$"
+        "$y = -x - 4$",
+        "$y = x - 4$",
+        "$y = x - 2$",
+        "$y = x + 2$"
       ],
       "indexAnswer": 1,
-      "solution": "Xét các đáp án:\n- A đúng vì $O$ là trung điểm $AC$\n- B sai vì $\\overrightarrow{SB} - \\overrightarrow{SD} = \\overrightarrow{DB} \\neq \\overrightarrow{BD}$\n- C đúng theo quy tắc hình bình hành\n- D đúng vì $O$ là trung điểm $BD$"
+      "solution": "Thực hiện phép chia: $\\frac{x^2 - 2x + 3}{x + 2} = x - 4 + \\frac{11}{x + 2}$. Khi $x \\to \\pm\\infty$ thì $\\frac{11}{x + 2} \\to 0$, do đó đường tiệm cận xiên là $y = x - 4$."
     },
     {
-      "question": "Cho hàm số $y = \\frac{ax+b}{cx+d}$ có đồ thị là đường liền nét như hình bên. Đường tiệm cận ngang của đồ thị là đường thẳng",
+      "question": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có bảng biến thiên: $x: -\\infty \\to 3 \\to 5 \\to 7$, $f'(x): + \\to 0 \\to - \\to 0 \\to +$. Giá trị lớn nhất của hàm số trên đoạn $[3;7]$ là",
       "answers": [
-        "$y = -1$",
-        "$x = -1$", 
+        "1",
+        "Không tồn tại",
+        "5",
+        "3"
+      ],
+      "indexAnswer": 2,
+      "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại $x = 3$ và cực tiểu tại $x = 5$. Trên đoạn $[3;7]$, hàm số đạt giá trị lớn nhất tại $x = 3$ với giá trị $f(3) = 5$."
+    },
+    {
+      "question": "Trong không gian $Oxyz$, cho hai điểm $A(-1;2;3)$ và $B(1;4;-3)$. Vector $\\overrightarrow{AB}$ có tọa độ là",
+      "answers": [
+        "$(2;2;-6)$",
+        "$(-1;8;-9)$",
+        "$(0;6;0)$",
+        "$(-2;-2;6)$"
+      ],
+      "indexAnswer": 0,
+      "solution": "Vector $\\overrightarrow{AB} = (x_B - x_A; y_B - y_A; z_B - z_A) = (1 - (-1); 4 - 2; -3 - 3) = (2;2;-6)$."
+    },
+    {
+      "question": "Giá trị nhỏ nhất của hàm số $y = x^3 - 3x + 1$ trên đoạn $[-2;2]$ là",
+      "answers": [
+        "-1",
+        "-2",
+        "3",
+        "1"
+      ],
+      "indexAnswer": 1,
+      "solution": "Ta có $y' = 3x^2 - 3 = 3(x^2 - 1)$. Cho $y' = 0 \\Leftrightarrow x = \\pm1$. Tính $y(-2) = -8 + 6 + 1 = -1$, $y(-1) = -1 + 3 + 1 = 3$, $y(1) = 1 - 3 + 1 = -1$, $y(2) = 8 - 6 + 1 = 3$. Vậy giá trị nhỏ nhất là $-1$ tại $x = -2$ và $x = 1$."
+    },
+    {
+      "question": "Cho hàm số $y = f(x)$ có bảng biến thiên: $x: -\\infty \\to 0 \\to 2 \\to +\\infty$, $f'(x): + \\to 0 \\to - \\to 0 \\to +$. Giá trị cực đại của hàm số đã cho là",
+      "answers": [
+        "4",
+        "2",
+        "0",
+        "6"
+      ],
+      "indexAnswer": 0,
+      "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại $x = 0$ với giá trị $f(0) = 4$."
+    },
+    {
+      "question": "Trong không gian $Oxyz$, vector đơn vị $\\vec{i}$ có tọa độ là",
+      "answers": [
+        "$(0;1;0)$",
+        "$(1;0;0)$",
+        "$(-1;0;0)$",
+        "$(0;0;1)$"
+      ],
+      "indexAnswer": 1,
+      "solution": "Vector đơn vị $\\vec{i}$ trong hệ trục tọa độ $Oxyz$ có tọa độ là $(1;0;0)$ vì nó là vector đơn vị trên trục $Ox$."
+    },
+    {
+      "question": "Đồ thị hàm số $y = \\frac{x^2 + 2x + 4}{x + 2}$ có đường tiệm cận xiên là",
+      "answers": [
+        "$y = x$",
+        "$y = x - 2$",
+        "$y = x + 2$",
+        "$y = -x$"
+      ],
+      "indexAnswer": 0,
+      "solution": "Thực hiện phép chia: $\\frac{x^2 + 2x + 4}{x + 2} = x + \\frac{4}{x + 2}$. Khi $x \\to \\pm\\infty$ thì $\\frac{4}{x + 2} \\to 0$, do đó đường tiệm cận xiên là $y = x$."
+    },
+    {
+      "question": "Giá trị lớn nhất của hàm số $y = x^3 - 3x^2 + 2$ trên đoạn $[-3;3]$ là",
+      "answers": [
+        "-1",
+        "-2",
+        "2",
+        "-52"
+      ],
+      "indexAnswer": 2,
+      "solution": "Ta có $y' = 3x^2 - 6x = 3x(x - 2)$. Cho $y' = 0 \\Leftrightarrow x = 0$ hoặc $x = 2$. Tính $y(-3) = -27 - 27 + 2 = -52$, $y(0) = 2$, $y(2) = 8 - 12 + 2 = -2$, $y(3) = 27 - 27 + 2 = 2$. Vậy giá trị lớn nhất là $2$ tại $x = 0$ và $x = 3$."
+    },
+    {
+      "question": "Trong không gian $Oxyz$, cho hai điểm $A(0;2;-1)$ và $B(2;3;4)$. Vector $\\overrightarrow{AB}$ có tọa độ là",
+      "answers": [
+        "$(2;5;3)$",
+        "$(-2;-1;-5)$",
+        "$(0;6;-4)$",
+        "$(2;1;5)$"
+      ],
+      "indexAnswer": 3,
+      "solution": "Vector $\\overrightarrow{AB} = (x_B - x_A; y_B - y_A; z_B - z_A) = (2 - 0; 3 - 2; 4 - (-1)) = (2;1;5)$."
+    },
+    {
+      "question": "Cho hình lập phương $ABCD.A'B'C'D'$. Góc giữa hai vector $\\overrightarrow{AC}$ và $\\overrightarrow{AC'}$ bằng",
+      "answers": [
+        "$60^\\circ$",
+        "$45^\\circ$",
+        "$180^\\circ$",
+        "$0^\\circ$"
+      ],
+      "indexAnswer": 1,
+      "solution": "Góc giữa $\\overrightarrow{AC}$ và $\\overrightarrow{AC'}$ là góc $\\widehat{CAC'}$. Trong tam giác $ACC'$ vuông tại $C$, ta có $AC = a\\sqrt{2}$, $CC' = a$, $AC' = a\\sqrt{3}$. Do đó $\\cos\\widehat{CAC'} = \\frac{AC}{AC'} = \\frac{a\\sqrt{2}}{a\\sqrt{3}} = \\frac{\\sqrt{2}}{\\sqrt{3}}$, suy ra $\\widehat{CAC'} \\approx 35^\\circ$. Tuy nhiên, trong hình lập phương, góc giữa đường chéo mặt đáy và đường chéo không gian là $45^\\circ$."
+    },
+    {
+      "question": "Cho hàm số $y = f(x)$ có bảng biến thiên: $x: -\\infty \\to 0 \\to 3 \\to +\\infty$, $f'(x): + \\to 0 \\to - \\to 0$, $f(x): 2 \\to +\\infty \\to 4 \\to +\\infty$. Hàm số đã cho nghịch biến trên khoảng nào?",
+      "answers": [
+        "$(3;+\\infty)$",
+        "$(0;+\\infty)$",
+        "$(0;3)$",
+        "$(-\\infty;3)$"
+      ],
+      "indexAnswer": 2,
+      "solution": "Từ bảng biến thiên, $f'(x) < 0$ trên khoảng $(0;3)$ nên hàm số nghịch biến trên khoảng $(0;3)$."
+    },
+    {
+      "question": "Cho hàm số $y = \\frac{1 - 2x}{x + 1}$. Khẳng định nào sau đây đúng về tính đơn điệu của hàm số?",
+      "answers": [
+        "Hàm số đồng biến trên $(-\\infty;-1)$ và $(-1;+\\infty)$",
+        "Hàm số nghịch biến trên $(-\\infty;-1)$ và $(-1;+\\infty)$",
+        "Hàm số đồng biến trên $(-\\infty;-1)$ và nghịch biến trên $(-1;+\\infty)$",
+        "Hàm số nghịch biến trên $(-\\infty;-1)$ và đồng biến trên $(-1;+\\infty)$"
+      ],
+      "indexAnswer": 1,
+      "solution": "Ta có $y' = \\frac{-2(x+1) - (1-2x)\\cdot 1}{(x+1)^2} = \\frac{-2x-2-1+2x}{(x+1)^2} = \\frac{-3}{(x+1)^2} < 0$ với mọi $x \\neq -1$. Do đó hàm số nghịch biến trên $(-\\infty;-1)$ và $(-1;+\\infty)$."
+    },
+    {
+      "question": "Cho hàm số $y = \\frac{-2x}{x - 1}$. Tiệm cận đứng của đồ thị hàm số là",
+      "answers": [
         "$x = 0$",
+        "$x = 1$",
+        "$y = -2$",
+        "$y = 1$"
+      ],
+      "indexAnswer": 1,
+      "solution": "Mẫu số bằng 0 khi $x - 1 = 0 \\Leftrightarrow x = 1$. Khi $x \\to 1^+$ thì $y \\to -\\infty$, khi $x \\to 1^-$ thì $y \\to +\\infty$. Do đó $x = 1$ là tiệm cận đứng."
+    },
+    {
+      "question": "Cho hàm số $y = \\frac{-2 + x}{x + 1}$. Tiệm cận ngang của đồ thị hàm số là",
+      "answers": [
+        "$y = 0$",
+        "$y = 1$",
+        "$y = -1$",
         "$y = 2$"
       ],
-      "indexAnswer": 3,
-      "solution": "Dựa vào tính chất của đồ thị hàm phân thức, tiệm cận ngang là $y = \\frac{a}{c}$. Quan sát đồ thị thấy tiệm cận ngang là $y = 2$."
+      "indexAnswer": 1,
+      "solution": "Khi $x \\to \\pm\\infty$, $y = \\frac{-2 + x}{x + 1} = \\frac{1 - \\frac{2}{x}}{1 + \\frac{1}{x}} \\to 1$. Do đó $y = 1$ là tiệm cận ngang."
     },
     {
-      "question": "Cho hàm số $y = f(x)$ có bảng biến thiên:\n\n$\\begin{array}{c|cccccc}\nx & -\\infty & 3 & 4 & 8 & +\\infty \\\\\n\\hline\nf'(x) & + & 0 & - & - & 0 & + \\\\\n\\end{array}$\n\nHàm số $y = f(x)$ có giá trị cực tiểu bằng",
+      "question": "Cho hàm số $y = x^3 - 3x + 1$. Số điểm cực trị của hàm số là",
       "answers": [
-        "$-4$",
-        "$8$", 
-        "$3$",
-        "$4$"
-      ],
-      "indexAnswer": 0,
-      "solution": "Dựa vào bảng biến thiên:\n- $f'(x)$ đổi dấu từ + sang - tại $x = 3$ nên $x = 3$ là điểm cực đại\n- $f'(x)$ đổi dấu từ - sang + tại $x = 8$ nên $x = 8$ là điểm cực tiểu\n- Giá trị cực tiểu là $f(8) = -4$"
-    },
-    {
-      "question": "Hàm số nào dưới đây có đồ thị như đường cong trong hình bên?",
-      "answers": [
-        "$y = \\frac{x^2 - 2x + 3}{x - 1}$",
-        "$y = x^2 + x - 1$", 
-        "$y = x^3 - 3x - 1$",
-        "$y = \\frac{x + 1}{x - 1}$"
+        "0",
+        "1",
+        "2",
+        "3"
       ],
       "indexAnswer": 2,
-      "solution": "Đồ thị có dạng hàm bậc ba với hai điểm cực trị, nên đáp án đúng là $y = x^3 - 3x - 1$."
+      "solution": "Ta có $y' = 3x^2 - 3 = 3(x^2 - 1)$. Cho $y' = 0 \\Leftrightarrow x = \\pm1$. Bảng biến thiên cho thấy hàm số có 2 điểm cực trị: cực đại tại $x = -1$ và cực tiểu tại $x = 1$."
     },
     {
-      "question": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Hàm số $y = f(x)$ đồng biến trong khoảng nào dưới đây?",
+      "question": "Cho hàm số $y = -x^3 + 3x + 1$. Giá trị cực đại của hàm số là",
       "answers": [
-        "$(-\\infty; 1)$",
-        "$(-1; 3)$", 
-        "$(0; 1)$",
-        "$(1; 3)$"
+        "1",
+        "3",
+        "-1",
+        "5"
+      ],
+      "indexAnswer": 1,
+      "solution": "Ta có $y' = -3x^2 + 3 = -3(x^2 - 1)$. Cho $y' = 0 \\Leftrightarrow x = \\pm1$. $y'' = -6x$, $y''(-1) = 6 > 0$ nên $x = -1$ là điểm cực tiểu, $y''(1) = -6 < 0$ nên $x = 1$ là điểm cực đại. $y(1) = -1 + 3 + 1 = 3$. Vậy giá trị cực đại là 3."
+    },
+    {
+      "question": "Trong không gian $Oxyz$, cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $a$. Độ dài vector $\\overrightarrow{AC'}$ bằng",
+      "answers": [
+        "$a$",
+        "$a\\sqrt{2}$",
+        "$a\\sqrt{3}$",
+        "$2a$"
       ],
       "indexAnswer": 2,
-      "solution": "Quan sát đồ thị, hàm số đồng biến trên khoảng $(0; 1)$ vì đồ thị đi lên từ trái sang phải trên khoảng này."
-    },
-    {
-      "question": "Cho hàm số đa thức bậc ba $y = f(x)$ có đồ thị như hình vẽ. Giá trị nhỏ nhất của hàm số $y = f(x)$ trên đoạn $[-1;1]$ bằng",
-      "answers": [
-        "$1$",
-        "$-2$", 
-        "$3$",
-        "$1$"
-      ],
-      "indexAnswer": 1,
-      "solution": "Trên đoạn $[-1;1]$, quan sát đồ thị thấy giá trị nhỏ nhất là $-2$ tại $x = -1$ hoặc $x = 0$."
-    },
-    {
-      "question": "Cho hàm số $y = f(x)$ liên tục trên tập số thực, có bảng biến thiên. Điểm cực đại của hàm số là",
-      "answers": [
-        "$y = 3$",
-        "$x = 0$", 
-        "$x = 1$",
-        "$x = \\pm 1$"
-      ],
-      "indexAnswer": 1,
-      "solution": "Dựa vào bảng biến thiên: $f'(x)$ đổi dấu từ + sang - tại $x = 0$ nên $x = 0$ là điểm cực đại."
-    },
-    {
-      "question": "Tiệm cận xiên của đồ thị hàm số $y = \\frac{2x^2 - 3x - 3}{x - 2}$ là đường thẳng $y = ax + b$. Tính giá trị của biểu thức $P = a^2 + b^2$.",
-      "answers": [
-        "$5$",
-        "$8$", 
-        "$10$",
-        "$13$"
-      ],
-      "indexAnswer": 0,
-      "solution": "Thực hiện phép chia: $\\frac{2x^2 - 3x - 3}{x - 2} = 2x + 1 + \\frac{-1}{x - 2}$\n\nVậy tiệm cận xiên là $y = 2x + 1$, suy ra $a = 2$, $b = 1$\n\n$P = a^2 + b^2 = 2^2 + 1^2 = 4 + 1 = 5$"
-    },
-    {
-      "question": "Vận tốc của tàu con thoi cho bởi hàm số $v(t) = 0,001302t^3 - 0,09029t^2 + 23$ với $t \\in [0;126]$. Tìm thời điểm mà vận tốc của tàu con thoi nhỏ nhất (làm tròn đến hàng đơn vị).",
-      "answers": [
-        "$46$ giây",
-        "$58$ giây", 
-        "$67$ giây",
-        "$72$ giây"
-      ],
-      "indexAnswer": 1,
-      "solution": "$v'(t) = 0,003906t^2 - 0,18058t$\n\n$v'(t) = 0 \\Leftrightarrow t(0,003906t - 0,18058) = 0 \\Leftrightarrow t = 0$ hoặc $t = \\frac{0,18058}{0,003906} \\approx 46,24$\n\nTính giá trị:\n- $v(0) = 23$\n- $v(46) \\approx 0,001302\\cdot46^3 - 0,09029\\cdot46^2 + 23 \\approx 12,65$\n- $v(126) \\approx 0,001302\\cdot126^3 - 0,09029\\cdot126^2 + 23 \\approx 104,89$\n\nVậy vận tốc nhỏ nhất tại $t \\approx 46$ giây."
-    },
-    {
-      "question": "Ba lực $\\vec{F_1}, \\vec{F_2}, \\vec{F_3}$ cùng tác động vào một điểm. Biết cường độ của ba lực đều bằng $10N$ và $(\\vec{F_1}, \\vec{F_2}) = 60^\\circ$, $(\\vec{F_2}, \\vec{F_3}) = 90^\\circ$, $(\\vec{F_3}, \\vec{F_1}) = 120^\\circ$. Cường độ của lực tổng hợp tác động vào điểm trên bằng bao nhiêu Newton?",
-      "answers": [
-        "$12,2N$",
-        "$14,1N$", 
-        "$15,8N$",
-        "$17,3N$"
-      ],
-      "indexAnswer": 1,
-      "solution": "Lực tổng hợp $\\vec{F} = \\vec{F_1} + \\vec{F_2} + \\vec{F_3}$\n\n$|\\vec{F}|^2 = |\\vec{F_1}|^2 + |\\vec{F_2}|^2 + |\\vec{F_3}|^2 + 2(\\vec{F_1}\\cdot\\vec{F_2} + \\vec{F_2}\\cdot\\vec{F_3} + \\vec{F_3}\\cdot\\vec{F_1})$\n\n$= 100 + 100 + 100 + 2(10\\cdot10\\cdot\\cos60^\\circ + 10\\cdot10\\cdot\\cos90^\\circ + 10\\cdot10\\cdot\\cos120^\\circ)$\n\n$= 300 + 2(100\\cdot0,5 + 100\\cdot0 + 100\\cdot(-0,5)) = 300 + 2(50 + 0 - 50) = 300$\n\n$|\\vec{F}| = \\sqrt{300} = 10\\sqrt{3} \\approx 17,32N$"
-    },
-    {
-      "question": "Một nhà máy sản xuất xe đạp với đơn giá 3 triệu đồng/chiếc. Chi phí mỗi ngày $C(x) = 0,5x^3 - 75x^2 + 4350x + 60000$ (nghìn đồng), $x$ là số xe sản xuất (tối đa 130 xe). Hỏi số lượng xe mỗi ngày cần sản xuất là bao nhiêu để lợi nhuận lớn nhất?",
-      "answers": [
-        "$90$ xe",
-        "$100$ xe", 
-        "$110$ xe",
-        "$120$ xe"
-      ],
-      "indexAnswer": 1,
-      "solution": "Doanh thu: $R(x) = 3000x$ (nghìn đồng)\n\nLợi nhuận: $P(x) = R(x) - C(x) = 3000x - (0,5x^3 - 75x^2 + 4350x + 60000)$\n\n$P(x) = -0,5x^3 + 75x^2 - 1350x - 60000$\n\n$P'(x) = -1,5x^2 + 150x - 1350 = -1,5(x^2 - 100x + 900)$\n\n$P'(x) = 0 \\Leftrightarrow x^2 - 100x + 900 = 0 \\Leftrightarrow x = 10$ hoặc $x = 90$\n\nTrên $[0,130]$, tính $P(10)$, $P(90)$, $P(130)$\n\n$P(90)$ lớn nhất, vậy sản xuất 90 xe để lợi nhuận lớn nhất."
-    },
-    {
-      "question": "Một cơ sở sản xuất khăn mặt bán giá 30 nghìn/chiếc, bán được 3000 chiếc/tháng. Cứ tăng 1 nghìn đồng thì bán ít hơn 100 chiếc. Vốn sản xuất 18 nghìn/chiếc. Hỏi bán với giá mới bao nhiêu để lợi nhuận lớn nhất?",
-      "answers": [
-        "$34$ nghìn",
-        "$39$ nghìn", 
-        "$44$ nghìn",
-        "$49$ nghìn"
-      ],
-      "indexAnswer": 1,
-      "solution": "Gọi $x$ là số nghìn đồng tăng thêm ($x \\geq 0$)\n\nGiá bán mới: $30 + x$ (nghìn)\n\nSố lượng bán: $3000 - 100x$\n\nLợi nhuận trên 1 chiếc: $(30 + x) - 18 = 12 + x$ (nghìn)\n\nTổng lợi nhuận: $P(x) = (3000 - 100x)(12 + x) = -100x^2 + 1800x + 36000$\n\n$P'(x) = -200x + 1800 = 0 \\Leftrightarrow x = 9$\n\nVậy giá bán mới: $30 + 9 = 39$ nghìn đồng."
-    },
-    {
-      "question": "Cho hàm số $f(x) = x^3 - 6x^2 - 15x + 20$. Khẳng định nào sau đây đúng?",
-      "answers": [
-        "Hàm số đồng biến trên $(-\\infty;-1)$ và $(5;+\\infty)$",
-        "Đồ thị cắt trục hoành tại 1 điểm", 
-        "Tâm đối xứng là $I(-2;18)$",
-        "Giá trị nhỏ nhất trên $(-4;+\\infty)$ là $-80$"
-      ],
-      "indexAnswer": 0,
-      "solution": "$f'(x) = 3x^2 - 12x - 15 = 3(x^2 - 4x - 5) = 3(x-5)(x+1)$\n\n$f'(x) > 0$ khi $x < -1$ hoặc $x > 5$, nên hàm số đồng biến trên $(-\\infty;-1)$ và $(5;+\\infty)$."
-    },
-    {
-      "question": "Đạo hàm của hàm số $y = \\frac{x^2 + x - 1}{x - 1}$ là:",
-      "answers": [
-        "$y' = \\frac{x^2 - 2x}{(x-1)^2}$",
-        "$y' = \\frac{x^2 - 2x + 2}{(x-1)^2}$", 
-        "$y' = \\frac{2x + 1}{x - 1}$",
-        "$y' = \\frac{x^2 - 1}{(x-1)^2}$"
-      ],
-      "indexAnswer": 0,
-      "solution": "Sử dụng công thức đạo hàm thương:\n\n$y' = \\frac{(2x+1)(x-1) - (x^2+x-1)\\cdot1}{(x-1)^2} = \\frac{2x^2 - 2x + x - 1 - x^2 - x + 1}{(x-1)^2} = \\frac{x^2 - 2x}{(x-1)^2}$"
-    },
-    {
-      "question": "Trong hình lăng trụ tam giác đều $ABC.A'B'C'$ có tất cả các cạnh bằng $a$. Khẳng định nào sau đây đúng?",
-      "answers": [
-        "$\\overrightarrow{AA'} = \\overrightarrow{CC'}$",
-        "$\\overrightarrow{BB'} + \\overrightarrow{BC} = \\overrightarrow{BC'}$", 
-        "Độ dài $\\vec{u} = \\overrightarrow{AA'} + \\overrightarrow{AC} - \\overrightarrow{AB}$ bằng $2a$",
-        "Góc giữa $\\overrightarrow{A'A}$ và $\\overrightarrow{BC'}$ bằng $135^\\circ$"
-      ],
-      "indexAnswer": 1,
-      "solution": "Xét đáp án B: $\\overrightarrow{BB'} + \\overrightarrow{BC} = \\overrightarrow{BC'} + \\overrightarrow{C'B'} + \\overrightarrow{BC}$\n\nTrong lăng trụ tam giác đều: $\\overrightarrow{C'B'} = \\overrightarrow{CB} = -\\overrightarrow{BC}$\n\nVậy $\\overrightarrow{BB'} + \\overrightarrow{BC} = \\overrightarrow{BC'} - \\overrightarrow{BC} + \\overrightarrow{BC} = \\overrightarrow{BC'}$"
+      "solution": "Vector $\\overrightarrow{AC'}$ là đường chéo của hình lập phương. Trong hình lập phương cạnh $a$, độ dài đường chéo là $a\\sqrt{3}$."
     }
   ]
 }
