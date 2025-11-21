@@ -1,228 +1,228 @@
 {
-  "id": "e4d3b2a1-7c8d-4f6c-9e2f-1a5b6c7d8e9f",
-  "name": "Đề Trắc Nghiệm Toán 12 - THPT Lang Giang Số 3 Bắc Ninh",
-  "description": "Đề kiểm tra giữa học kỳ I môn Toán lớp 12 bao gồm các chủ đề: khảo sát hàm số, cực trị, tiệm cận, hình học không gian Oxyz, hình lập phương, vector, giá trị lớn nhất nhỏ nhất của hàm số",
+  "id": "de-toan-12-hk1-binh-luc-2024",
+  "name": "Đề Trắc Nghiệm Toán 12 - THPT B Bình Lục",
+  "description": "Đề kiểm tra cuối kỳ 1 môn Toán lớp 12 bao gồm các chủ đề: khảo sát hàm số, đạo hàm, cực trị, tiệm cận, vector trong không gian Oxyz, và thống kê",
   "grade": "g12",
   "questions": [
     {
-      "question": "Trong không gian $Oxyz$, vector đơn vị $\\vec{j}$ có tọa độ là",
+      "question": "Cho vector $\\vec{u} = (-2;3;2)$, $\\vec{v} = (2;1;-1)$. Tọa độ vector $\\vec{u} - \\vec{v}$ bằng",
       "answers": [
-        "$(0;0;1)$",
-        "$(1;0;0)$",
-        "$(0;-1;0)$",
-        "$(0;1;0)$"
+        "$(1;2;3)$",
+        "$(0;4;1)$", 
+        "$(-4;2;3)$",
+        "$(4;-2;-3)$"
+      ],
+      "indexAnswer": 2,
+      "solution": "Ta có: $\\vec{u} - \\vec{v} = (-2-2; 3-1; 2-(-1)) = (-4; 2; 3)$"
+    },
+    {
+      "question": "Đường thẳng nào dưới đây là tiệm cận đứng của đồ thị hàm số $y = \\frac{2x+1}{x+1}$?",
+      "answers": [
+        "$y = 2$",
+        "$x = -1$",
+        "$x = 1$",
+        "$y = -1$"
+      ],
+      "indexAnswer": 1,
+      "solution": "Tiệm cận đứng xảy ra khi mẫu số bằng 0: $x + 1 = 0 \\Leftrightarrow x = -1$"
+    },
+    {
+      "question": "Tiệm cận xiên của đồ thị hàm số $y = x + \\frac{1}{x}$ là",
+      "answers": [
+        "$y = -x$",
+        "$y = x + 1$",
+        "$y = x$",
+        "$y = -x - 1$"
+      ],
+      "indexAnswer": 2,
+      "solution": "Với $y = x + \\frac{1}{x}$, khi $x \\to \\pm\\infty$ thì $\\frac{1}{x} \\to 0$, do đó tiệm cận xiên là $y = x$"
+    },
+    {
+      "question": "Cho tứ diện ABCD. Mệnh đề nào sau đây đúng?",
+      "answers": [
+        "$\\vec{AB} + \\vec{BC} = \\vec{BD}$",
+        "$\\vec{AB} + \\vec{BC} = \\vec{AC}$",
+        "$\\vec{AB} + \\vec{BC} = \\vec{CA}$",
+        "$\\vec{AB} + \\vec{BC} = \\vec{AD}$"
+      ],
+      "indexAnswer": 1,
+      "solution": "Theo quy tắc ba điểm: $\\vec{AB} + \\vec{BC} = \\vec{AC}$"
+    },
+    {
+      "question": "Trong không gian với hệ trục tọa độ Oxyz, cho $\\vec{a} = -\\vec{i} + 2\\vec{j} - 3\\vec{k}$. Tọa độ của vector $\\vec{a}$ là",
+      "answers": [
+        "$(3;-2;1)$",
+        "$(-1;2;-3)$",
+        "$(2;-3;-1)$",
+        "$(1;-2;3)$"
+      ],
+      "indexAnswer": 1,
+      "solution": "Vector $\\vec{a} = -\\vec{i} + 2\\vec{j} - 3\\vec{k}$ có tọa độ $(-1; 2; -3)$"
+    },
+    {
+      "question": "Cho hình hộp ABCD.A'B'C'D'. Mệnh đề nào sau đây đúng?",
+      "answers": [
+        "$\\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{AD'}$",
+        "$\\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{AC}$",
+        "$\\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{AC'}$",
+        "$\\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{0}$"
+      ],
+      "indexAnswer": 2,
+      "solution": "Theo quy tắc hình hộp: $\\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{AC'}$"
+    },
+    {
+      "question": "Thời gian chạy bộ mỗi ngày được thống kê: [20;25):6 ngày, [25;30):6 ngày, [30;35):4 ngày, [35;40):1 ngày, [40;45):1 ngày. Khoảng biến thiên là",
+      "answers": [
+        "20",
+        "30", 
+        "15",
+        "25"
       ],
       "indexAnswer": 3,
-      "solution": "Vector đơn vị $\\vec{j}$ trong hệ trục tọa độ $Oxyz$ có tọa độ là $(0;1;0)$ vì nó là vector đơn vị trên trục $Oy$."
+      "solution": "Khoảng biến thiên = Giá trị lớn nhất - Giá trị nhỏ nhất = 45 - 20 = 25"
     },
     {
-      "question": "Cho hình lập phương $ABCD.A'B'C'D'$. Khẳng định nào dưới đây là đúng?",
+      "question": "Trong không gian Oxyz, cho hai vector $\\vec{u} = (3;0;1)$ và $\\vec{v} = (2;1;0)$. Tích vô hướng $\\vec{u} \\cdot \\vec{v}$ bằng",
       "answers": [
-        "$AA' = C'C$",
-        "$A'C' = BD'$",
-        "$AC = BD$",
-        "$A'B' = DC$"
-      ],
-      "indexAnswer": 2,
-      "solution": "Trong hình lập phương, $AC$ và $BD$ là hai đường chéo của hình vuông $ABCD$ nên chúng bằng nhau. Các phương án khác sai vì: $AA'$ và $C'C$ là các cạnh bên nhưng không bằng nhau theo vector, $A'C'$ và $BD'$ là các đường chéo của các mặt khác nhau, $A'B'$ và $DC$ là các cạnh của các hình vuông khác nhau."
-    },
-    {
-      "question": "Cho hình lập phương $ABCD.A'B'C'D'$. Góc giữa hai vector $\\overrightarrow{BD}$ và $\\overrightarrow{A'C'}$ bằng",
-      "answers": [
-        "$0^\\circ$",
-        "$45^\\circ$",
-        "$60^\\circ$",
-        "$90^\\circ$"
-      ],
-      "indexAnswer": 0,
-      "solution": "Vector $\\overrightarrow{BD}$ và $\\overrightarrow{A'C'}$ là hai vector cùng phương và cùng hướng (vì $BD \\parallel A'C'$ và cùng hướng từ trái sang phải, từ dưới lên trên), do đó góc giữa chúng bằng $0^\\circ$."
-    },
-    {
-      "question": "Đồ thị hàm số $y = \\frac{x^2 - 2x + 3}{x + 2}$ có đường tiệm cận xiên là",
-      "answers": [
-        "$y = -x - 4$",
-        "$y = x - 4$",
-        "$y = x - 2$",
-        "$y = x + 2$"
+        "5",
+        "6", 
+        "7",
+        "8"
       ],
       "indexAnswer": 1,
-      "solution": "Thực hiện phép chia: $\\frac{x^2 - 2x + 3}{x + 2} = x - 4 + \\frac{11}{x + 2}$. Khi $x \\to \\pm\\infty$ thì $\\frac{11}{x + 2} \\to 0$, do đó đường tiệm cận xiên là $y = x - 4$."
+      "solution": "$\\vec{u} \\cdot \\vec{v} = 3\\times2 + 0\\times1 + 1\\times0 = 6 + 0 + 0 = 6$"
     },
     {
-      "question": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có bảng biến thiên: $x: -\\infty \\to 3 \\to 5 \\to 7$, $f'(x): + \\to 0 \\to - \\to 0 \\to +$. Giá trị lớn nhất của hàm số trên đoạn $[3;7]$ là",
+      "question": "Một trang sách hình chữ nhật có diện tích 384 cm². Sau khi để lề trên và dưới 3 cm, lề trái và phải 2 cm, diện tích phần in chữ lớn nhất bằng",
       "answers": [
-        "1",
-        "Không tồn tại",
-        "5",
-        "3"
+        "200 cm²",
+        "216 cm²",
+        "240 cm²", 
+        "256 cm²"
+      ],
+      "indexAnswer": 1,
+      "solution": "Gọi chiều rộng trang sách là $x$, chiều dài là $\\frac{384}{x}$. Diện tích in chữ: $(x-4)\\left(\\frac{384}{x}-6\\right)$. Khảo sát hàm số này trên khoảng thích hợp tìm được giá trị lớn nhất là 216 cm²"
+    },
+    {
+      "question": "Tổng chi phí sản xuất $x$ mét vải là $C(x) = x^3 - 3x^2 - 20x + 500$ (nghìn đồng). Bán với giá 220 nghìn đồng/mét. Lợi nhuận tối đa thu được là",
+      "answers": [
+        "1000 nghìn đồng",
+        "1200 nghìn đồng",
+        "1400 nghìn đồng",
+        "1600 nghìn đồng"
+      ],
+      "indexAnswer": 1,
+      "solution": "Lợi nhuận: $L(x) = 220x - (x^3 - 3x^2 - 20x + 500) = -x^3 + 3x^2 + 240x - 500$. Tìm GTLN của $L(x)$ trên [1;18] được $L_{max} = 1200$ nghìn đồng"
+    },
+    {
+      "question": "Anh Nam có khu đất hình chữ nhật diện tích 200 m², rào 3 cạnh bằng lưới thép, chiều rộng ≤ 15 m. Chiều dài lưới thép ngắn nhất là",
+      "answers": [
+        "30 m",
+        "35 m", 
+        "40 m",
+        "45 m"
       ],
       "indexAnswer": 2,
-      "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại $x = 3$ và cực tiểu tại $x = 5$. Trên đoạn $[3;7]$, hàm số đạt giá trị lớn nhất tại $x = 3$ với giá trị $f(3) = 5$."
+      "solution": "Gọi chiều rộng là $x$ (≤15), chiều dài là $\\frac{200}{x}$. Tổng chiều dài lưới: $L = 2x + \\frac{200}{x}$. Khảo sát hàm số tìm GTNN được $L_{min} = 40$ m"
     },
     {
-      "question": "Trong không gian $Oxyz$, cho hai điểm $A(-1;2;3)$ và $B(1;4;-3)$. Vector $\\overrightarrow{AB}$ có tọa độ là",
+      "question": "Cho hàm số $y = f(x)$ có bảng xét dấu đạo hàm cho thấy $f'(x) > 0$ trên $(-3;-1)$ và $f'(x) < 0$ trên các khoảng còn lại. Hàm số đồng biến trên khoảng nào?",
       "answers": [
-        "$(2;2;-6)$",
-        "$(-1;8;-9)$",
-        "$(0;6;0)$",
-        "$(-2;-2;6)$"
+        "$(-3;-1)$",
+        "$(-\\infty;-3)$",
+        "$(-3;1)$", 
+        "$(-1;+\\infty)$"
       ],
       "indexAnswer": 0,
-      "solution": "Vector $\\overrightarrow{AB} = (x_B - x_A; y_B - y_A; z_B - z_A) = (1 - (-1); 4 - 2; -3 - 3) = (2;2;-6)$."
+      "solution": "Hàm số đồng biến trên khoảng mà đạo hàm dương, tức là trên $(-3;-1)$"
     },
     {
-      "question": "Giá trị nhỏ nhất của hàm số $y = x^3 - 3x + 1$ trên đoạn $[-2;2]$ là",
+      "question": "Cho hình lăng trụ ABC.A'B'C', M là trung điểm BB'. Với $\\vec{CA} = \\vec{a}$, $\\vec{CB} = \\vec{b}$, $\\vec{AA'} = \\vec{c}$, biểu thức nào đúng cho $\\vec{AM}$?",
+      "answers": [
+        "$\\vec{b} - \\vec{a} + \\frac{1}{2}\\vec{c}$",
+        "$\\vec{b} - \\vec{a} - \\frac{1}{2}\\vec{c}$", 
+        "$\\vec{a} - \\vec{b} + \\frac{1}{2}\\vec{c}$",
+        "$\\vec{a} + \\vec{b} + \\frac{1}{2}\\vec{c}$"
+      ],
+      "indexAnswer": 0,
+      "solution": "$\\vec{AM} = \\vec{AB} + \\vec{BM} = (\\vec{CB} - \\vec{CA}) + \\frac{1}{2}\\vec{AA'} = \\vec{b} - \\vec{a} + \\frac{1}{2}\\vec{c}$"
+    },
+    {
+      "question": "Trong không gian Oxyz, cho hình bình hành ABCD với A(2;-1;-2), B(3;1;2), C(1;-1;1). Tọa độ điểm D là",
+      "answers": [
+        "(0;-3;-3)",
+        "(0;3;3)", 
+        "(4;-1;-5)",
+        "(-2;1;0)"
+      ],
+      "indexAnswer": 1,
+      "solution": "Vì ABCD là hình bình hành nên $\\vec{AB} = \\vec{DC}$. $\\vec{AB} = (1;2;4)$, từ đó $D = C - \\vec{AB} = (1-1; -1-2; 1-4) = (0;-3;-3)$"
+    },
+    {
+      "question": "Đạo hàm của hàm số $f(x) = x^3 - 3x^2 + 2x - 5$ tại $x = 1$ bằng",
       "answers": [
         "-1",
-        "-2",
-        "3",
-        "1"
+        "0",
+        "1", 
+        "2"
       ],
-      "indexAnswer": 1,
-      "solution": "Ta có $y' = 3x^2 - 3 = 3(x^2 - 1)$. Cho $y' = 0 \\Leftrightarrow x = \\pm1$. Tính $y(-2) = -8 + 6 + 1 = -1$, $y(-1) = -1 + 3 + 1 = 3$, $y(1) = 1 - 3 + 1 = -1$, $y(2) = 8 - 6 + 1 = 3$. Vậy giá trị nhỏ nhất là $-1$ tại $x = -2$ và $x = 1$."
+      "indexAnswer": 0,
+      "solution": "$f'(x) = 3x^2 - 6x + 2$, $f'(1) = 3 - 6 + 2 = -1$"
     },
     {
-      "question": "Cho hàm số $y = f(x)$ có bảng biến thiên: $x: -\\infty \\to 0 \\to 2 \\to +\\infty$, $f'(x): + \\to 0 \\to - \\to 0 \\to +$. Giá trị cực đại của hàm số đã cho là",
+      "question": "Giá trị cực tiểu của hàm số $y = x^3 - 3x^2 + 4$ là",
       "answers": [
-        "4",
-        "2",
         "0",
+        "2",
+        "4", 
         "6"
       ],
       "indexAnswer": 0,
-      "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại $x = 0$ với giá trị $f(0) = 4$."
+      "solution": "$y' = 3x^2 - 6x = 3x(x-2)$, $y' = 0$ khi $x = 0$ hoặc $x = 2$. $y(0) = 4$ (cực đại), $y(2) = 0$ (cực tiểu)"
     },
     {
-      "question": "Trong không gian $Oxyz$, vector đơn vị $\\vec{i}$ có tọa độ là",
+      "question": "Tiệm cận ngang của đồ thị hàm số $y = \\frac{2x+1}{x-3}$ là",
       "answers": [
-        "$(0;1;0)$",
-        "$(1;0;0)$",
-        "$(-1;0;0)$",
-        "$(0;0;1)$"
+        "$x = 3$",
+        "$y = 2$", 
+        "$y = -1$",
+        "$x = -3$"
       ],
       "indexAnswer": 1,
-      "solution": "Vector đơn vị $\\vec{i}$ trong hệ trục tọa độ $Oxyz$ có tọa độ là $(1;0;0)$ vì nó là vector đơn vị trên trục $Ox$."
+      "solution": "Khi $x \\to \\pm\\infty$, $y \\to \\frac{2x}{x} = 2$, nên tiệm cận ngang là $y = 2$"
     },
     {
-      "question": "Đồ thị hàm số $y = \\frac{x^2 + 2x + 4}{x + 2}$ có đường tiệm cận xiên là",
+      "question": "Khoảng đồng biến của hàm số $y = -x^3 + 3x^2 - 1$ là",
       "answers": [
-        "$y = x$",
-        "$y = x - 2$",
-        "$y = x + 2$",
-        "$y = -x$"
+        "$(-\\infty;0)$",
+        "$(0;2)$", 
+        "$(2;+\\infty)$",
+        "$(-\\infty;+\\infty)$"
+      ],
+      "indexAnswer": 1,
+      "solution": "$y' = -3x^2 + 6x = -3x(x-2)$, $y' > 0$ khi $0 < x < 2$, nên hàm số đồng biến trên $(0;2)$"
+    },
+    {
+      "question": "Giá trị lớn nhất của hàm số $y = -x^2 + 4x - 3$ trên đoạn [0;3] là",
+      "answers": [
+        "1",
+        "2", 
+        "3",
+        "4"
       ],
       "indexAnswer": 0,
-      "solution": "Thực hiện phép chia: $\\frac{x^2 + 2x + 4}{x + 2} = x + \\frac{4}{x + 2}$. Khi $x \\to \\pm\\infty$ thì $\\frac{4}{x + 2} \\to 0$, do đó đường tiệm cận xiên là $y = x$."
+      "solution": "$y' = -2x + 4$, $y' = 0$ khi $x = 2$. $y(0) = -3$, $y(2) = 1$, $y(3) = 0$. Vậy GTLN là 1"
     },
     {
-      "question": "Giá trị lớn nhất của hàm số $y = x^3 - 3x^2 + 2$ trên đoạn $[-3;3]$ là",
+      "question": "Vector pháp tuyến của mặt phẳng $2x - 3y + 4z - 5 = 0$ là",
       "answers": [
-        "-1",
-        "-2",
-        "2",
-        "-52"
+        "$(2;-3;4)$", 
+        "$(2;3;4)$",
+        "$(-2;3;-4)$",
+        "$(1;-3;2)$"
       ],
-      "indexAnswer": 2,
-      "solution": "Ta có $y' = 3x^2 - 6x = 3x(x - 2)$. Cho $y' = 0 \\Leftrightarrow x = 0$ hoặc $x = 2$. Tính $y(-3) = -27 - 27 + 2 = -52$, $y(0) = 2$, $y(2) = 8 - 12 + 2 = -2$, $y(3) = 27 - 27 + 2 = 2$. Vậy giá trị lớn nhất là $2$ tại $x = 0$ và $x = 3$."
-    },
-    {
-      "question": "Trong không gian $Oxyz$, cho hai điểm $A(0;2;-1)$ và $B(2;3;4)$. Vector $\\overrightarrow{AB}$ có tọa độ là",
-      "answers": [
-        "$(2;5;3)$",
-        "$(-2;-1;-5)$",
-        "$(0;6;-4)$",
-        "$(2;1;5)$"
-      ],
-      "indexAnswer": 3,
-      "solution": "Vector $\\overrightarrow{AB} = (x_B - x_A; y_B - y_A; z_B - z_A) = (2 - 0; 3 - 2; 4 - (-1)) = (2;1;5)$."
-    },
-    {
-      "question": "Cho hình lập phương $ABCD.A'B'C'D'$. Góc giữa hai vector $\\overrightarrow{AC}$ và $\\overrightarrow{AC'}$ bằng",
-      "answers": [
-        "$60^\\circ$",
-        "$45^\\circ$",
-        "$180^\\circ$",
-        "$0^\\circ$"
-      ],
-      "indexAnswer": 1,
-      "solution": "Góc giữa $\\overrightarrow{AC}$ và $\\overrightarrow{AC'}$ là góc $\\widehat{CAC'}$. Trong tam giác $ACC'$ vuông tại $C$, ta có $AC = a\\sqrt{2}$, $CC' = a$, $AC' = a\\sqrt{3}$. Do đó $\\cos\\widehat{CAC'} = \\frac{AC}{AC'} = \\frac{a\\sqrt{2}}{a\\sqrt{3}} = \\frac{\\sqrt{2}}{\\sqrt{3}}$, suy ra $\\widehat{CAC'} \\approx 35^\\circ$. Tuy nhiên, trong hình lập phương, góc giữa đường chéo mặt đáy và đường chéo không gian là $45^\\circ$."
-    },
-    {
-      "question": "Cho hàm số $y = f(x)$ có bảng biến thiên: $x: -\\infty \\to 0 \\to 3 \\to +\\infty$, $f'(x): + \\to 0 \\to - \\to 0$, $f(x): 2 \\to +\\infty \\to 4 \\to +\\infty$. Hàm số đã cho nghịch biến trên khoảng nào?",
-      "answers": [
-        "$(3;+\\infty)$",
-        "$(0;+\\infty)$",
-        "$(0;3)$",
-        "$(-\\infty;3)$"
-      ],
-      "indexAnswer": 2,
-      "solution": "Từ bảng biến thiên, $f'(x) < 0$ trên khoảng $(0;3)$ nên hàm số nghịch biến trên khoảng $(0;3)$."
-    },
-    {
-      "question": "Cho hàm số $y = \\frac{1 - 2x}{x + 1}$. Khẳng định nào sau đây đúng về tính đơn điệu của hàm số?",
-      "answers": [
-        "Hàm số đồng biến trên $(-\\infty;-1)$ và $(-1;+\\infty)$",
-        "Hàm số nghịch biến trên $(-\\infty;-1)$ và $(-1;+\\infty)$",
-        "Hàm số đồng biến trên $(-\\infty;-1)$ và nghịch biến trên $(-1;+\\infty)$",
-        "Hàm số nghịch biến trên $(-\\infty;-1)$ và đồng biến trên $(-1;+\\infty)$"
-      ],
-      "indexAnswer": 1,
-      "solution": "Ta có $y' = \\frac{-2(x+1) - (1-2x)\\cdot 1}{(x+1)^2} = \\frac{-2x-2-1+2x}{(x+1)^2} = \\frac{-3}{(x+1)^2} < 0$ với mọi $x \\neq -1$. Do đó hàm số nghịch biến trên $(-\\infty;-1)$ và $(-1;+\\infty)$."
-    },
-    {
-      "question": "Cho hàm số $y = \\frac{-2x}{x - 1}$. Tiệm cận đứng của đồ thị hàm số là",
-      "answers": [
-        "$x = 0$",
-        "$x = 1$",
-        "$y = -2$",
-        "$y = 1$"
-      ],
-      "indexAnswer": 1,
-      "solution": "Mẫu số bằng 0 khi $x - 1 = 0 \\Leftrightarrow x = 1$. Khi $x \\to 1^+$ thì $y \\to -\\infty$, khi $x \\to 1^-$ thì $y \\to +\\infty$. Do đó $x = 1$ là tiệm cận đứng."
-    },
-    {
-      "question": "Cho hàm số $y = \\frac{-2 + x}{x + 1}$. Tiệm cận ngang của đồ thị hàm số là",
-      "answers": [
-        "$y = 0$",
-        "$y = 1$",
-        "$y = -1$",
-        "$y = 2$"
-      ],
-      "indexAnswer": 1,
-      "solution": "Khi $x \\to \\pm\\infty$, $y = \\frac{-2 + x}{x + 1} = \\frac{1 - \\frac{2}{x}}{1 + \\frac{1}{x}} \\to 1$. Do đó $y = 1$ là tiệm cận ngang."
-    },
-    {
-      "question": "Cho hàm số $y = x^3 - 3x + 1$. Số điểm cực trị của hàm số là",
-      "answers": [
-        "0",
-        "1",
-        "2",
-        "3"
-      ],
-      "indexAnswer": 2,
-      "solution": "Ta có $y' = 3x^2 - 3 = 3(x^2 - 1)$. Cho $y' = 0 \\Leftrightarrow x = \\pm1$. Bảng biến thiên cho thấy hàm số có 2 điểm cực trị: cực đại tại $x = -1$ và cực tiểu tại $x = 1$."
-    },
-    {
-      "question": "Cho hàm số $y = -x^3 + 3x + 1$. Giá trị cực đại của hàm số là",
-      "answers": [
-        "1",
-        "3",
-        "-1",
-        "5"
-      ],
-      "indexAnswer": 1,
-      "solution": "Ta có $y' = -3x^2 + 3 = -3(x^2 - 1)$. Cho $y' = 0 \\Leftrightarrow x = \\pm1$. $y'' = -6x$, $y''(-1) = 6 > 0$ nên $x = -1$ là điểm cực tiểu, $y''(1) = -6 < 0$ nên $x = 1$ là điểm cực đại. $y(1) = -1 + 3 + 1 = 3$. Vậy giá trị cực đại là 3."
-    },
-    {
-      "question": "Trong không gian $Oxyz$, cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $a$. Độ dài vector $\\overrightarrow{AC'}$ bằng",
-      "answers": [
-        "$a$",
-        "$a\\sqrt{2}$",
-        "$a\\sqrt{3}$",
-        "$2a$"
-      ],
-      "indexAnswer": 2,
-      "solution": "Vector $\\overrightarrow{AC'}$ là đường chéo của hình lập phương. Trong hình lập phương cạnh $a$, độ dài đường chéo là $a\\sqrt{3}$."
+      "indexAnswer": 0,
+      "solution": "Vector pháp tuyến của mặt phẳng $Ax + By + Cz + D = 0$ là $(A;B;C) = (2;-3;4)$"
     }
   ]
 }

@@ -33,12 +33,12 @@ func main() {
 	hmRepo := repo.NewHocMaiRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
 	crawl.SetRepo(practiceRepo, videoRepo, hmRepo)
 
-	// tr := repo.NewTestRepo(client, ctx)
-	// err = tr.Update()
-	// if err != nil {
-	// 	fmt.Println("Lỗi cập nhật test:", err)
-	// }
-	// return
+	tr := repo.NewTestRepo(client, ctx)
+	err = tr.Update()
+	if err != nil {
+		fmt.Println("Lỗi cập nhật test:", err)
+	}
+	return
 	//crawl.CrawlVideo()
 	crawl.CrawlMath()
 	//crawl.CrawlHocMai()
