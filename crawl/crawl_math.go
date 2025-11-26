@@ -3,6 +3,7 @@ package crawl
 import (
 	"fmt"
 	"mxgk/crawl/models"
+	"mxgk/crawl/service"
 	"mxgk/crawl/utils"
 	"strconv"
 	"strings"
@@ -11,13 +12,23 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
+var fcmMap map[string]bool = make(map[string]bool)
+
 func CrawlMath() {
-	crawlTopics()
-	crawlUp()
-	crawlHsp()
-	crawlGrade()
-	crawlSGKTHCS()
-	crawlSGKTHPT()
+	// crawlTopics()
+	// crawlUp()
+	// crawlHsp()
+	// crawlGrade()
+	// crawlSGKTHCS()
+	// crawlSGKTHPT()
+	handleNoti()
+}
+
+func handleNoti(){
+	fcmMap["g8"] = true
+	for grade, _ := range fcmMap {
+		service.SendTopic(grade)
+	}
 }
 
 func crawlTopics() {
@@ -381,7 +392,12 @@ func autoCrawl(source models.Input) {
 			break
 		}
 	}
+
 	fmt.Printf("Tài liệu mới: %d\n", len(listPractice))
+	if(len(listPractice) == 0){
+		return
+	}
+	fcmMap[listPractice[0].Grade] = true
 	for _, practice := range listPractice {
 		fmt.Println("Title: " + practice.Title)
 		fmt.Println("Grade: " + practice.Grade)
