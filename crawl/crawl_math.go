@@ -15,17 +15,17 @@ import (
 var fcmMap map[string]bool = make(map[string]bool)
 
 func CrawlMath() {
-	// crawlTopics()
-	// crawlUp()
-	// crawlHsp()
-	// crawlGrade()
-	// crawlSGKTHCS()
-	// crawlSGKTHPT()
+	crawlTopics()
+	crawlUp()
+	crawlHsp()
+	crawlGrade()
+	crawlSGKTHCS()
+	crawlSGKTHPT()
 	handleNoti()
 }
 
 func handleNoti(){
-	fcmMap["g8"] = true
+	//fcmMap["g8"] = true
 	for grade, _ := range fcmMap {
 		service.SendTopic(grade)
 	}
