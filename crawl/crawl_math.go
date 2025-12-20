@@ -5,6 +5,7 @@ import (
 	"mxgk/crawl/models"
 	"mxgk/crawl/service"
 	"mxgk/crawl/utils"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -24,7 +25,7 @@ func CrawlMath() {
 	handleNoti()
 }
 
-func handleNoti(){
+func handleNoti() {
 	//fcmMap["g8"] = true
 	for grade, _ := range fcmMap {
 		service.SendTopic(grade)
@@ -394,7 +395,7 @@ func autoCrawl(source models.Input) {
 	}
 
 	fmt.Printf("Tài liệu mới: %d\n", len(listPractice))
-	if(len(listPractice) == 0){
+	if len(listPractice) == 0 {
 		return
 	}
 	fcmMap[listPractice[0].Grade] = true
@@ -414,7 +415,7 @@ func autoCrawl(source models.Input) {
 }
 
 func getListPractice(url string, type1 string, topic string) ([]models.Practice, int, error, bool) {
-	doc, err := getDocument(url)
+	doc, err := getDocumentWithRod(url)
 	if err != nil {
 		return nil, 1, err, false
 	}
@@ -423,11 +424,18 @@ func getListPractice(url string, type1 string, topic string) ([]models.Practice,
 	min, _ := convertToTimestamp(minTime)
 	max, _ := convertToTimestamp(maxTime)
 	maxPage := 1
-	doc.Find(".page-numbers").Each(func(i int, s *goquery.Selection) {
-		text := strings.TrimSpace(s.Text())
-		num, err := strconv.Atoi(text)
-		if err == nil && num > maxPage {
-			maxPage = num
+	doc.Find("a.page-numbers").Each(func(_ int, s *goquery.Selection) {
+		href, ok := s.Attr("href")
+		if !ok {
+			return
+		}
+
+		re := regexp.MustCompile(`/page/(\d+)`)
+		m := re.FindStringSubmatch(href)
+		if len(m) == 2 {
+			if num, err := strconv.Atoi(m[1]); err == nil && num > maxPage {
+				maxPage = num
+			}
 		}
 	})
 	isBreak := false
@@ -437,7 +445,7 @@ func getListPractice(url string, type1 string, topic string) ([]models.Practice,
 		link := strings.TrimSpace(a.AttrOr("href", ""))
 		b := s.Find("div.mh-meta span.entry-meta-date a")
 		dateStr := strings.TrimSpace(b.Text())
-
+		fmt.Printf("> Link tìm thấy ngày %s : %s\n", dateStr, link)
 		timeVal, err := convertToTimestamp(dateStr)
 		if err != nil {
 			fmt.Println("❌ Lỗi convert timestamp:", err)
@@ -449,7 +457,7 @@ func getListPractice(url string, type1 string, topic string) ([]models.Practice,
 			return false // dừng vòng lặp
 		}
 
-		doc1, err1 := getDocument(link)
+		doc1, err1 := getDocumentWithRod(link)
 		if err1 != nil {
 			fmt.Println("❌ Error fetching detail page:", err1)
 			return true
@@ -506,4 +514,3 @@ func convertToTimestamp(dateStr string) (time.Time, error) {
 	}
 	return time.Time{}, fmt.Errorf("cannot parse time %q", dateStr)
 }
-
