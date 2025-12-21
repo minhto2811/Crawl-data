@@ -93,7 +93,7 @@ func (f *FCMService) SendToTopic(topic string, notification FCMNotification) err
 
 func SendTopic(grade string)  {
 	projectID := "dehay-73822"
-	serviceAccount := "D:/Golang_Projects/Crawl-data/serviceAccountKey.json"
+	serviceAccount := "../serviceAccountKey.json"
 	fcm := FCMService{
 		ProjectID:  projectID,
 		SAFilePath: serviceAccount,
