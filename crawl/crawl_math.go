@@ -417,9 +417,12 @@ func autoCrawl(source models.Input) {
 func getListPractice(url string, type1 string, topic string) ([]models.Practice, int, error, bool) {
 	doc, err := getDocumentWithRod(url)
 	if err != nil {
+		fmt.Println("Lỗi cào dữ liêu: " + err.Error())
 		return nil, 1, err, false
 	}
-
+	fmt.Println("-------------------------")
+	fmt.Println("HTML: " + doc.Text())
+	fmt.Println("-------------------------")
 	var practices []models.Practice
 	min, _ := convertToTimestamp(minTime)
 	max, _ := convertToTimestamp(maxTime)
@@ -447,11 +450,12 @@ func getListPractice(url string, type1 string, topic string) ([]models.Practice,
 		dateStr := strings.TrimSpace(b.Text())
 		fmt.Printf("> Link tìm thấy ngày %s : %s\n", dateStr, link)
 		timeVal, err := convertToTimestamp(dateStr)
+		fmt.Println("Convert time: "+ timeVal.String())
 		if err != nil {
 			fmt.Println("❌ Lỗi convert timestamp:", err)
 			return true // dừng luôn nếu lỗi
 		}
-
+		fmt.Println("Convert time: "+ timeVal.String())
 		if timeVal.Unix() < min.Unix() || timeVal.Unix() >= max.Unix() {
 			isBreak = true
 			return false // dừng vòng lặp

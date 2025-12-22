@@ -1,7 +1,6 @@
 package crawl
 
 import (
-	"context"
 	"fmt"
 	"log"
 	"mxgk/crawl/models"
@@ -14,12 +13,12 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"github.com/go-rod/rod"
 	"github.com/go-rod/rod/lib/launcher"
-	"github.com/go-rod/rod/lib/proto"
+	"github.com/go-rod/stealth"
 )
 
 const (
-	minTime = "16/12/2025"
-	maxTime = "20/12/2025"
+	minTime = "20/12/2025"
+	maxTime = "22/12/2025"
 )
 
 var grade = "g8"
@@ -89,68 +88,39 @@ func getDocument(url string) (*goquery.Document, error) {
 }
 
 func getDocumentWithRod(url string) (*goquery.Document, error) {
-	l := launcher.New().
-		Headless(true).
-		UserDataDir("rod_data").
-		Set("window-size", "1920,1080")
+    l := launcher.New().
+        Headless(true).
+        UserDataDir("rod_data")
 
-	controlURL, err := l.Launch()
-	if err != nil {
-		return nil, err
-	}
+    controlURL, err := l.Launch()
+    if err != nil {
+        return nil, err
+    }
 
-	ctx, cancel := context.WithTimeout(context.Background(), 45*time.Second)
-	defer cancel()
+    browser := rod.New().ControlURL(controlURL).MustConnect()
+    defer browser.MustClose()
 
-	browser := rod.New().
-		ControlURL(controlURL).
-		Context(ctx)
+    // SỬA TẠI ĐÂY: Truyền 'browser' (kiểu *rod.Browser) 
+    // Hàm này sẽ trả về một '*rod.Page' đã được cài đặt stealth
+    page := stealth.MustPage(browser)
 
-	if err := browser.Connect(); err != nil {
-		return nil, err
-	}
-	defer browser.Close()
+    // Thực hiện truy cập
+    err = page.Navigate(url)
+    if err != nil {
+        return nil, err
+    }
 
-	page, err := browser.Page(proto.TargetCreateTarget{})
-	if err != nil {
-		return nil, err
-	}
-	if page == nil {
-		return nil, fmt.Errorf("page is nil")
-	}
+    // Đợi trang web vượt qua cơ chế check bot (thường mất vài giây)
+    fmt.Println("Đang đợi xác thực trình duyệt...")
+    page.MustWaitIdle()
+    
+    // Đợi thêm một chút nếu cần (trang bạn gửi có setTimeout 5s)
+    time.Sleep(6 * time.Second) 
 
-	_, err = proto.PageAddScriptToEvaluateOnNewDocument{
-		Source: `
-			Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
-			Object.defineProperty(navigator, 'languages', {
-				get: () => ['vi-VN', 'vi', 'en-US', 'en']
-			});
-			Object.defineProperty(navigator, 'platform', {
-				get: () => 'Win32'
-			});
-			window.chrome = { runtime: {} };
-		`,
-	}.Call(page)
-	if err != nil {
-		return nil, err
-	}
+    html, err := page.HTML()
+    if err != nil {
+        return nil, err
+    }
 
-	page.MustSetUserAgent(&proto.NetworkSetUserAgentOverride{
-		UserAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome Safari/537.36",
-		Platform:  "Windows",
-	})
-
-	if err := page.Navigate(url); err != nil {
-		return nil, err
-	}
-
-	page.MustWaitLoad()
-	page.Timeout(20 * time.Second).MustWaitRequestIdle()
-
-	html, err := page.HTML()
-	if err != nil {
-		return nil, err
-	}
-
-	return goquery.NewDocumentFromReader(strings.NewReader(html))
+    return goquery.NewDocumentFromReader(strings.NewReader(html))
 }
