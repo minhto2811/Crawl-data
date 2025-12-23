@@ -415,14 +415,12 @@ func autoCrawl(source models.Input) {
 }
 
 func getListPractice(url string, type1 string, topic string) ([]models.Practice, int, error, bool) {
+	fmt.Println("-------------------------")
 	doc, err := getDocumentWithRod(url)
 	if err != nil {
 		fmt.Println("Lỗi cào dữ liêu: " + err.Error())
 		return nil, 1, err, false
 	}
-	fmt.Println("-------------------------")
-	fmt.Println("HTML: " + doc.Text())
-	fmt.Println("-------------------------")
 	var practices []models.Practice
 	min, _ := convertToTimestamp(minTime)
 	max, _ := convertToTimestamp(maxTime)

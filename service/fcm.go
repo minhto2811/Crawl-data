@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"path/filepath"
 
 	"golang.org/x/oauth2/google"
 )
@@ -93,7 +94,8 @@ func (f *FCMService) SendToTopic(topic string, notification FCMNotification) err
 
 func SendTopic(grade string)  {
 	projectID := "dehay-73822"
-	serviceAccount := "../serviceAccountKey.json"
+	rootPath, _ := os.Getwd()
+	serviceAccount := filepath.Join(rootPath, "serviceAccountKey.json")
 	fcm := FCMService{
 		ProjectID:  projectID,
 		SAFilePath: serviceAccount,
