@@ -1,7 +1,7 @@
-2025/12/31-03:29:06.958 864d Reusing MANIFEST /workspaces/Crawl-data/rod_data/Default/Local Storage/leveldb/MANIFEST-000001
-2025/12/31-03:29:06.978 864d Recovering log #1298
-2025/12/31-03:29:06.980 864d Level-0 table #1300: started
-2025/12/31-03:29:06.984 864d Level-0 table #1300: 8359 bytes OK
-2025/12/31-03:29:06.986 864d Recovering log #1300
-2025/12/31-03:29:06.987 864d Reusing old log /workspaces/Crawl-data/rod_data/Default/Local Storage/leveldb/001300.log 
-2025/12/31-03:29:06.990 864d Delete type=0 #1298
+2026/01/01-02:30:43.415 85c6 Reusing MANIFEST /workspaces/Crawl-data/rod_data/Default/Local Storage/leveldb/MANIFEST-000001
+2026/01/01-02:30:43.433 85c6 Recovering log #1421
+2026/01/01-02:30:43.433 85c6 Level-0 table #1424: started
+2026/01/01-02:30:43.441 85c6 Level-0 table #1424: 8355 bytes OK
+2026/01/01-02:30:43.441 85c6 Recovering log #1424
+2026/01/01-02:30:43.442 85c6 Reusing old log /workspaces/Crawl-data/rod_data/Default/Local Storage/leveldb/001424.log 
+2026/01/01-02:30:43.451 85c6 Delete type=0 #1421
