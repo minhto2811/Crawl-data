@@ -1,3 +1,6 @@
-2026/01/01-02:30:35.623 8499 Reusing MANIFEST /workspaces/Crawl-data/rod_data/Default/Session Storage/MANIFEST-000001
-2026/01/01-02:30:35.631 8499 Recovering log #65
-2026/01/01-02:30:35.635 8499 Reusing old log /workspaces/Crawl-data/rod_data/Default/Session Storage/000065.log 
+2026/01/03-03:22:43.024 7f61 Reusing MANIFEST /workspaces/Crawl-data/rod_data/Default/Session Storage/MANIFEST-000001
+2026/01/03-03:22:43.025 7f61 Recovering log #75
+2026/01/03-03:22:43.029 7f61 Reusing old log /workspaces/Crawl-data/rod_data/Default/Session Storage/000075.log 
+2026/01/03-03:22:43.762 7f61 Level-0 table #79: started
+2026/01/03-03:22:43.770 7f61 Level-0 table #79: 10788 bytes OK
+2026/01/03-03:22:43.796 7f61 Delete type=0 #75
