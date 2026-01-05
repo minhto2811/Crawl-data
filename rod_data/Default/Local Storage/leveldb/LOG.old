@@ -1,3 +1,16 @@
-2026/01/03-03:22:42.642 7f61 Reusing MANIFEST /workspaces/Crawl-data/rod_data/Default/Local Storage/leveldb/MANIFEST-000001
-2026/01/03-03:22:42.649 7f61 Recovering log #1646
-2026/01/03-03:22:42.652 7f61 Reusing old log /workspaces/Crawl-data/rod_data/Default/Local Storage/leveldb/001646.log 
+2026/01/05-02:39:11.555 7d2a Reusing MANIFEST /workspaces/Crawl-data/rod_data/Default/Local Storage/leveldb/MANIFEST-000001
+2026/01/05-02:39:11.578 7d2a Recovering log #1757
+2026/01/05-02:39:11.579 7d2a Level-0 table #1759: started
+2026/01/05-02:39:11.588 7d2a Level-0 table #1759: 8688 bytes OK
+2026/01/05-02:39:11.588 7d2a Recovering log #1759
+2026/01/05-02:39:11.588 7d2a Reusing old log /workspaces/Crawl-data/rod_data/Default/Local Storage/leveldb/001759.log 
+2026/01/05-02:39:11.598 7d2a Delete type=0 #1757
+2026/01/05-02:39:11.599 7d2a Compacting 4@0 + 1@1 files
+2026/01/05-02:39:11.605 7d2a Generated table #1760@0: 18 keys, 10690 bytes
+2026/01/05-02:39:11.605 7d2a Compacted 4@0 + 1@1 files => 10690 bytes
+2026/01/05-02:39:11.607 7d2a compacted to: files[ 0 1 0 0 0 0 0 ]
+2026/01/05-02:39:11.608 7d2a Delete type=2 #1759
+2026/01/05-02:39:11.608 7d2a Delete type=2 #1751
+2026/01/05-02:39:11.608 7d2a Delete type=2 #1755
+2026/01/05-02:39:11.608 7d2a Delete type=2 #1757
+2026/01/05-02:39:11.608 7d2a Delete type=2 #1753
