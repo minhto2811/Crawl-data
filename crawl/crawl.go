@@ -17,13 +17,14 @@ import (
 )
 
 const (
-	minTime = "24/01/2026"
-	maxTime = "25/01/2026"
+	minTime = "28/01/2026"
+	maxTime = "29/01/2026"
 )
 
 var grade = "g8"
 var g = 8
 var collection = "practices"
+
 
 var pRep repo.PracticeRepo
 var vRep repo.VideoRepo

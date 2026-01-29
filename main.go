@@ -39,7 +39,7 @@ func main() {
 	// 	fmt.Println("Lỗi cập nhật test:", err)
 	// }
 	// return
-	//crawl.CrawlVideo()
-	crawl.CrawlMath()
+	crawl.CrawlVideo()
+	//crawl.CrawlMath()
 	//crawl.CrawlHocMai()
 }
