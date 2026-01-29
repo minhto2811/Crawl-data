@@ -1,6 +1,7 @@
 package crawl
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"mxgk/crawl/models"
@@ -14,6 +15,8 @@ import (
 
 	"golang.org/x/net/html"
 )
+
+const yt_dlp_path = "C:/Users/maxim/Desktop/Crawl-data/yt-dlp.exe"
 
 type VideoItem struct {
 	ID    string `json:"id"`
@@ -57,7 +60,7 @@ func CrawlVideo() {
 	// crawlVideo("PLFV0Zv0oRuG6BjKlVmZVFeRV0xcW9XzR0", "g6")
 	// crawlVideo("PLHlw36ksrsNlg38fQKvIdyqPa3caGvCnA", "g6")
 	// crawlVideo("PLHlw36ksrsNlPpSb--b88bmzwszp1K5df", "g6")
-	// ///lớp 7
+	///lớp 7
 	// crawlVideo("PLHlw36ksrsNljzwxN6Q6rJzSDkOFLnK7L", "g7")
 	// crawlVideo("PLqcCOZrA1NA2svYLMS4riatEG04G-Vggk", "g7")
 	// crawlVideo("PLxUdsmN71otBzaOoOBKHdvuBEghSQnm3x", "g7")
@@ -150,7 +153,7 @@ func CrawlVideo() {
 	// crawlVideo("PLxUdsmN71otBI690IKodc0U6zIZJCkTyW", "g8")
 	// crawlVideo("PLCd8j6ZYo0lbaRFxN-5eMDXKAxbG5Bgqh", "g8")
 	// crawlVideo("PLMzRq608THSMnLV5SGnMiwCYXG3tXAnnP", "g8")
-	///lớp 9
+	// //lớp 9
 	// crawlVideo("PLAFUuLnPbl6qffB1HPgBiumCCaQKdDFKY", "g9")
 	// crawlVideo("PLSfUYrkcPcrvImpEF9-zEmldhlkZBkwuk", "g9")
 	// crawlVideo("PLo3yP85_LULkmjQmkVtF-0gVGaRIwfjQi", "g9")
@@ -163,7 +166,6 @@ func CrawlVideo() {
 	// crawlVideo("PLxARqqwLS9WPD47lxX70dquOAk7TYyUUe", "g9")
 	// crawlVideo("PLuMGE4ip9nTUGY2tNtWdq9GaEcw_1hjlb", "g9")
 	// crawlVideo("PLAFUuLnPbl6qw_-2sX63DIhkrkEjXRR-y", "g9")
-	// crawlVideo("PLER9IqxRQFWk6ExAlT_Caghs901LK8B4M", "g9")
 	// crawlVideo("PL8x0QuuuxE-qXKEj1bdt9Bywo8ENeu06s", "g9")
 	// crawlVideo("PLoXStX_pVftvjyz8qpq1crm1RuyYtkncH", "g9")
 	// crawlVideo("PLD2UOexoPAIEaAAiQdN-L4oTDC-gsWNHj", "g9")
@@ -216,7 +218,7 @@ func CrawlVideo() {
 	// crawlVideo("PL5kxOdJ5P40_Z0YgVgXxdjMweXq2t4Syr", "g9")
 	// crawlVideo("PLhKgNgqfK6qkyJKAPQs5jStMGnLXjk30z", "g9")
 	// crawlVideo("PLMzRq608THSNsKTy3gZ_MT41WJNMy5qrc", "g9")
-	///ôn thi vào 10
+	// //ôn thi vào 10
 	// crawlVideo("PLoXStX_pVftv7n5kNIiHR19JtXnOjRQ9V", "hsp")
 	// crawlVideo("PL6BUF2OKNu1icjN2GewGc3VeHUHzH-yw7", "hsp")
 	// crawlVideo("PLH5GyRVRwLCkVCbVxj-npQA3oNWoIj9bL", "hsp")
@@ -255,12 +257,11 @@ func CrawlVideo() {
 	// crawlVideo("PLb86fQcyLH4QsjBIa5BhMfkACJ1lPdJQ3", "hsp")
 	// crawlVideo("PLoXStX_pVftv3BGVHvVpoXTQwHznDa4Ki", "hsp")
 	// crawlVideo("PLoXStX_pVftv7n5kNIiHR19JtXnOjRQ9V", "hsp")
-	///lớp 10
+	// //lớp 10
 	// crawlVideo("PLBJb6uyJz5CGakAU2rwfoQAN4qnvpYnbi", "g10")
 	// crawlVideo("PLuOh1vF0MkoG-ky-6DjO8_T-VKrx0Ad6u", "g10")
 	// crawlVideo("PL7GwbLv3hi0i4N-fKFpexgfUZH4sVzKi8", "g10")
 	// crawlVideo("PLNAnUfQYPEiGki4onXS02TBiuE9pnejSq", "g10")
-	// crawlVideo("PL5iP0O_mGKihZF762jaMh27vOzTNW1Frl", "g10")
 	// crawlVideo("PLLLv3emqnRa443V8sf5CUtfP_4-pZZ1qZ", "g10")
 	// crawlVideo("PLba6cs1ag-qC1JFOjEE6SnsWySnY2tQyx", "g10")
 	// crawlVideo("PLwJ4-6t2XvxAHHmgqOy-6o3-ypU1OHd7m", "g10")
@@ -287,7 +288,7 @@ func CrawlVideo() {
 	// crawlVideo("PLCd8j6ZYo0lYG_l7ZNJQEcEyhwtna1Kgf", "g10")
 	// crawlVideo("PLXmeri-X8nVxGI0dYuO5bsc7UnBM4ZzLP", "g10")
 	// crawlVideo("PLNAnUfQYPEiFnzsrdkmI2UDrEtAhBqlR_", "g10")
-	///lớp 11
+	// //lớp 11
 	// crawlVideo("PL0RcIuyecdhKjCsaNSfIkhyhIOmYGbiyu", "g11")
 	// crawlVideo("PLuOh1vF0MkoGok-YCEjos4m7ZcJlwWL3u", "g11")
 	// crawlVideo("PLK7zW26pwiHdM4Lz3OVtXVMZ-ZPJhhqgN", "g11")
@@ -323,7 +324,7 @@ func CrawlVideo() {
 	// crawlVideo("PLCd8j6ZYo0lbaqU2G1uj7ncJJPq5huN3K", "g11")
 	// crawlVideo("PLXmeri-X8nVxTeleONxDQ1pjR6H_oQbmw", "g11")
 	// crawlVideo("PLX8bW_S_7Pfl_JBawTMkWDS32KiHGttN6", "g11")
-	///lớp 12
+	// //lớp 12
 	// crawlVideo("PLopuqf3UNTUdWxxYQC53GE_6ySsWHLoIM", "g12")
 	// crawlVideo("PLOz0SKVB63i1KqjWUp26aoDbucFIY3p2O", "g12")
 	// crawlVideo("PLyqgnSdPFZnAxw_2MjHvlhHTqAD0gZ1wB", "g12")
@@ -367,7 +368,7 @@ func CrawlVideo() {
 	// crawlVideo("PLXmeri-X8nVwKZM86S_TmWS2UsvB_mi45", "g12")
 	// crawlVideo("PLXYp7Odn5ED_IWlliBd985TMNmaWmjW4b", "g12")
 	// crawlVideo("PLX8bW_S_7Pfnl4baLc5EG1R1Br1Jo7ICW", "g12")
-	///ThptQG
+	// //ThptQG
 	// crawlVideo("PLopuqf3UNTUdWxxYQC53GE_6ySsWHLoIM", "up")
 	// crawlVideo("PLi0bzuaaHLJQhg3Nc-faZ5Plw-eXlG04h", "up")
 	// crawlVideo("PLcY1SLXqNi8TwyAbAyxnu-BJcMD4n7Y0W", "up")
@@ -387,7 +388,7 @@ func CrawlVideo() {
 }
 
 func crawlVideo(playlist string, gr string) {
-	lastModified, err := vRep.GetLastModifiedPlaylist(playlist)
+	lastModified, count, err := vRep.GetLastModifiedAndCountPlaylist(playlist)
 	if err != nil {
 		fmt.Println("Lỗi lấy last modified playlist, tạm dừng:", err)
 		return
@@ -397,14 +398,57 @@ func crawlVideo(playlist string, gr string) {
 	fmt.Println("Đang lấy thông tin playlist:", playlist)
 
 	// --flat-playlist + --print để lấy nhanh video + playlist name
-	cmd := exec.Command("yt-dlp", "--flat-playlist", "--print", "%(playlist_title)s|%(playlist_id)s|%(id)s|%(title)s", playlist)
+	cmd := exec.Command(
+		yt_dlp_path,
+		"--encoding", "utf-8",
+		"--flat-playlist",
+		"--print",
+		"%(playlist_title)s|%(playlist_id)s|%(id)s|%(title)s",
+		playlist,
+	)
+
 	cmd.Env = append(os.Environ(), "PYTHONIOENCODING=utf-8")
-	output, err := cmd.Output()
+
+	stdout, err := cmd.StdoutPipe()
 	if err != nil {
 		panic(err)
 	}
 
-	lines := strings.Split(string(output), "\n")
+	cmd.Stderr = os.Stderr
+
+	if err := cmd.Start(); err != nil {
+		panic(err)
+	}
+
+	var lines []string
+	scanner := bufio.NewScanner(stdout)
+
+	for scanner.Scan() {
+		line := strings.TrimSpace(scanner.Text())
+		if line == "" {
+			continue
+		}
+
+		// thấy nó đang chạy
+		//fmt.Println("yt-dlp:", line)
+
+		// vẫn lưu lại để xử lý sau
+		lines = append(lines, line)
+	}
+
+	for i, j := 0, len(lines)-1; i < j; i, j = i+1, j-1 {
+		lines[i], lines[j] = lines[j], lines[i]
+	}
+
+	if err := scanner.Err(); err != nil {
+		panic(err)
+	}
+
+	if err := cmd.Wait(); err != nil {
+		panic(err)
+	}
+
+	fmt.Println(">>> Đã lấy video:", len(lines))
 	var videos []models.Video
 	var newLastModified time.Time
 	var playlistTitle string
@@ -430,6 +474,7 @@ func crawlVideo(playlist string, gr string) {
 		}
 
 		url := "https://www.youtube.com/watch?v=" + videoID
+		fmt.Println(">>> Đang lấy ngày đăng của video: ", videoID)
 		uploadDate, err := getYouTubeUploadDate(url)
 		if err != nil {
 			fmt.Println("Lỗi lấy ngày đăng:", err)
@@ -437,7 +482,8 @@ func crawlVideo(playlist string, gr string) {
 		}
 
 		if uploadDate.Before(lastModified) {
-			continue
+			fmt.Printf(">>> Ngày đăng video này (%s) nhỏ hơn ngày đăng video cuối cùng(%s) trong database - bỏ qua\n", uploadDate, lastModified)
+			break
 		}
 
 		if uploadDate.After(newLastModified) {
@@ -452,7 +498,7 @@ func crawlVideo(playlist string, gr string) {
 			LastModified: uploadDate,
 			Playlist:     playlist,
 		}
-		fmt.Printf("\n----- Thêm video mới: %s\nTên: %s\nLớp: %s\nUrl: %s\n Cập nhật: %s", video.Id, video.Title, video.Grade,video.URL,video.LastModified)
+		fmt.Printf("\n----- Thêm video mới: %s\nTên: %s\nLớp: %s\nUrl: %s\n Cập nhật: %s", video.Id, video.Title, video.Grade, video.URL, video.LastModified)
 		videos = append(videos, video)
 	}
 
@@ -466,7 +512,7 @@ func crawlVideo(playlist string, gr string) {
 		Title:        playlistTitle,
 		Thumbnail:    videos[0].Id,
 		Grade:        gr,
-		Count:        len(videos),
+		Count:        len(videos) + count,
 		LastModified: newLastModified,
 	}
 
@@ -487,37 +533,35 @@ func normalizeUTF8(s string) string {
 }
 
 func getYouTubeUploadDate(videoURL string) (time.Time, error) {
-    cmd := exec.Command("yt-dlp", "-j", videoURL)
-    output, err := cmd.Output()
-    if err != nil {
-        return time.Time{}, err
-    }
+	cmd := exec.Command(yt_dlp_path, "-j", videoURL)
+	output, err := cmd.Output()
+	if err != nil {
+		return time.Time{}, err
+	}
 
-    var data struct {
-        UploadDate      string `json:"upload_date"`      // "YYYYMMDD"
-        UploadTimestamp int64  `json:"upload_timestamp"` // epoch seconds
-    }
+	var data struct {
+		UploadDate      string `json:"upload_date"`      // "YYYYMMDD"
+		UploadTimestamp int64  `json:"upload_timestamp"` // epoch seconds
+	}
 
-    if err := json.Unmarshal(output, &data); err != nil {
-        return time.Time{}, err
-    }
+	if err := json.Unmarshal(output, &data); err != nil {
+		return time.Time{}, err
+	}
 
-    if data.UploadTimestamp != 0 {
-        return time.Unix(data.UploadTimestamp, 0), nil
-    }
+	if data.UploadTimestamp != 0 {
+		return time.Unix(data.UploadTimestamp, 0), nil
+	}
 
-    if data.UploadDate != "" {
-        t, err := time.Parse("20060102", data.UploadDate)
-        if err != nil {
-            return time.Time{}, err
-        }
-        return t, nil
-    }
+	if data.UploadDate != "" {
+		t, err := time.Parse("20060102", data.UploadDate)
+		if err != nil {
+			return time.Time{}, err
+		}
+		return t, nil
+	}
 
-    return time.Time{}, fmt.Errorf("không tìm thấy upload_timestamp hoặc upload_date")
+	return time.Time{}, fmt.Errorf("không tìm thấy upload_timestamp hoặc upload_date")
 }
-
-
 
 func getYouTubeID(videoURL string) string {
 	re := regexp.MustCompile(`(?:v=|youtu\.be/)([A-Za-z0-9_-]{11})`)
