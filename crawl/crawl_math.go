@@ -416,7 +416,7 @@ func autoCrawl(source models.Input) {
 
 func getListPractice(url string, type1 string, topic string) ([]models.Practice, int, error, bool) {
 	fmt.Println("-------------------------")
-	doc, err := getDocumentWithRod(url)
+	doc, err := getDocumentByOption(url)
 	if err != nil {
 		fmt.Println("Lỗi cào dữ liêu: " + err.Error())
 		return nil, 1, err, false
@@ -457,7 +457,7 @@ func getListPractice(url string, type1 string, topic string) ([]models.Practice,
 			return false // dừng vòng lặp
 		}
 
-		doc1, err1 := getDocumentWithRod(link)
+		doc1, err1 := getDocumentByOption(link)
 		if err1 != nil {
 			fmt.Println("❌ Error fetching detail page:", err1)
 			return true

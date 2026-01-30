@@ -17,8 +17,8 @@ import (
 )
 
 const (
-	minTime = "28/01/2026"
-	maxTime = "29/01/2026"
+	minTime = "29/01/2026"
+	maxTime = "30/01/2026"
 )
 
 var grade = "g8"
@@ -54,6 +54,14 @@ func updatePracticeToFirestore(practice models.Practice) error {
 
 	log.Printf("✅ Đã cập nhật practice: %s", practice.Title)
 	return nil
+}
+
+func getDocumentByOption(url string) (*goquery.Document, error) {
+	isRodNeeded := false
+	if isRodNeeded {
+		return getDocumentWithRod(url)
+	}
+	return getDocument(url)
 }
 
 func getDocument(url string) (*goquery.Document, error) {
