@@ -516,7 +516,7 @@ func crawlVideo(playlist string, gr string) {
 		LastModified: newLastModified,
 	}
 
-	fmt.Printf("\n>>>>>Playlist mới: %s\nTitle: %s\nCount: %s\nLastmodified: %s", pl.Id, pl.Title, pl.Count, pl.LastModified)
+	fmt.Printf("\n>>>>>Playlist mới: %s\nTitle: %s\nCount: %d\nLastmodified: %s", pl.Id, pl.Title, pl.Count, pl.LastModified)
 
 	//Upload videos và playlist nếu cần
 	vRep.UploadVideos(videos)

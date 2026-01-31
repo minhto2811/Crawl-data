@@ -7,10 +7,8 @@ import (
 	"mxgk/crawl/models"
 	"mxgk/crawl/utils"
 	"os"
-	"time"
-
-	"net/http"
 	"path/filepath"
+	"time"
 
 	"net/url"
 
@@ -19,41 +17,31 @@ import (
 	"github.com/google/uuid"
 )
 
-type HocMaiRepo interface {
-	SavePractice(practice *models.HocMai, collection string) error
-	Upload(title string, url1 string, cookie string) (string, error)
+type TvhlRepo interface {
+	SavePractice(practice *models.TVHL, collection string) error
+	Upload(title string, url1 string) (string, error)
 }
 
-type HocMaiRepoImp struct {
+type TvhlRepoImp struct {
 	client     *firestore.Client
 	ctx        context.Context
 	storage    *storage.Client
 	bucketName string
 }
 
-func NewHocMaiRepo(client *firestore.Client, ctx context.Context, storage *storage.Client, bucketName string) HocMaiRepo {
-	return &HocMaiRepoImp{client: client, ctx: ctx, storage: storage, bucketName: bucketName}
+func NewTvhlRepo(client *firestore.Client, ctx context.Context, storage *storage.Client, bucketName string) TvhlRepo {
+	return &TvhlRepoImp{client: client, ctx: ctx, storage: storage, bucketName: bucketName}
 }
 
-func (r *HocMaiRepoImp) SavePractice(practice *models.HocMai, collection string) error {
+func (r *TvhlRepoImp) SavePractice(practice *models.TVHL, collection string) error {
 	_, err := r.client.Collection(collection).NewDoc().Create(r.ctx, practice)
 	return err
 }
 
-func (r *HocMaiRepoImp) Upload(title string, url1 string, cookie string) (string, error) {
-	// 🔹 1. Tải file từ URL cũ
-	req, err := http.NewRequest("GET", url1, nil)
-	if err != nil {
-		return url1, fmt.Errorf("tạo request lỗi: %v", err)
-	}
 
-	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/142.0.0.0 Safari/537.36")
-	req.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
-	req.Header.Set("Accept-Language", "vi")
-	req.Header.Set("Cookie", cookie)
-
-	client := &http.Client{Timeout: 30 * time.Second}
-	resp, err := client.Do(req)
+func (r *TvhlRepoImp) Upload(title string, url1 string) (string, error) {
+	fmt.Println("🔹 Bắt đầu tải tài liệu")
+	resp, err := utils.CreateRequest(url1, "GET")
 	if err != nil {
 		return url1, fmt.Errorf("không tải được %s: %v", url1, err)
 	}
@@ -65,9 +53,9 @@ func (r *HocMaiRepoImp) Upload(title string, url1 string, cookie string) (string
 
 	// 🔹 2. Tạo tên file tạm thời
 	name := utils.ToSnakeCase(title)
-	fileName := fmt.Sprintf("%s_%d.pdf", name, time.Now().Unix())
-
-	tmpPath := filepath.Join(os.TempDir(), fileName)
+	fileName := fmt.Sprintf("%s_%d", name, time.Now().Unix())
+	tempDir := os.TempDir()
+	tmpPath := filepath.Join(tempDir, fileName+".docx")
 	out, err := os.Create(tmpPath)
 	if err != nil {
 		return url1, fmt.Errorf("không tạo file tạm: %v", err)
@@ -77,26 +65,34 @@ func (r *HocMaiRepoImp) Upload(title string, url1 string, cookie string) (string
 	if _, err := io.Copy(out, resp.Body); err != nil {
 		return url1, fmt.Errorf("không ghi file tạm: %v", err)
 	}
+	fmt.Println("🔹 Tải docx thành công")
 
+	tmpPdfPath, err1 := utils.ConvertDocxToPDF(tmpPath, tempDir, 0)
+
+	if err1 != nil {
+		return url1, fmt.Errorf("không chuyển đổi được file pdf: %v", err1)
+	}
+	fmt.Println("🔹 Convert sang PDF thành công")
+	fmt.Println("🔹 Upload lên server")
 	// 🔹 3. Upload lên Firebase Storage
-	objectPath := fmt.Sprintf("literature/%s", fileName)
+	objectPath := fmt.Sprintf("TVHL/%s", fileName+".pdf")
 	wc := r.storage.Bucket(r.bucketName).Object(objectPath).NewWriter(r.ctx)
+	defer wc.Close()
 	uuid := uuid.New().String()
+	wc.ContentType = "application/pdf"
 	wc.Metadata = map[string]string{
 		"firebaseStorageDownloadTokens": uuid,
 	}
 
 	// Mở lại file tạm để upload
-	tmpFile, err := os.Open(tmpPath)
+	tmpFile, err := os.Open(tmpPdfPath)
 	if err != nil {
-		wc.Close()
 		return url1, fmt.Errorf("không mở file tạm: %v", err)
 	}
 	defer tmpFile.Close()
 
 	if _, err := io.Copy(wc, tmpFile); err != nil {
-		wc.Close()
-		return url1, fmt.Errorf("lỗi upload %s: %v", fileName, err)
+		return url1, fmt.Errorf("lỗi upload : %v", err)
 	}
 
 	if err := wc.Close(); err != nil {
@@ -107,6 +103,6 @@ func (r *HocMaiRepoImp) Upload(title string, url1 string, cookie string) (string
 	escapedPath := url.PathEscape(objectPath)
 	newURL := fmt.Sprintf("https://firebasestorage.googleapis.com/v0/b/%s/o/%s?alt=media&token=%s", r.bucketName, escapedPath, uuid)
 
-	fmt.Println("✅ Upload thành công:", newURL)
+	fmt.Println("🔹 Upload thành công")
 	return newURL, nil
 }

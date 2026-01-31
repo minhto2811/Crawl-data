@@ -17,23 +17,23 @@ import (
 )
 
 const (
-	minTime = "29/01/2026"
-	maxTime = "30/01/2026"
+	minTime = "01/01/2022"
+	//minTime = "30/01/2026"
+	maxTime = "31/01/2026"
 )
 
 var grade = "g8"
 var g = 8
 var collection = "practices"
 
-
 var pRep repo.PracticeRepo
 var vRep repo.VideoRepo
-var hmRep repo.HocMaiRepo
+var tvhlRep repo.TvhlRepo
 
-func SetRepo(practiceRepo repo.PracticeRepo, videoRepo repo.VideoRepo, hocmaiRepo repo.HocMaiRepo) {
+func SetRepo(practiceRepo repo.PracticeRepo, videoRepo repo.VideoRepo, tvhlRepo repo.TvhlRepo) {
 	pRep = practiceRepo
 	vRep = videoRepo
-	hmRep = hocmaiRepo
+	tvhlRep = tvhlRepo
 }
 
 func BackUp() error {
@@ -97,39 +97,39 @@ func getDocument(url string) (*goquery.Document, error) {
 }
 
 func getDocumentWithRod(url string) (*goquery.Document, error) {
-    l := launcher.New().
-        Headless(true).
-        UserDataDir("rod_data")
+	l := launcher.New().
+		Headless(true).
+		UserDataDir("rod_data")
 
-    controlURL, err := l.Launch()
-    if err != nil {
-        return nil, err
-    }
+	controlURL, err := l.Launch()
+	if err != nil {
+		return nil, err
+	}
 
-    browser := rod.New().ControlURL(controlURL).MustConnect()
-    defer browser.MustClose()
+	browser := rod.New().ControlURL(controlURL).MustConnect()
+	defer browser.MustClose()
 
-    // SỬA TẠI ĐÂY: Truyền 'browser' (kiểu *rod.Browser) 
-    // Hàm này sẽ trả về một '*rod.Page' đã được cài đặt stealth
-    page := stealth.MustPage(browser)
+	// SỬA TẠI ĐÂY: Truyền 'browser' (kiểu *rod.Browser)
+	// Hàm này sẽ trả về một '*rod.Page' đã được cài đặt stealth
+	page := stealth.MustPage(browser)
 
-    // Thực hiện truy cập
-    err = page.Navigate(url)
-    if err != nil {
-        return nil, err
-    }
+	// Thực hiện truy cập
+	err = page.Navigate(url)
+	if err != nil {
+		return nil, err
+	}
 
-    // Đợi trang web vượt qua cơ chế check bot (thường mất vài giây)
-    fmt.Println("Đang đợi xác thực trình duyệt...")
-    page.MustWaitIdle()
-    
-    // Đợi thêm một chút nếu cần (trang bạn gửi có setTimeout 5s)
-    time.Sleep(6 * time.Second) 
+	// Đợi trang web vượt qua cơ chế check bot (thường mất vài giây)
+	fmt.Println("Đang đợi xác thực trình duyệt...")
+	page.MustWaitIdle()
 
-    html, err := page.HTML()
-    if err != nil {
-        return nil, err
-    }
+	// Đợi thêm một chút nếu cần (trang bạn gửi có setTimeout 5s)
+	time.Sleep(6 * time.Second)
 
-    return goquery.NewDocumentFromReader(strings.NewReader(html))
+	html, err := page.HTML()
+	if err != nil {
+		return nil, err
+	}
+
+	return goquery.NewDocumentFromReader(strings.NewReader(html))
 }

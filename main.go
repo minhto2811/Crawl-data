@@ -6,6 +6,7 @@ import (
 	"log"
 	"mxgk/crawl/crawl"
 	"mxgk/crawl/repo"
+	"mxgk/crawl/utils"
 
 	"cloud.google.com/go/firestore"
 	"cloud.google.com/go/storage"
@@ -13,6 +14,7 @@ import (
 )
 
 func main() {
+	utils.KillAllSoffice()
 	ctx := context.Background()
 	sa := option.WithCredentialsFile("./serviceAccountKey.json")
 	client, err := firestore.NewClient(ctx, "dehay-73822", sa)
@@ -30,16 +32,11 @@ func main() {
 
 	practiceRepo := repo.NewPracticeRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
 	videoRepo := repo.NewVideoRepo(client, ctx)
-	hmRepo := repo.NewHocMaiRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
-	crawl.SetRepo(practiceRepo, videoRepo, hmRepo)
+	tvhlRepo := repo.NewTvhlRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
+	crawl.SetRepo(practiceRepo, videoRepo, tvhlRepo)
 
-	// tr := repo.NewTestRepo(client, ctx)
-	// err = tr.Update()
-	// if err != nil {
-	// 	fmt.Println("Lỗi cập nhật test:", err)
-	// }
-	// return
 	// crawl.CrawlVideo()
-	crawl.CrawlMath()
+	//crawl.CrawlMath()
+	crawl.CrawlTVHL()
 	//crawl.CrawlHocMai()
 }
