@@ -19,12 +19,6 @@ func KillAllSoffice() {
 
 
 func ConvertDocxToPDF(input, outputDir string, workerID int) (string, error) {
-	count++
-	if count >= max {
-		KillAllSoffice()
-		count = 0
-	}
-
 	profileDir := fmt.Sprintf("C:/temp/lo-profile-%d", workerID)
 	_ = os.MkdirAll(profileDir, 0755)
 
@@ -56,6 +50,7 @@ func ConvertDocxToPDF(input, outputDir string, workerID int) (string, error) {
 	}
 
 	base := strings.TrimSuffix(filepath.Base(input), filepath.Ext(input))
+	KillAllSoffice()
 	return filepath.Join(outputDir, base+".pdf"), nil
 }
 

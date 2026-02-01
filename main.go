@@ -6,7 +6,6 @@ import (
 	"log"
 	"mxgk/crawl/crawl"
 	"mxgk/crawl/repo"
-	"mxgk/crawl/utils"
 
 	"cloud.google.com/go/firestore"
 	"cloud.google.com/go/storage"
@@ -14,7 +13,6 @@ import (
 )
 
 func main() {
-	utils.KillAllSoffice()
 	ctx := context.Background()
 	sa := option.WithCredentialsFile("./serviceAccountKey.json")
 	client, err := firestore.NewClient(ctx, "dehay-73822", sa)

@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	minTime = "01/01/2022"
+	minTime = "01/01/2023"
 	//minTime = "30/01/2026"
 	maxTime = "31/01/2026"
 )

@@ -13,26 +13,26 @@ import (
 
 func CrawlTVHL() {
 	utils.CreateClient()
-	//crawlLiteratureTVHL()
+	crawlLiteratureTVHL()
 	crawlNaturalScienceTVHL()
-	// crawlEnglishTVHL()
-	// crawlPhysicsTVHL()
-	// crawlBiologyTVHL()
-	// crawlHistoryTVHL()
-	// crawlChemistryTVHL()
-	// crawlGeographyTVHL()
-	// crawlCivicsTVHL()
+	crawlEnglishTVHL()
+	crawlPhysicsTVHL()
+	crawlBiologyTVHL()
+	crawlHistoryTVHL()
+	crawlChemistryTVHL()
+	crawlGeographyTVHL()
+	 crawlCivicsTVHL()
 }
 
 func crawlNaturalScienceTVHL() {
 	urls := []models.InputTVHL{
-		//{Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-6/khtn-lop-6-canh-dieu/", Grade: "g6"},
-		// {Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-6/khtn-lop-6-chan-troi-sang-tao/", Grade: "g6"},
-		// {Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-6/khtn-lop-6-ket-noi-tri-thuc/", Grade: "g6"},
-		// {Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-6/", Grade: "g6"},
-		// {Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-7/khtn-7-ctst/", Grade: "g7"},
-		// {Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-7/khtn-7-canh-dieu/", Grade: "g7"},
-		// {Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-7/khtn-7-kntt/", Grade: "g7"},
+		{Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-6/khtn-lop-6-canh-dieu/", Grade: "g6"},
+		{Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-6/khtn-lop-6-chan-troi-sang-tao/", Grade: "g6"},
+		{Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-6/khtn-lop-6-ket-noi-tri-thuc/", Grade: "g6"},
+		{Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-6/", Grade: "g6"},
+		{Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-7/khtn-7-ctst/", Grade: "g7"},
+		{Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-7/khtn-7-canh-dieu/", Grade: "g7"},
+		{Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-7/khtn-7-kntt/", Grade: "g7"},
 		{Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-7/", Grade: "g7"},
 		{Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-8/", Grade: "g8"},
 		{Url: "https://thuvienhoclieu.com/tai-lieu-khoa-hoc-tu-nhien/khtn-lop-9/", Grade: "g9"},
@@ -138,7 +138,7 @@ func crawlPhysicsTVHL() {
 
 func crawlEnglishTVHL() {
 	urls := []models.InputTVHL{
-		{Url: "https://thuvienhoclieu.com/tai-lieu-tieng-anh/tai-lieu-tieng-anh-lop-6/de-kiem-tra-giua-hoc-ky-2-tieng-anh-6/", Grade: "g6"},
+		//{Url: "https://thuvienhoclieu.com/tai-lieu-tieng-anh/tai-lieu-tieng-anh-lop-6/de-kiem-tra-giua-hoc-ky-2-tieng-anh-6/", Grade: "g6"},
 		{Url: "https://thuvienhoclieu.com/tai-lieu-tieng-anh/tai-lieu-tieng-anh-lop-6/tieng-anh-6-kntt/", Grade: "g6"},
 		{Url: "https://thuvienhoclieu.com/tai-lieu-tieng-anh/tai-lieu-tieng-anh-lop-6/", Grade: "g6"},
 		{Url: "https://thuvienhoclieu.com/tai-lieu-tieng-anh/tai-lieu-tieng-anh-lop-7/de-kiem-tra-giua-hoc-ky-2-tieng-anh-7/", Grade: "g7"},
@@ -198,13 +198,18 @@ func crawlTVHL(url string, grade1 string, collection string) {
 		}
 		list = append(list, hocmais...)
 		page = pageCount
+		if(page > 10) {
+			page = 10
+		}
 		fmt.Printf("Thêm %d tài liệu\n", len(hocmais))
 	}
 
-	fmt.Printf("Tổng cộng tìm thấy %d tài liệu.\n", len(list))
+	total := len(list)
+	fmt.Printf("Tổng cộng tìm thấy %d tài liệu.\n", total)
 
 	//Lưu vào Firestore
 	for i, hocmai := range list {
+		fmt.Printf("------------------ %d/%d ------------------\n", i+1, total)
 		newUrl, err := uploadAndConvert(hocmai.Title, hocmai.Url, i%2)
 		if err != nil {
 			log.Println("Lỗi backup tài liệu:", err)
