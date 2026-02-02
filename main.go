@@ -34,7 +34,6 @@ func main() {
 	crawl.SetRepo(practiceRepo, videoRepo, tvhlRepo)
 
 	// crawl.CrawlVideo()
-	//crawl.CrawlMath()
+	crawl.CrawlMath()
 	crawl.CrawlTVHL()
-	//crawl.CrawlHocMai()
 }
