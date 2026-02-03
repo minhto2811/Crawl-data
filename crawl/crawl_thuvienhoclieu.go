@@ -11,6 +11,10 @@ import (
 	"time"
 )
 
+func ClearTVHL(cutoff time.Time) error {
+	return tvhlRep.Clear(cutoff)
+}
+
 func CrawlTVHL() {
 	utils.CreateClient()
 	crawlLiteratureTVHL()
@@ -282,8 +286,8 @@ func getListTVHL(url string, grade1 string) (int, []models.TVHL, error) {
 			return
 		}
 
-		min, _ := convertToTimestamp(minTime)
-		max, _ := convertToTimestamp(maxTime)
+		min, _ := utils.ConvertToTimestamp(minTime)
+		max, _ := utils.ConvertToTimestamp(maxTime)
 
 		if date.Unix() < min.Unix() || date.Unix() >= max.Unix() {
 			log.Printf("Bỏ qua tài liệu '%s' vì không trong khoảng thời gian.\n", a.Text())

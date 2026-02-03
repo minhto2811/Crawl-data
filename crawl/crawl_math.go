@@ -13,6 +13,11 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
+
+func ClearMath(cutoff time.Time) error {
+	return pRep.Clear(cutoff)
+}
+
 var fcmMap map[string]bool = make(map[string]bool)
 
 func CrawlMath() {
@@ -422,8 +427,8 @@ func getListPractice(url string, type1 string, topic string) ([]models.Practice,
 		return nil, 1, err, false
 	}
 	var practices []models.Practice
-	min, _ := convertToTimestamp(minTime)
-	max, _ := convertToTimestamp(maxTime)
+	min, _ := utils.ConvertToTimestamp(minTime)
+	max, _ := utils.ConvertToTimestamp(maxTime)
 	maxPage := 1
 	doc.Find("a.page-numbers").Each(func(_ int, s *goquery.Selection) {
 		href, ok := s.Attr("href")
@@ -447,7 +452,7 @@ func getListPractice(url string, type1 string, topic string) ([]models.Practice,
 		b := s.Find("div.mh-meta span.entry-meta-date a")
 		dateStr := strings.TrimSpace(b.Text())
 		fmt.Printf("> Link tìm thấy ngày %s : %s\n", dateStr, link)
-		timeVal, err := convertToTimestamp(dateStr)
+		timeVal, err := utils.ConvertToTimestamp(dateStr)
 		if err != nil {
 			fmt.Println("❌ Lỗi convert timestamp:", err)
 			return true // dừng luôn nếu lỗi
@@ -497,20 +502,3 @@ func getListPractice(url string, type1 string, topic string) ([]models.Practice,
 
 }
 
-func convertToTimestamp(dateStr string) (time.Time, error) {
-	dateStr = strings.TrimSpace(dateStr)
-	layouts := []string{
-		"02/01/2006 15:04:05",
-		"02/01/2006 15:04",
-		"02/01/2006",
-	}
-	var t time.Time
-	var err error
-	for _, l := range layouts {
-		t, err = time.Parse(l, dateStr) // time.Parse -> trả UTC
-		if err == nil {
-			return t.UTC(), nil
-		}
-	}
-	return time.Time{}, fmt.Errorf("cannot parse time %q", dateStr)
-}

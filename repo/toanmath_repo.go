@@ -2,6 +2,7 @@ package repo
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"mxgk/crawl/models"
@@ -21,7 +22,7 @@ import (
 type PracticeRepo interface {
 	SavePractice(practice *models.Practice, collection string) error
 	Update() error
-	Remove() error
+	Clear(cutoff time.Time) error
 	Backup() error
 	Upload(url string) string
 }
@@ -52,7 +53,7 @@ func (r *PracticeRepoImp) Update() error {
 			continue
 		}
 		_, err := r.client.Collection("practices").Doc(doc.Ref.ID).Set(r.ctx, map[string]interface{}{
-			"subject": "math", 
+			"subject": "math",
 		}, firestore.MergeAll)
 		if err != nil {
 			fmt.Printf("Error: %s\n", doc.Ref.ID)
@@ -64,18 +65,16 @@ func (r *PracticeRepoImp) Update() error {
 	return nil
 }
 
-func (r *PracticeRepoImp) Remove() error {
-	snapshot, err := r.client.Collection("practices").Where("lastModified", ">=", time.Date(2025, 10, 30, 0, 0, 0, 0, time.UTC)).Documents(r.ctx).GetAll()
-	fmt.Println("length: %s", len(snapshot))
+func (r *PracticeRepoImp) Clear(cutoff time.Time) error {
+	snapshot, err := r.client.Collection("practices").Where("lastModified", "<=", cutoff).Documents(r.ctx).GetAll()
 	if err != nil {
 		return err
 	}
+	fmt.Printf("Tài liệu toán trước tháng %d năm %d: %d\n", cutoff.Month(), cutoff.Year(), len(snapshot))
 	for _, doc := range snapshot {
-		fileURL := doc.Data()["url"].(string)
-		fmt.Println("Removing document %s\n", doc.Ref.ID)
-		_, err := r.client.Collection("practices").Doc(doc.Ref.ID).Delete(r.ctx)
-		if err != nil {
-			return err
+		fileURL, ok := doc.Data()["url"].(string)
+		if !ok || fileURL == "" {
+			return fmt.Errorf("document %s không có field url hợp lệ", doc.Ref.ID)
 		}
 		start := strings.Index(fileURL, "/o/")
 		if start == -1 {
@@ -90,9 +89,19 @@ func (r *PracticeRepoImp) Remove() error {
 		path = strings.ReplaceAll(path, "%2F", "/")
 		obj := r.storage.Bucket(r.bucketName).Object(path)
 		if err := obj.Delete(r.ctx); err != nil {
-			return fmt.Errorf("lỗi khi xóa file %q: %v", path, err)
+			if errors.Is(err, storage.ErrObjectNotExist) {
+				fmt.Println("⚠️ File không tồn tại")
+			} else {
+				return fmt.Errorf("lỗi khi xóa file %q: %v", path, err)
+			}
+
 		}
-		fmt.Println("🗑️ Đã xóa file: %s", path)
+		fmt.Printf("🗑️ Đã xóa file: %s\n", path)
+		fmt.Printf("Removing document %s\n", doc.Ref.ID)
+		_, err := r.client.Collection("practices").Doc(doc.Ref.ID).Delete(r.ctx)
+		if err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -168,8 +177,6 @@ func (r *PracticeRepoImp) Backup() error {
 	}
 	return nil
 }
-
-
 
 func (r *PracticeRepoImp) Upload(url1 string) string {
 	// 🔹 1. Tải file từ URL cũ

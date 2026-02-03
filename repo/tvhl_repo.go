@@ -2,12 +2,14 @@ package repo
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"mxgk/crawl/models"
 	"mxgk/crawl/utils"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"net/url"
@@ -20,6 +22,7 @@ import (
 type TvhlRepo interface {
 	SavePractice(practice *models.TVHL, collection string) error
 	Upload(title string, url1 string) (string, error)
+	Clear(cutoff time.Time) error
 }
 
 type TvhlRepoImp struct {
@@ -37,7 +40,6 @@ func (r *TvhlRepoImp) SavePractice(practice *models.TVHL, collection string) err
 	_, err := r.client.Collection(collection).NewDoc().Create(r.ctx, practice)
 	return err
 }
-
 
 func (r *TvhlRepoImp) Upload(title string, url1 string) (string, error) {
 	fmt.Println("🔹 Bắt đầu tải tài liệu")
@@ -105,4 +107,48 @@ func (r *TvhlRepoImp) Upload(title string, url1 string) (string, error) {
 
 	fmt.Println("🔹 Upload thành công")
 	return newURL, nil
+}
+
+func (r *TvhlRepoImp) Clear(cutoff time.Time) error {
+	collections := []string{"literatures", "naturalScience", "english", "physics", "biology", "history", "chemistry", "geography", "civics"}
+	for _, collection := range collections {
+		snapshot, err := r.client.Collection(collection).Where("lastModified", "<=", cutoff).Documents(r.ctx).GetAll()
+		if err != nil {
+			return err
+		}
+		fmt.Printf("Tài liệu %s trước tháng %d năm %d: %d\n", collection, cutoff.Month(), cutoff.Year(), len(snapshot))
+		for _, doc := range snapshot {
+			fileURL, ok := doc.Data()["url"].(string)
+			if !ok || fileURL == "" {
+				return fmt.Errorf("document %s không có field url hợp lệ", doc.Ref.ID)
+			}
+			start := strings.Index(fileURL, "/o/")
+			if start == -1 {
+				return fmt.Errorf("URL không hợp lệ: %s", fileURL)
+			}
+			start += len("/o/")
+			end := strings.Index(fileURL, "?")
+			if end == -1 {
+				end = len(fileURL)
+			}
+			path := fileURL[start:end]
+			path = strings.ReplaceAll(path, "%2F", "/")
+			obj := r.storage.Bucket(r.bucketName).Object(path)
+			if err := obj.Delete(r.ctx); err != nil {
+				if errors.Is(err, storage.ErrObjectNotExist) {
+					fmt.Println("⚠️ File không tồn tại")
+				} else {
+					return fmt.Errorf("lỗi khi xóa file %q: %v", path, err)
+				}
+
+			}
+			fmt.Printf("🗑️ Đã xóa file: %s\n", path)
+			fmt.Printf("Removing document %s\n", doc.Ref.ID)
+			_, err := r.client.Collection("practices").Doc(doc.Ref.ID).Delete(r.ctx)
+			if err != nil {
+				return err
+			}
+		}
+	}
+	return nil
 }

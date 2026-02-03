@@ -17,8 +17,8 @@ import (
 )
 
 const (
-	minTime = "31/01/2026"
-	maxTime = "02/02/2026"
+	minTime = "02/02/2026"
+	maxTime = "03/02/2026"
 )
 
 var grade = "g8"
@@ -35,9 +35,7 @@ func SetRepo(practiceRepo repo.PracticeRepo, videoRepo repo.VideoRepo, tvhlRepo 
 	tvhlRep = tvhlRepo
 }
 
-func BackUp() error {
-	return pRep.Backup()
-}
+
 
 func updatePracticeToFirestore(practice models.Practice) error {
 	log.Printf("Url cũ: %s", practice.Url)

@@ -6,6 +6,7 @@ import (
 	"log"
 	"mxgk/crawl/crawl"
 	"mxgk/crawl/repo"
+	"time"
 
 	"cloud.google.com/go/firestore"
 	"cloud.google.com/go/storage"
@@ -34,6 +35,18 @@ func main() {
 	crawl.SetRepo(practiceRepo, videoRepo, tvhlRepo)
 
 	// crawl.CrawlVideo()
-	crawl.CrawlMath()
-	crawl.CrawlTVHL()
+	//crawl.CrawlMath()
+	//crawl.CrawlTVHL()
+
+	cutoff := time.Date(2023, 1, 1, 0, 0, 0, 0, time.UTC)
+	err1 :=	crawl.ClearMath(cutoff)
+	if err1 != nil {
+		fmt.Println("Lỗi xóa tài liệu toán:", err1)
+		return
+	}
+	err2 := crawl.ClearTVHL(cutoff)
+	if err2 != nil {
+		fmt.Println("Lỗi xóa tài liệu TVHL:", err2)
+		return
+	}
 }
