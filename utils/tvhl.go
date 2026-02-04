@@ -40,8 +40,8 @@ func CreateClient() {
 }
 
 func CreateRequest(url string, method string) (*http.Response, error) {
-	sleep := time.Duration(1000)
-	fmt.Println("Bắt đầu sau 1s")
+	sleep := time.Duration(2) * time.Second
+	fmt.Println("Bắt đầu sau 2s")
 	time.Sleep(sleep)
 	req, err := http.NewRequest(method, url, nil)
 	if err != nil {
