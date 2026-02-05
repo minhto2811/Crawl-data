@@ -144,7 +144,7 @@ func (r *TvhlRepoImp) Clear(cutoff time.Time) error {
 			}
 			fmt.Printf("🗑️ Đã xóa file: %s\n", path)
 			fmt.Printf("Removing document %s\n", doc.Ref.ID)
-			_, err := r.client.Collection("practices").Doc(doc.Ref.ID).Delete(r.ctx)
+			_, err := r.client.Collection(collection).Doc(doc.Ref.ID).Delete(r.ctx)
 			if err != nil {
 				return err
 			}
