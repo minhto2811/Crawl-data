@@ -79,7 +79,6 @@ func (r *TvhlRepoImp) Upload(title string, url1 string) (string, error) {
 	// 🔹 3. Upload lên Firebase Storage
 	objectPath := fmt.Sprintf("TVHL/%s", fileName+".pdf")
 	wc := r.storage.Bucket(r.bucketName).Object(objectPath).NewWriter(r.ctx)
-	defer wc.Close()
 	uuid := uuid.New().String()
 	wc.ContentType = "application/pdf"
 	wc.Metadata = map[string]string{
@@ -94,6 +93,7 @@ func (r *TvhlRepoImp) Upload(title string, url1 string) (string, error) {
 	defer tmpFile.Close()
 
 	if _, err := io.Copy(wc, tmpFile); err != nil {
+		wc.Close()
 		return url1, fmt.Errorf("lỗi upload : %v", err)
 	}
 

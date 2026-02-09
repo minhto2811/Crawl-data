@@ -28,6 +28,7 @@ func main() {
 		return
 		// TODO: Handle error.
 	}
+	defer stor1.Close()
 
 	practiceRepo := repo.NewPracticeRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
 	videoRepo := repo.NewVideoRepo(client, ctx)
