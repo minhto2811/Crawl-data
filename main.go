@@ -35,7 +35,7 @@ func main() {
 	tvhlRepo := repo.NewTvhlRepo(client, ctx, stor1, "dehay-73822.firebasestorage.app")
 	crawl.SetRepo(practiceRepo, videoRepo, tvhlRepo)
 
-	// crawl.CrawlVideo()
+	//crawl.CrawlVideo()
 	crawl.CrawlMath()
 	crawl.CrawlTVHL()
 
