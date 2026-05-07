@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
+	"sort"
 	"strings"
 	"time"
 	"unicode/utf8"
@@ -112,7 +113,7 @@ func CrawlVideo() {
 	crawlVideo("PLuMGE4ip9nTVi25Vs1N3lTHK0BT1liYhk", "g8")
 	crawlVideo("PLhUgn84MlNfbPkmPasJamfd0R9r24s1sN", "g8")
 	crawlVideo("PLv_FkS88YBCfYI1HWUeK9KJ9YH24nF64C", "g8")
-	
+
 	crawlVideo("PL6_AM0jq2YzqF297k9boCxAwN6YprzkFF", "g8")
 	crawlVideo("PLLl22mzbOTrWj_-rRJBTTK3Y2JZyqHSRE", "g8")
 	crawlVideo("PLs_rMAIUyBHjMPHSo76-pJNO-Lq_BMgYZ", "g8")
@@ -137,7 +138,7 @@ func CrawlVideo() {
 	crawlVideo("PL7lt8bNTm9pyxKadt4tR1Mt4ATp8Pk9_G", "g8")
 	crawlVideo("PLzS2cTFGpDywyMUXiA1xtW8hVk4WLIfb1", "g8")
 	crawlVideo("PLzS2cTFGpDywpTh_5uG0kkGOHR-q8IaX4", "g8")
-	
+
 	crawlVideo("PL5kxOdJ5P40_ESh5uticYLEHCdEDY5ta8", "g8")
 	crawlVideo("PL5kxOdJ5P40_ESh5uticYLEHCdEDY5ta8", "g8")
 	crawlVideo("PLqcCOZrA1NA305ValbMOhrgijtmsQd-W8", "g8")
@@ -384,15 +385,13 @@ func CrawlVideo() {
 }
 
 func crawlVideo(playlist string, gr string) {
-	lastModified, count, err := vRep.GetLastModifiedAndCountPlaylist(playlist)
+	fmt.Println(">>> Playlist:", playlist)
+	lastModified, err := vRep.GetLastModifiedAndCountPlaylist(playlist)
 	if err != nil {
 		fmt.Println("Lỗi lấy last modified playlist, tạm dừng:", err)
 		return
 	}
 	fmt.Println("Last modified playlist:", lastModified)
-
-	fmt.Println("Đang lấy thông tin playlist:", playlist)
-
 	// --flat-playlist + --print để lấy nhanh video + playlist name
 	cmd := exec.Command(
 		yt_dlp_path,
@@ -407,16 +406,16 @@ func crawlVideo(playlist string, gr string) {
 
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
-		fmt.Println("### >>> Playlist méo tìm thấy:", playlist);
-		fmt.Println(">>> cmd.StdoutPipe:", err);
+		fmt.Println("### >>> Playlist méo tìm thấy:", playlist)
+		fmt.Println(">>> cmd.StdoutPipe:", err)
 		return
 	}
 
 	cmd.Stderr = os.Stderr
 
 	if err := cmd.Start(); err != nil {
-		fmt.Println("### >>> Playlist méo tìm thấy:", playlist);
-		fmt.Println(">>> cmd.Start:", err);
+		fmt.Println("### >>> Playlist méo tìm thấy:", playlist)
+		fmt.Println(">>> cmd.Start:", err)
 		return
 	}
 
@@ -445,8 +444,8 @@ func crawlVideo(playlist string, gr string) {
 	}
 
 	if err := cmd.Wait(); err != nil {
-		fmt.Println("### >>> Playlist méo tìm thấy:", playlist);
-		fmt.Println(">>> cmd.Wait:", err);
+		fmt.Println("### >>> Playlist méo tìm thấy:", playlist)
+		fmt.Println(">>> cmd.Wait:", err)
 		return
 	}
 
@@ -476,7 +475,7 @@ func crawlVideo(playlist string, gr string) {
 		}
 
 		url := "https://www.youtube.com/watch?v=" + videoID
-		fmt.Println(">>> Đang lấy ngày đăng của video: ", videoID)
+		fmt.Println(">>> Đang lấy video: ", videoID)
 		uploadDate, err := getYouTubeUploadDate(url)
 		if err != nil {
 			fmt.Println("Lỗi lấy ngày đăng:", err)
@@ -484,7 +483,7 @@ func crawlVideo(playlist string, gr string) {
 		}
 
 		if uploadDate.Before(lastModified) {
-			fmt.Printf(">>> Ngày đăng video này (%s) nhỏ hơn ngày đăng video cuối cùng(%s) trong database - bỏ qua\n", uploadDate, lastModified)
+			fmt.Printf(">>> Bỏ qua: %s, ", uploadDate)
 			break
 		}
 
@@ -500,7 +499,6 @@ func crawlVideo(playlist string, gr string) {
 			LastModified: uploadDate,
 			Playlist:     playlist,
 		}
-		fmt.Printf("\n----- Thêm video mới: %s\nTên: %s\nLớp: %s\nUrl: %s\n Cập nhật: %s", video.Id, video.Title, video.Grade, video.URL, video.LastModified)
 		videos = append(videos, video)
 	}
 
@@ -509,20 +507,23 @@ func crawlVideo(playlist string, gr string) {
 		return
 	}
 
+	sort.Slice(videos, func(i, j int) bool {
+		return videos[i].LastModified.After(videos[j].LastModified)
+	})
+
 	pl := models.Playlist{
 		Id:           playlistID,
 		Title:        playlistTitle,
 		Thumbnail:    videos[0].Id,
 		Grade:        gr,
-		Count:        len(videos) + count,
+		Count:        0,
 		LastModified: newLastModified,
 	}
-
-	fmt.Printf("\n>>>>>Playlist mới: %s\nTitle: %s\nCount: %d\nLastmodified: %s", pl.Id, pl.Title, pl.Count, pl.LastModified)
 
 	//Upload videos và playlist nếu cần
 	vRep.UploadVideos(videos)
 	vRep.UploadPlaylist(pl)
+	fmt.Println("@@@ Hoàn thành")
 }
 
 func normalizeUTF8(s string) string {
