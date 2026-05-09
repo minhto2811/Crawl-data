@@ -1,11 +1,13 @@
 package repo
 
 import (
-	"cloud.google.com/go/firestore"
 	"context"
 	"fmt"
 	"mxgk/crawl/models"
 	"time"
+
+	"cloud.google.com/go/firestore"
+	"google.golang.org/api/iterator"
 )
 
 type VideoRepo interface {
@@ -77,8 +79,17 @@ func (r *VideoRepoImp) GetLastModifiedAndCountPlaylist(playlistID string) (time.
 
 	// 2. Get the first result
 	doc, err := iter.Next()
+
+	if err == iterator.Done {
+		loc, _ := time.LoadLocation("Asia/Ho_Chi_Minh")
+		defaultDate := time.Date(2020, 1, 1, 0, 0, 0, 0, loc)
+		return defaultDate, nil
+	}
+
 	if err != nil {
 		return time.Time{}, err
 	}
-	return doc.Data()["lastModified"].(time.Time), nil
+
+	loc, _ := time.LoadLocation("Asia/Ho_Chi_Minh")
+	return doc.Data()["lastModified"].(time.Time).In(loc), nil
 }

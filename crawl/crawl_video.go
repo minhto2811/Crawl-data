@@ -219,6 +219,12 @@ func CrawlVideo() {
 	crawlVideo("PLhKgNgqfK6qkyJKAPQs5jStMGnLXjk30z", "g9")
 	crawlVideo("PLMzRq608THSNsKTy3gZ_MT41WJNMy5qrc", "g9")
 	////ôn thi vào 10
+	crawlVideo("PLba6cs1ag-qB2pZKAvEH5JT2DJi-1nvU5", "hsp")
+	crawlVideo("PLq0mRSDfY0BCnVVBHjD09kcw9y-vUMdV3", "hsp")
+	crawlVideo("PLMzRq608THSPE-deKRttzfHZUw_QiE_JV", "hsp")
+	crawlVideo("PLSRLfYrJ4gMsQnLez3fjc7cq0Ic-DJLUj", "hsp")
+	crawlVideo("PL2RzJLUvXc9L90S2JxbWsbkwBEUypuOGb", "hsp")
+	crawlVideo("PLMzRq608THSPayltvy7ygQFYcTOIUc8OI", "hsp")
 	crawlVideo("PLoXStX_pVftv7n5kNIiHR19JtXnOjRQ9V", "hsp")
 	crawlVideo("PL6BUF2OKNu1icjN2GewGc3VeHUHzH-yw7", "hsp")
 	crawlVideo("PLH5GyRVRwLCkVCbVxj-npQA3oNWoIj9bL", "hsp")
@@ -256,7 +262,6 @@ func CrawlVideo() {
 	crawlVideo("PL8x0QuuuxE-pyZCMtCldiiyGSEVB8YSzR", "hsp")
 	crawlVideo("PLb86fQcyLH4QsjBIa5BhMfkACJ1lPdJQ3", "hsp")
 	crawlVideo("PLoXStX_pVftv3BGVHvVpoXTQwHznDa4Ki", "hsp")
-	crawlVideo("PLoXStX_pVftv7n5kNIiHR19JtXnOjRQ9V", "hsp")
 	////lớp 10
 	crawlVideo("PLBJb6uyJz5CGakAU2rwfoQAN4qnvpYnbi", "g10")
 	crawlVideo("PLuOh1vF0MkoG-ky-6DjO8_T-VKrx0Ad6u", "g10")
@@ -536,34 +541,39 @@ func normalizeUTF8(s string) string {
 }
 
 func getYouTubeUploadDate(videoURL string) (time.Time, error) {
-	cmd := exec.Command(yt_dlp_path, "-j", videoURL)
+	// Thêm --no-playlist để tránh lấy cả list nếu link là video trong playlist
+	// Thêm --quiet để tránh rác output
+	cmd := exec.Command(yt_dlp_path, "-j", "--no-playlist", videoURL)
 	output, err := cmd.Output()
 	if err != nil {
-		return time.Time{}, err
+		return time.Time{}, fmt.Errorf("yt-dlp error: %v", err)
 	}
 
 	var data struct {
-		UploadDate      string `json:"upload_date"`      // "YYYYMMDD"
-		UploadTimestamp int64  `json:"upload_timestamp"` // epoch seconds
+		UploadDate      string `json:"upload_date"`
+		UploadTimestamp int64  `json:"timestamp"` // yt-dlp thường dùng key "timestamp" cho epoch
 	}
 
 	if err := json.Unmarshal(output, &data); err != nil {
 		return time.Time{}, err
 	}
 
+	// Ưu tiên dùng Timestamp vì nó chính xác đến từng giây
 	if data.UploadTimestamp != 0 {
-		return time.Unix(data.UploadTimestamp, 0), nil
+		return time.Unix(data.UploadTimestamp, 0).UTC(), nil
 	}
 
+	// Nếu không có timestamp, dùng UploadDate (chỉ có Ngày/Tháng/Năm)
 	if data.UploadDate != "" {
+		// Parse ra ngày và mặc định là UTC
 		t, err := time.Parse("20060102", data.UploadDate)
 		if err != nil {
-			return time.Time{}, err
+			return time.Time{}, fmt.Errorf("parse date error: %v", err)
 		}
-		return t, nil
+		return t.UTC(), nil
 	}
 
-	return time.Time{}, fmt.Errorf("không tìm thấy upload_timestamp hoặc upload_date")
+	return time.Time{}, fmt.Errorf("không tìm thấy thông tin ngày upload cho video: %s", videoURL)
 }
 
 func getYouTubeID(videoURL string) string {
