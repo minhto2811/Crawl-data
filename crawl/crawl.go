@@ -17,8 +17,8 @@ import (
 )
 
 const (
-	minTime = "25/06/2026"
-	maxTime = "26/06/2026"
+	minTime = "26/06/2026"
+	maxTime = "27/06/2026"
 )
 
 var grade = "g8"
