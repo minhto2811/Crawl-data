@@ -36,9 +36,9 @@ func main() {
 	crawl.SetRepo(practiceRepo, videoRepo, tvhlRepo)
 
 	
-	crawl.CrawlMath()
+	//crawl.CrawlMath()
 	crawl.CrawlTVHL()
-	crawl.CrawlVideo()
+	//crawl.CrawlVideo()
 
 	//cutoff := time.Date(2023, 1, 1, 0, 0, 0, 0, time.UTC)
 	// err1 :=	crawl.ClearMath(cutoff)

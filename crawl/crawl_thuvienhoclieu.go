@@ -25,7 +25,7 @@ func CrawlTVHL() {
 	crawlHistoryTVHL()
 	crawlChemistryTVHL()
 	crawlGeographyTVHL()
-	 crawlCivicsTVHL()
+	crawlCivicsTVHL()
 }
 
 func crawlNaturalScienceTVHL() {
@@ -201,10 +201,7 @@ func crawlTVHL(url string, grade1 string, collection string) {
 			continue
 		}
 		list = append(list, hocmais...)
-		page = pageCount
-		if(page > 10) {
-			page = 10
-		}
+		page = min(pageCount, 10)
 		fmt.Printf("Thêm %d tài liệu\n", len(hocmais))
 	}
 
@@ -257,6 +254,13 @@ func getListTVHL(url string, grade1 string) (int, []models.TVHL, error) {
 		return 0, nil, err
 	}
 
+	// htmlText, errHtml := doc.Html()
+	// if errHtml == nil {
+	// 	log.Printf("\n=== HTML TRONG DOC ===\n%s\n===================", htmlText)
+	// } else {
+	// 	log.Println("Không thể xuất HTML từ doc:", errHtml)
+	// }
+
 	var hocmais []models.TVHL
 
 	sel := doc.Find(".td-block-span6 .td_module_1")
@@ -290,7 +294,7 @@ func getListTVHL(url string, grade1 string) (int, []models.TVHL, error) {
 		max, _ := utils.ConvertToTimestamp(maxTime)
 
 		if date.Unix() < min.Unix() || date.Unix() >= max.Unix() {
-			log.Printf("Bỏ qua tài liệu '%s' vì không trong khoảng thời gian.\n", a.Text())
+			//log.Printf("Bỏ qua tài liệu '%s' vì không trong khoảng thời gian.\n", a.Text())
 			finish = true
 			return
 		}
@@ -300,6 +304,8 @@ func getListTVHL(url string, grade1 string) (int, []models.TVHL, error) {
 			log.Println("Lỗi lấy link download:", err)
 			return
 		}
+
+		log.Println("***Link download:", linkDownload)
 
 		fmt.Printf(">>> %s\n", title)
 
@@ -315,7 +321,7 @@ func getListTVHL(url string, grade1 string) (int, []models.TVHL, error) {
 	// Tìm tất cả các thẻ a có class "cap-down"
 
 	if len(hocmais) == 0 {
-		fmt.Println("⚠️ Không tìm thấy Tài kiệu nào.")
+		fmt.Println("--------------⚠️ Không tìm thấy Tài kiệu nào.--------------")
 		return 0, hocmais, nil
 	}
 

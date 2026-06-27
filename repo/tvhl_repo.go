@@ -42,71 +42,96 @@ func (r *TvhlRepoImp) SavePractice(practice *models.TVHL, collection string) err
 }
 
 func (r *TvhlRepoImp) Upload(title string, url1 string) (string, error) {
-	fmt.Println("🔹 Bắt đầu tải tài liệu")
-	resp, err := utils.CreateRequest(url1, "GET")
-	if err != nil {
-		return url1, fmt.Errorf("không tải được %s: %v", url1, err)
-	}
-	defer resp.Body.Close()
+    fmt.Println("🔹 Bắt đầu tải tài liệu")
+    resp, err := utils.CreateRequest(url1, "GET")
+    if err != nil {
+        return url1, fmt.Errorf("không tải được %s: %v", url1, err)
+    }
+    defer resp.Body.Close()
 
-	if resp.StatusCode != 200 {
-		return url1, fmt.Errorf("HTTP lỗi: %d", resp.StatusCode)
-	}
+    if resp.StatusCode != 200 {
+        return url1, fmt.Errorf("HTTP lỗi: %d", resp.StatusCode)
+    }
 
-	// 🔹 2. Tạo tên file tạm thời
-	name := utils.ToSnakeCase(title)
-	fileName := fmt.Sprintf("%s_%d", name, time.Now().Unix())
-	tempDir := os.TempDir()
-	tmpPath := filepath.Join(tempDir, fileName+".docx")
-	out, err := os.Create(tmpPath)
-	if err != nil {
-		return url1, fmt.Errorf("không tạo file tạm: %v", err)
-	}
-	defer out.Close()
+    // Kiểm tra xem URL có phải là file PDF sẵn hay không
+    // (Dùng strings.Contains để phòng trường hợp url có query params phía sau như .pdf?alt=media)
+    isPDF := strings.Contains(strings.ToLower(url1), ".pdf")
 
-	if _, err := io.Copy(out, resp.Body); err != nil {
-		return url1, fmt.Errorf("không ghi file tạm: %v", err)
-	}
-	fmt.Println("🔹 Tải docx thành công")
+    // 🔹 2. Tạo tên file tạm thời với extension phù hợp
+    name := utils.ToSnakeCase(title)
+    fileName := fmt.Sprintf("%s_%d", name, time.Now().Unix())
+    tempDir := os.TempDir()
+    
+    ext := ".docx"
+    if isPDF {
+        ext = ".pdf"
+    }
+    
+    tmpPath := filepath.Join(tempDir, fileName+ext)
+    out, err := os.Create(tmpPath)
+    if err != nil {
+        return url1, fmt.Errorf("không tạo file tạm: %v", err)
+    }
+    defer out.Close()
 
-	tmpPdfPath, err1 := utils.ConvertDocxToPDF(tmpPath, tempDir, 0)
+    if _, err := io.Copy(out, resp.Body); err != nil {
+        return url1, fmt.Errorf("không ghi file tạm: %v", err)
+    }
+    
+    // Đóng file ngay sau khi ghi xong để tránh xung đột quyền đọc/ghi (lock file) ở các bước sau
+    out.Close() 
 
-	if err1 != nil {
-		return url1, fmt.Errorf("không chuyển đổi được file pdf: %v", err1)
-	}
-	fmt.Println("🔹 Convert sang PDF thành công")
-	fmt.Println("🔹 Upload lên server")
-	// 🔹 3. Upload lên Firebase Storage
-	objectPath := fmt.Sprintf("TVHL/%s", fileName+".pdf")
-	wc := r.storage.Bucket(r.bucketName).Object(objectPath).NewWriter(r.ctx)
-	uuid := uuid.New().String()
-	wc.ContentType = "application/pdf"
-	wc.Metadata = map[string]string{
-		"firebaseStorageDownloadTokens": uuid,
-	}
+    var tmpPdfPath string
+    if isPDF {
+        fmt.Println("🔹 Tải trực tiếp PDF thành công (Không cần convert)")
+        tmpPdfPath = tmpPath
+    } else {
+        fmt.Println("🔹 Tải docx thành công, bắt đầu convert...")
+        tmpPdfPath, err = utils.ConvertDocxToPDF(tmpPath, tempDir, 0)
+        if err != nil {
+            return url1, fmt.Errorf("không chuyển đổi được file pdf: %v", err)
+        }
+        fmt.Println("🔹 Convert sang PDF thành công")
+    }
 
-	// Mở lại file tạm để upload
-	tmpFile, err := os.Open(tmpPdfPath)
-	if err != nil {
-		return url1, fmt.Errorf("không mở file tạm: %v", err)
-	}
-	defer tmpFile.Close()
+    fmt.Println("🔹 Upload lên server")
+    // 🔹 3. Upload lên Firebase Storage
+    objectPath := fmt.Sprintf("TVHL/%s", fileName+".pdf")
+    wc := r.storage.Bucket(r.bucketName).Object(objectPath).NewWriter(r.ctx)
+    uuid := uuid.New().String()
+    wc.ContentType = "application/pdf"
+    wc.Metadata = map[string]string{
+        "firebaseStorageDownloadTokens": uuid,
+    }
 
-	if _, err := io.Copy(wc, tmpFile); err != nil {
-		wc.Close()
-		return url1, fmt.Errorf("lỗi upload : %v", err)
-	}
+    // Mở file tạm PDF để upload
+    tmpFile, err := os.Open(tmpPdfPath)
+    if err != nil {
+        return url1, fmt.Errorf("không mở file tạm: %v", err)
+    }
+    defer tmpFile.Close()
 
-	if err := wc.Close(); err != nil {
-		return url1, fmt.Errorf("lỗi đóng writer: %v", err)
-	}
+    if _, err := io.Copy(wc, tmpFile); err != nil {
+        wc.Close()
+        return url1, fmt.Errorf("lỗi upload : %v", err)
+    }
 
-	// 🔹 4. Tạo URL công khai
-	escapedPath := url.PathEscape(objectPath)
-	newURL := fmt.Sprintf("https://firebasestorage.googleapis.com/v0/b/%s/o/%s?alt=media&token=%s", r.bucketName, escapedPath, uuid)
+    if err := wc.Close(); err != nil {
+        return url1, fmt.Errorf("lỗi đóng writer: %v", err)
+    }
 
-	fmt.Println("🔹 Upload thành công")
-	return newURL, nil
+    // Tự động dọn dẹp file tạm sau khi chạy xong để đỡ rác server
+    defer os.Remove(tmpPath)
+    if tmpPdfPath != tmpPath {
+        defer os.Remove(tmpPdfPath)
+    }
+
+    // 🔹 4. Tạo URL công khai
+    escapedPath := url.PathEscape(objectPath)
+    newURL := fmt.Sprintf("https://firebasestorage.googleapis.com/v0/b/%s/o/%s?alt=media&token=%s", r.bucketName, escapedPath, uuid)
+
+    fmt.Println("🔹 Upload thành công")
+    return newURL, nil
 }
 
 func (r *TvhlRepoImp) Clear(cutoff time.Time) error {
